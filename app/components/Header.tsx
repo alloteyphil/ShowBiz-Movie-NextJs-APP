@@ -1,8 +1,9 @@
 import type { MovieType } from "@/types/genre";
-import { genredata } from "@/data/genredata";
+
 import Image from "next/image";
-import _, { shuffle } from "lodash";
+import _ from "lodash";
 import Link from "next/link";
+import { movieGenreData } from "@/data/genreData";
 
 const Header = async () => {
   let data;
@@ -10,12 +11,12 @@ const Header = async () => {
   let shuffleData;
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.IMDB_API_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.IMDB_API_KEY}&language=en-US&page=1`,
+    { cache: "no-store" }
   );
 
   if (response.ok) {
     data = await response.json();
-    console.log(data);
     shuffleData = _.shuffle(data.results);
   }
 
@@ -40,7 +41,9 @@ const Header = async () => {
               </h3>
               <p className="text-lg text-white/60 ">
                 {movie.genre_ids
-                  .map((genre) => genredata.find((g) => g.id === genre)?.name)
+                  .map(
+                    (genre) => movieGenreData.find((g) => g.id === genre)?.name
+                  )
                   .join(", ")}
               </p>
             </div>

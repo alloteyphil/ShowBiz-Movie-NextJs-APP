@@ -1,5 +1,8 @@
+import FeaturedShows from "./components/FeaturedShows";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+
+const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
@@ -7,6 +10,7 @@ export default function Home() {
       <NavBar />
       <div className="max-w-[1600px] mx-auto flex flex-col">
         <Header />
+        <FeaturedShows />
       </div>
     </div>
   );
