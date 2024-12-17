@@ -54,7 +54,7 @@ const Header = async () => {
           </div>
         ))
       ) : (
-        <p className="text-white">lOADING...</p>
+        <p className="text-white">LOADING...</p>
       )}
     </div>
   );
