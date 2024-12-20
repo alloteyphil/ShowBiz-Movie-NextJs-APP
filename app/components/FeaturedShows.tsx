@@ -14,7 +14,7 @@ const FeaturedShows = async () => {
   }
 
   return (
-    <div className="mt-24 text-white flex flex-wrap justify-between gap-y-14">
+    <div className="my-24 text-white flex flex-wrap justify-between gap-y-14">
       {data ? (
         data.results.map((show: MovieType) => {
           if (show.media_type === "tv") {
