@@ -1,5 +1,4 @@
 import type { MovieType } from "@/types/genre";
-
 import Image from "next/image";
 import _ from "lodash";
 import Link from "next/link";

@@ -5,7 +5,6 @@ import { loginUser } from "@/actions/Login.actions";
 const TestButton = () => {
   const handleClick = async () => {
     const res = await loginUser("john@123.com", "pass1234");
-    console.log(res);
   };
 
   return (

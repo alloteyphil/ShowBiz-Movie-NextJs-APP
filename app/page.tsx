@@ -3,8 +3,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 
-import TestButton from "./components/TestButton";
-
 const dynamic = "force-dynamic";
 
 export default async function Home() {
@@ -17,7 +15,6 @@ export default async function Home() {
         <Header />
         <FeaturedShows />
       </div>
-      <TestButton />
       <Footer />
     </div>
   );
