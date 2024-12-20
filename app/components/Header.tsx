@@ -1,4 +1,5 @@
 import type { MovieType } from "@/types/genre";
+
 import Image from "next/image";
 import _ from "lodash";
 import Link from "next/link";
@@ -18,6 +19,7 @@ const Header = async () => {
     data = await response.json();
     shuffleData = _.shuffle(data.results);
   }
+
   return (
     <div className="grid grid-cols-2 pt-[120px] h-[700px]">
       {data ? (
