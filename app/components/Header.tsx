@@ -19,7 +19,6 @@ const Header = async () => {
     data = await response.json();
     shuffleData = _.shuffle(data.results);
   }
-
   return (
     <div className="grid grid-cols-2 pt-[120px] h-[700px]">
       {data ? (
