@@ -35,6 +35,7 @@ const Register = () => {
   };
 
   const handleSubmit = async () => {
+    // Validate First Name
     if (userDetails.fName.trim() === "") {
       toast({
         title: "Field is required",
@@ -44,6 +45,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Last Name
     if (userDetails.lName.trim() === "") {
       toast({
         title: "Field is required",
@@ -53,6 +55,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Email
     if (userDetails.email.trim() === "") {
       toast({
         title: "Field is required",
@@ -62,6 +65,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Password
     if (userDetails.password.trim() === "") {
       toast({
         title: "Field is required",
@@ -71,6 +75,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Re-entered Password
     if (reEnteredPassword.trim() === "") {
       toast({
         title: "Field is required",
@@ -80,6 +85,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Name for Numbers
     if (containsNumber(userDetails.fName || userDetails.lName)) {
       toast({
         title: "Invalid Name",
@@ -89,6 +95,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Email Format
     if (!isEmail(userDetails.email)) {
       toast({
         title: "Invalid Email",
@@ -98,6 +105,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Password Length
     if (userDetails.password.length < 6) {
       toast({
         title: "Short Password",
@@ -107,6 +115,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Password Strength
     if (!validateRegisterPassword(userDetails.password)) {
       toast({
         title: "Weak Password",
@@ -117,6 +126,7 @@ const Register = () => {
       return;
     }
 
+    // Validate Password Match
     if (userDetails.password.trim() !== reEnteredPassword.trim()) {
       toast({
         title: "Password Mismatch",
@@ -126,6 +136,7 @@ const Register = () => {
       return;
     }
 
+    // Check for SQL Injection Attempts
     if (
       isPotentialSQLInjection(
         userDetails.fName ||
@@ -142,6 +153,7 @@ const Register = () => {
       return;
     }
 
+    // Register User
     try {
       setLoading(true);
       const response = await registerUser(
@@ -151,6 +163,7 @@ const Register = () => {
         userDetails.password
       );
 
+      // Handle Duplicate User
       if (response?.statusCode === 409) {
         toast({
           title: "User already exists",
@@ -160,6 +173,7 @@ const Register = () => {
         return;
       }
 
+      // Successful Registration
       toast({
         title: "Successfully!",
         description: "Your account has successfully been registered",
