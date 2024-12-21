@@ -3,6 +3,14 @@
 import type { UserInputType } from "@/types/user";
 import Link from "next/link";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { containsNumber } from "@/lib/helpers/containsNumber";
+import isEmail from "validator/es/lib/isEmail";
+import { validateRegisterPassword } from "@/lib/helpers/validateRegisterPassword";
+import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
+import registerUser from "@/actions/registerUser.actions";
+import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState<UserInputType>({
@@ -12,12 +20,159 @@ const Register = () => {
     password: "",
   });
 
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const [reEnteredPassword, setReEnteredPassword] = useState<string>("");
+
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+
+  const { toast } = useToast();
+
+  const router = useRouter();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserDetails((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleSubmit = () => {
-    if (userDetails.fName === "") {
+  const handleSubmit = async () => {
+    if (userDetails.fName.trim() === "") {
+      toast({
+        title: "Field is required",
+        description: "Please enter your first name",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (userDetails.lName.trim() === "") {
+      toast({
+        title: "Field is required",
+        description: "Please enter your last name",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (userDetails.email.trim() === "") {
+      toast({
+        title: "Field is required",
+        description: "Please enter your email",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (userDetails.password.trim() === "") {
+      toast({
+        title: "Field is required",
+        description: "Please enter your password",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (reEnteredPassword.trim() === "") {
+      toast({
+        title: "Field is required",
+        description: "Please re-enter your password",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (containsNumber(userDetails.fName || userDetails.lName)) {
+      toast({
+        title: "Invalid Name",
+        description: "Name cannot contain numbers",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (!isEmail(userDetails.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (userDetails.password.length < 6) {
+      toast({
+        title: "Short Password",
+        description: "Password must be at least 6 characters long",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (!validateRegisterPassword(userDetails.password)) {
+      toast({
+        title: "Weak Password",
+        description:
+          "Password must contain at least one letter, one number and one special character",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (userDetails.password.trim() !== reEnteredPassword.trim()) {
+      toast({
+        title: "Password Mismatch",
+        description: "Please re-enter your password correctly",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    if (
+      isPotentialSQLInjection(
+        userDetails.fName ||
+          userDetails.lName ||
+          userDetails.email ||
+          userDetails.password
+      )
+    ) {
+      toast({
+        title: "Invalid Field(s)",
+        description: "Please enter a valid input",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await registerUser(
+        userDetails.fName,
+        userDetails.lName,
+        userDetails.email,
+        userDetails.password
+      );
+
+      if (response?.statusCode === 409) {
+        toast({
+          title: "User already exists",
+          description: "An account with this email already been registered",
+        });
+        setLoading(false);
+        return;
+      }
+
+      toast({
+        title: "Successfully!",
+        description: "Your account has successfully been registered",
+        className: "bg-green-400 text-white",
+      });
+
+      localStorage.setItem("user", JSON.stringify(response?.user));
+
+      setLoading(false);
+
+      router.refresh();
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -50,20 +205,68 @@ const Register = () => {
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
         />
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 relative">
         <label htmlFor="password">Password</label>
         <input
           onChange={handleChange}
-          type="password"
+          type={passwordVisible ? "text" : "password"}
           id="password"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
         />
+        {passwordVisible ? (
+          <EyeIcon
+            onClick={() => {
+              setPasswordVisible(!passwordVisible);
+            }}
+            className="absolute right-4 top-[58px] cursor-pointer"
+            size={20}
+          />
+        ) : (
+          <EyeClosedIcon
+            onClick={() => {
+              setPasswordVisible(!passwordVisible);
+            }}
+            className="absolute right-4 top-[58px] cursor-pointer"
+            size={20}
+          />
+        )}
       </div>
+      <div className="flex flex-col gap-4 relative">
+        <label htmlFor="password">Re-enter Password</label>
+        <input
+          onChange={(e) => setReEnteredPassword(e.target.value)}
+          type={passwordVisible ? "text" : "password"}
+          id="re-password"
+          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+        />
+        {passwordVisible ? (
+          <EyeIcon
+            onClick={() => {
+              setPasswordVisible(!passwordVisible);
+            }}
+            className="absolute right-4 top-[58px] cursor-pointer"
+            size={20}
+          />
+        ) : (
+          <EyeClosedIcon
+            onClick={() => {
+              setPasswordVisible(!passwordVisible);
+            }}
+            className="absolute right-4 top-[58px] cursor-pointer"
+            size={20}
+          />
+        )}
+      </div>
+
       <button
         onClick={handleSubmit}
-        className="w-full bg-[#111111] py-4 text-white"
+        className="w-full grid place-items-center bg-[#111111] py-4 text-white"
       >
-        Register
+        {loading ? (
+          <LoaderCircleIcon size={20} className="animate-spin" />
+        ) : (
+          "Register"
+        )}
       </button>
       <div className="flex justify-center gap-1 text-xs">
         <p>By signing up you agree to our </p>

@@ -14,6 +14,7 @@
     "@radix-ui/react-toast": "^1.2.4",
     "@types/bcrypt": "^5.0.2",
     "@types/lodash": "^4.17.13",
+    "@types/validator": "^13.12.2",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -27,6 +28,7 @@
     "react-dom": "^19.0.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "validator": "^13.12.0",
     "zustand": "^5.0.2"
   },
   "devDependencies": {

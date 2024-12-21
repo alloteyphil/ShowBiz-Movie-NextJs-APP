@@ -11,8 +11,7 @@ const registerUser = async (
   email: string,
   password: string
 ): Promise<
-  | { statusCode: number; message: string; response: UserResponseType }
-  | undefined
+  { statusCode: number; message: string; user: UserResponseType } | undefined
 > => {
   await connectToDatabase();
   try {
@@ -32,7 +31,7 @@ const registerUser = async (
       return {
         statusCode: 409,
         message: "User already exists",
-        response: {
+        user: {
           fName: existingUser.fName,
           lName: existingUser.lName,
           email: existingUser.email,
@@ -46,7 +45,7 @@ const registerUser = async (
     return {
       statusCode: 200,
       message: "User created successfully",
-      response: {
+      user: {
         fName: newUser.fName,
         lName: newUser.lName,
         email: newUser.email,
