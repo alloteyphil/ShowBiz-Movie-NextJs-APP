@@ -1,9 +1,8 @@
-import type { MovieType } from "../../types/genre";
-
 import Image from "next/image";
 import _ from "lodash";
 import Link from "next/link";
 import { movieGenreData } from "@/data/genreData";
+import type { MovieType } from "@/types/genre";
 
 const Header = async () => {
   let data;

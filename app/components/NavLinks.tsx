@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-
-import { cn } from "../../lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,6 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { movieGenreData, tvGenreData } from "@/data/genreData";
+import { cn } from "@/lib/utils";
 
 // const components: { title: string; href: string; description: string }[] = [
 //   {

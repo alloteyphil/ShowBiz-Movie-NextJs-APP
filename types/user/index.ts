@@ -12,3 +12,8 @@ export interface UserResponseType {
   email: string;
   photo?: string;
 }
+
+export interface UserLoginType {
+  email: string;
+  password: string;
+}

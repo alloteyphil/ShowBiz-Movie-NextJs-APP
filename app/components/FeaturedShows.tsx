@@ -1,4 +1,4 @@
-import type { MovieType } from "../../types/genre";
+import type { MovieType } from "@/types/genre";
 import MovieCard from "./MovieCard";
 import TVShowCard from "./TVShowCard";
 

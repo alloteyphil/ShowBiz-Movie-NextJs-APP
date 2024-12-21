@@ -1,6 +1,6 @@
 "use client";
 
-import { loginUser } from "../../actions/Login.actions";
+import { loginUser } from "@/actions/Login.actions";
 
 const TestButton = () => {
   const handleClick = async () => {
