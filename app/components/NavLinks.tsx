@@ -13,7 +13,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { movieGenreData, tvGenreData } from "../../data/genreData";
+import { movieGenreData, tvGenreData } from "@/data/genreData";
 
 // const components: { title: string; href: string; description: string }[] = [
 //   {

@@ -1,4 +1,4 @@
-import { movieGenreData } from "../../data/genreData";
+import { movieGenreData } from "@/data/genreData";
 import Image from "next/image";
 import Link from "next/link";
 
