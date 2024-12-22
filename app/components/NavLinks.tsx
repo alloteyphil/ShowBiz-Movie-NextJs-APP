@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { movieGenreData, tvGenreData } from "@/data/genredata";
+import { movieGenreData, tvGenreData } from "@/data/genresData";
 import { cn } from "@/lib/utils";
 
 // const components: { title: string; href: string; description: string }[] = [
