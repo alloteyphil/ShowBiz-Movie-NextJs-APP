@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
 
     const session = req.cookies.get("session");
 
-    if (!session && pathname === "/profile") {
+    if (!session) {
       return NextResponse.redirect(new URL("/", req.url));
     }
 
@@ -25,5 +25,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/profile"],
+  matcher: ["/profile"],
 };

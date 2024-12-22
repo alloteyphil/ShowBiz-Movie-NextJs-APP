@@ -2,6 +2,7 @@
 
 import { decryptPassword } from "@/lib/helpers/decryptPassword";
 import { createSession } from "@/lib/helpers/generateSession";
+import { connectToDatabase } from "@/mongo/connectToDatabase";
 import { User } from "@/mongo/models/User.model";
 
 export const loginUser = async (email: string, password: string) => {
@@ -11,6 +12,8 @@ export const loginUser = async (email: string, password: string) => {
       message: "Email and password are required",
       response: null,
     };
+
+  await connectToDatabase();
 
   try {
     const existingUser = await User.findOne({ email });
