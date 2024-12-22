@@ -10,7 +10,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="flex flex-col justify-between  border-t-[0.5px] border-white/60 mt-20 pb-8">
-      <div className="grid grid-cols-4 max-w-[1600px] w-full mx-auto py-36">
+      <div className="flex justify-between max-w-[1600px] w-full mx-auto py-36">
         <div className="flex flex-col gap-12">
           <Link
             href={"/"}
