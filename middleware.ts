@@ -10,8 +10,8 @@ export async function middleware(req: NextRequest) {
 
     const session = req.cookies.get("session");
 
-    if (!session && pathname === "/dashboard") {
-      return NextResponse.redirect("/login");
+    if (!session && pathname === "/profile") {
+      return NextResponse.redirect(new URL("/", req.url));
     }
 
     const payload = await verifyToken(session?.value);
@@ -20,11 +20,10 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect("/login");
     }
 
-    // console.log(payload);
+    return res;
   } catch (error) {}
 }
 
 export const config = {
-  matcher:
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  matcher: ["/", "/profile"],
 };

@@ -3,7 +3,7 @@
 import { useStore } from "@/store";
 import { UserIcon } from "lucide-react";
 
-const Profile = () => {
+const UserButton = () => {
   const storeState = useStore((state) => state);
 
   const setOpen = useStore((state) => state.setAuthDrawerOpen);
@@ -21,4 +21,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserButton;

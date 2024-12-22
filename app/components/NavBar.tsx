@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { NavLinks } from "./NavLinks";
-import Profile from "./Profile";
 import SearchBar from "./SearchBar";
 import {
   FacebookIcon,
@@ -8,6 +7,7 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "lucide-react";
+import User from "./User";
 
 const NavBar = () => {
   return (
@@ -23,8 +23,8 @@ const NavBar = () => {
           <div className="flex gap-4">
             <NavLinks />
           </div>
-          <div className="flex gap-4">
-            <Profile />
+          <div className="flex gap-4 items-center">
+            <User />
             <SearchBar />
           </div>
           <div className="flex gap-4">

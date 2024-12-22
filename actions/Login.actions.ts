@@ -55,5 +55,10 @@ export const loginUser = async (email: string, password: string) => {
     };
   } catch (error) {
     console.log(error);
+    return {
+      statusCode: 500,
+      message: "Internal server error",
+      response: null,
+    };
   }
 };

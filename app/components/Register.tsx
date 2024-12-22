@@ -11,6 +11,7 @@ import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
 import registerUser from "@/actions/registerUser.actions";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/store";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState<UserInputType>({
@@ -29,6 +30,8 @@ const Register = () => {
   const { toast } = useToast();
 
   const router = useRouter();
+
+  const storeState = useStore((state) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserDetails((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -180,11 +183,25 @@ const Register = () => {
         className: "bg-green-400 text-white",
       });
 
-      localStorage.setItem("user", JSON.stringify(response?.user));
+      const storedUser = localStorage.setItem(
+        "user",
+        JSON.stringify(response?.user)
+      );
 
       setLoading(false);
 
-      router.refresh();
+      setUserDetails({
+        fName: "",
+        lName: "",
+        email: "",
+        password: "",
+      });
+
+      setReEnteredPassword("");
+
+      storeState.setAuthDrawerOpen(storeState);
+
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -196,6 +213,7 @@ const Register = () => {
         <label htmlFor="fName">First Name</label>
         <input
           onChange={handleChange}
+          value={userDetails.fName}
           type="text"
           id="fName"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
@@ -205,6 +223,7 @@ const Register = () => {
         <label htmlFor="lName">Last Name</label>
         <input
           onChange={handleChange}
+          value={userDetails.lName}
           type="text"
           id="lName"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
@@ -214,6 +233,7 @@ const Register = () => {
         <label htmlFor="email">Email Address</label>
         <input
           onChange={handleChange}
+          value={userDetails.email}
           type="email"
           id="email"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
@@ -223,6 +243,7 @@ const Register = () => {
         <label htmlFor="password">Password</label>
         <input
           onChange={handleChange}
+          value={userDetails.password}
           type={passwordVisible ? "text" : "password"}
           id="password"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
@@ -249,6 +270,7 @@ const Register = () => {
         <label htmlFor="password">Re-enter Password</label>
         <input
           onChange={(e) => setReEnteredPassword(e.target.value)}
+          value={reEnteredPassword}
           type={passwordVisible ? "text" : "password"}
           id="re-password"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
@@ -274,7 +296,7 @@ const Register = () => {
 
       <button
         onClick={handleSubmit}
-        className="w-full grid place-items-center bg-[#111111] py-4 text-white"
+        className="w-full grid place-items-center bg-[#111111] h-16 text-white"
       >
         {loading ? (
           <LoaderCircleIcon size={20} className="animate-spin" />
