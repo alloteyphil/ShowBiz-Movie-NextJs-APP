@@ -116,10 +116,7 @@ const Login = () => {
         className: "bg-green-400 text-white",
       });
 
-      const storedUser = localStorage.setItem(
-        "user",
-        JSON.stringify(response.response)
-      );
+      localStorage.setItem("user", JSON.stringify(response.response));
 
       setLoading(false);
 
