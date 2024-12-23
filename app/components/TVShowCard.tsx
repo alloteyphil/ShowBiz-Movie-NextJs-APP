@@ -16,7 +16,8 @@ const TVShowCard = ({
   return (
     <div className="flex flex-col gap-8 items-center group">
       <Link
-        href={`/tv/${id}`}
+        href={`/tv/details/${id}`}
+        prefetch={true}
         className="w-[270px] h-[400px] overflow-hidden cursor-pointer"
       >
         <Image
@@ -29,7 +30,8 @@ const TVShowCard = ({
       </Link>
       <div className="flex flex-col gap-2 text-center max-w-[250px] text-wrap">
         <Link
-          href={`/tv/${id}`}
+          href={`/tv/details/${id}`}
+          prefetch={true}
           className="text-white text-xl font-semibold cursor-pointer"
         >
           {title}

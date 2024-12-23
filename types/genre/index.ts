@@ -1,7 +1,7 @@
 export interface GenreType {
   id: number;
   name: string;
-  href: string;
+  href?: string;
 }
 
 export interface MovieType {

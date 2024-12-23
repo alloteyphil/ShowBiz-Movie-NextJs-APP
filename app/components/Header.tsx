@@ -3,6 +3,7 @@ import _ from "lodash";
 import Link from "next/link";
 import { movieGenreData } from "@/data/genresData";
 import type { MovieType } from "@/types/genre";
+import { LoaderIcon } from "lucide-react";
 
 const Header = async () => {
   let data;
@@ -47,7 +48,7 @@ const Header = async () => {
               </p>
             </div>
             <Link
-              href={`/movie/${movie.id}`}
+              href={`/movie/details/${movie.id}`}
               className="text-sm text-white absolute -bottom-10 right-16 transition group-hover:-translate-y-[100px] duration-700 z-20 ease-in-out hover:underline"
             >
               See More
@@ -56,7 +57,9 @@ const Header = async () => {
           </div>
         ))
       ) : (
-        <p className="text-white">LOADING...</p>
+        <div className="w-full grid place-items-center h-full">
+          <LoaderIcon size={36} className="text-white animate-spin" />
+        </div>
       )}
     </div>
   );
