@@ -19,23 +19,25 @@ const FeaturedShows = async () => {
         data.results.map((show: MovieType) => {
           if (show.media_type === "tv") {
             return (
-              <TVShowCard
-                key={show.id}
-                image={show.poster_path}
-                title={show.original_name || ""}
-                genres={show.genre_ids}
-                id={show.id}
-              />
+              <div key={show.id} className="w-[270px]">
+                <TVShowCard
+                  image={show.poster_path}
+                  title={show.original_name || ""}
+                  genres={show.genre_ids}
+                  id={show.id}
+                />
+              </div>
             );
           }
           return (
-            <MovieCard
-              key={show.id}
-              image={show.poster_path}
-              title={show.original_title || ""}
-              genres={show.genre_ids}
-              id={show.id}
-            />
+            <div key={show.id} className="w-[270px]">
+              <MovieCard
+                image={show.poster_path}
+                title={show.original_title || ""}
+                genres={show.genre_ids}
+                id={show.id}
+              />
+            </div>
           );
         })
       ) : (

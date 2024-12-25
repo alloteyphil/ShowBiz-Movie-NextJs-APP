@@ -23,6 +23,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "embla-carousel-autoplay": "^8.5.1",
+    "embla-carousel-react": "^8.5.1",
     "gsap": "^3.12.5",
     "jose": "^5.9.6",
     "lodash": "^4.17.21",

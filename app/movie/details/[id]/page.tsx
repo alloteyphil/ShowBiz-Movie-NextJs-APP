@@ -1,5 +1,6 @@
 import MovieContentDetails from "@/app/components/MovieContentDetails";
 import MovieHeaderDetails from "@/app/components/MovieHeaderDetails";
+import RelatedMovies from "@/app/components/RelatedMovies";
 import type { Movie } from "@/types/movie";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -25,6 +26,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <>
           <MovieHeaderDetails data={data} />
           <MovieContentDetails data={data} />
+          <RelatedMovies id={data.id} />
         </>
       )}
     </div>
