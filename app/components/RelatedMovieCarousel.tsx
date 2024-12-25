@@ -7,9 +7,9 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import MovieCard from "./MovieCard";
-import type { MovieType } from "@/types/genre";
+import type { TrendingGenreType } from "@/types/genre";
 
-const RelatedMovieCarousel = ({ data }: { data: MovieType[] }) => {
+const RelatedMovieCarousel = ({ data }: { data: TrendingGenreType[] }) => {
   return (
     <Carousel
       plugins={[

@@ -3,12 +3,12 @@ import { movieGenreData } from "@/data/genresData";
 import { convertMinutes } from "@/lib/helpers/convertMinutes";
 import { formatDate } from "@/lib/helpers/formatDate";
 import type { GenreType } from "@/types/genre";
-import type { Movie } from "@/types/movie";
+import type { IMovie } from "@/types/movie";
 import { DotIcon, HeartIcon, PlayIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const MovieHeaderDetails = ({ data }: { data: Movie }) => {
+const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
   return (
     <>
       <div className="h-[70vh] w-full relative">
@@ -115,57 +115,3 @@ const MovieHeaderDetails = ({ data }: { data: Movie }) => {
 };
 
 export default MovieHeaderDetails;
-
-// {
-//   adult: false,
-//   backdrop_path: '/4FnbeuCnsN3MT6omPrivl2ttJ8o.jpg',
-//   belongs_to_collection: null,
-//   budget: 0,
-//   genres: [ { id: 18, name: 'Drama' }, { id: 10752, name: 'War' } ],
-//   homepage: 'https://www.netflix.com/title/81590591',
-//   id: 1061699,
-//   imdb_id: 'tt24458622',
-//   origin_country: [ 'US' ],
-//   original_language: 'en',
-//   original_title: 'The Six Triple Eight',
-//   overview: "During World War II, the US Army's only all-Black, all-women battalion takes on an impossible mission: sorting through a three-year backlog of 17 million pieces of mail that hadn't been delivered to American soldiers and finish within six months.",
-//   popularity: 47.12,
-//   poster_path: '/2N8VL4jePIGpAupSqVcGiPekIf4.jpg',
-//   production_companies: [
-//     {
-//       id: 3096,
-//       logo_path: '/fkZTZ4veYYr3lwr2riVrVAOfeqD.png',
-//       name: 'Tyler Perry Studios',
-//       origin_country: 'US'
-//     },
-//     {
-//       id: 551,
-//       logo_path: '/jSlzEZZ4Z1g7B2UExjZEIKsUvD9.png',
-//       name: 'Mandalay Pictures',
-//       origin_country: 'US'
-//     },
-//     {
-//       id: 188436,
-//       logo_path: null,
-//       name: 'Her Excellency Productions',
-//       origin_country: 'US'
-//     },
-//     {
-//       id: 188437,
-//       logo_path: null,
-//       name: 'Intuition Productions',
-//       origin_country: 'US'
-//     }
-//   ],
-//   production_countries: [ { iso_3166_1: 'US', name: 'United States of America' } ],
-//   release_date: '2024-12-06',
-//   revenue: 0,
-//   runtime: 127,
-//   spoken_languages: [ { english_name: 'English', iso_639_1: 'en', name: 'English' } ],
-//   status: 'Released',
-//   tagline: 'They were ordered to provide hope...',
-//   title: 'The Six Triple Eight',
-//   video: false,
-//   vote_average: 6.886,
-//   vote_count: 57
-// }

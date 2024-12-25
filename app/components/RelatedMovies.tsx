@@ -1,8 +1,8 @@
 import _ from "lodash";
 
-import type { MovieType } from "@/types/genre";
 import * as React from "react";
 import RelatedMovieCarousel from "./RelatedMovieCarousel";
+import type { TrendingGenreType } from "@/types/genre";
 
 const RelatedMovies = async ({ id }: { id: number }) => {
   let data;
@@ -13,7 +13,7 @@ const RelatedMovies = async ({ id }: { id: number }) => {
     );
 
     if (res.ok) {
-      data = (await res.json()).results as MovieType[];
+      data = (await res.json()).results as TrendingGenreType[];
       data = _.shuffle(data);
     }
   } catch (error) {

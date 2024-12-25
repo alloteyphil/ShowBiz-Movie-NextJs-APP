@@ -2,8 +2,8 @@ import Image from "next/image";
 import _ from "lodash";
 import Link from "next/link";
 import { movieGenreData } from "@/data/genresData";
-import type { MovieType } from "@/types/genre";
 import { LoaderIcon } from "lucide-react";
+import type { TrendingGenreType } from "@/types/genre";
 
 const Header = async () => {
   let data;
@@ -23,7 +23,7 @@ const Header = async () => {
   return (
     <div className="grid grid-cols-2 pt-[120px] h-[700px]">
       {data ? (
-        shuffleData?.slice(0, 2).map((movie: MovieType) => (
+        shuffleData?.slice(0, 2).map((movie: TrendingGenreType) => (
           <div
             key={movie.id}
             className="relative w-full overflow-hidden group cursor-pointer"
@@ -66,24 +66,3 @@ const Header = async () => {
 };
 
 export default Header;
-
-//  {
-//       adult: false,
-//       backdrop_path: '/7lyq8hK0MhPHpUXdnqbFvZYSfkk.jpg',
-//       genre_ids: [Array],
-//       id: 11216,
-//       original_language: 'it',
-//       original_title: 'Nuovo Cinema Paradiso',
-//       overview: "A filmmaker recalls his childhood, when he fell in love with the movies at his village's theater and formed a deep friendship with the theater's projectionist.",
-//       popularity: 30.247,
-//       poster_path: '/rf99GAg2zHKFj79QKn8ed8iPCVF.jpg',
-//       release_date: '1988-11-17',
-//       title: 'Cinema Paradiso',
-//       video: false,
-//       vote_average: 8.4,
-//       vote_count: 4384
-//     }
-//   ],
-//   total_pages: 491,
-//   total_results: 9816
-// }
