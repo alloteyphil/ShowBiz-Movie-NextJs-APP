@@ -10,9 +10,9 @@ import Subscribe from "./Subscribe";
 
 const Footer = () => {
   return (
-    <div className="flex flex-col w-full bg-[#111111]">
+    <div className="flex flex-col w-full bg-[#111111] mt-20">
       <Subscribe />
-      <div className="flex flex-col justify-between  border-t-[0.5px] border-themeGray mt-20 pb-8">
+      <div className="flex flex-col justify-between  border-t-[0.5px] border-themeGray pb-8">
         <div className="flex justify-between max-w-[1600px] w-full mx-auto py-36">
           <div className="flex flex-col gap-12">
             <Link
@@ -56,7 +56,7 @@ const Footer = () => {
             <ul key={i} className="flex flex-col gap-4">
               <li className="text-white text-lg uppercase">{link.title}</li>
               {link.links.map((l, i) => (
-                <li key={i} className="text-white/60 text-base">
+                <li key={i} className="text-themeGray text-base">
                   <Link href={l.href}>{l.title}</Link>
                 </li>
               ))}
@@ -64,9 +64,9 @@ const Footer = () => {
           ))}
           <div className="flex flex-col gap-4">
             <h4 className="text-white text-lg uppercase">ShowBiz Studio</h4>
-            <p className="text-white/60 text-base">123 Maplewood Lane</p>
-            <p className="text-white/60 text-base">Sunnyvale</p>
-            <p className="text-white/60 text-base">CA 94086</p>
+            <p className="text-themeGray text-base">123 Maplewood Lane</p>
+            <p className="text-themeGray text-base">Sunnyvale</p>
+            <p className="text-themeGray text-base">CA 94086</p>
           </div>
         </div>
         <div className="flex justify-between text-white w-full max-w-[1600px] mx-auto ">

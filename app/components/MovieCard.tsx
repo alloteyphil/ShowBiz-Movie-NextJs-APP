@@ -41,7 +41,7 @@ const MovieCard = ({
         >
           {title}
         </Link>
-        <p className="text-base text-darkAsh">
+        <p className="text-base text-themeGray">
           {genres
             .map((genre) => movieGenreData.find((g) => g.id === genre)?.name)
             .join(", ")}

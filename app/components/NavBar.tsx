@@ -23,7 +23,7 @@ const NavBar = () => {
       className={`w-full top-0 z-50 py-10 ${
         !isDetailedPage
           ? "bg-[#111111] fixed"
-          : "bg-transparent mx-auto max-w-[1600px] absolute border-b-[0.5px] border-white/60 left-1/2 -translate-x-1/2"
+          : "bg-transparent mx-auto max-w-[1600px] absolute border-b-[0.5px] border-themeGray left-1/2 -translate-x-1/2"
       }`}
     >
       <div

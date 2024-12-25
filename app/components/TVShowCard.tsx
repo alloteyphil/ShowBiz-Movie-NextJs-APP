@@ -41,7 +41,7 @@ const TVShowCard = ({
         >
           {title}
         </Link>
-        <p className="text-base text-darkAsh">
+        <p className="text-base text-themeGray">
           {genres
             .map((genre) => tvGenreData.find((g) => g.id === genre)?.name)
             .join(", ")}
