@@ -1,10 +1,8 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 import { formatBudget } from "@/lib/helpers/formatBudget";
 import { formatDate } from "@/lib/helpers/formatDate";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { TVShowType } from "@/types/tv";
 import { tvGenreData } from "@/data/genresData";

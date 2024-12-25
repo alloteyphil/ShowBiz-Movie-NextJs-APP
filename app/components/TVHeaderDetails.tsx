@@ -1,14 +1,13 @@
 import { tvGenreData } from "@/data/genresData";
-import { convertMinutes } from "@/lib/helpers/convertMinutes";
 import { formatDate } from "@/lib/helpers/formatDate";
 import type { GenreType } from "@/types/genre";
-import type { TVShow } from "@/types/tv";
 import { DotIcon, HeartIcon, PlayIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Tooltips from "./Tooltips";
+import type { TVShowType } from "@/types/tv";
 
-const TVHeaderDetails = ({ data }: { data: TVShow }) => {
+const TVHeaderDetails = ({ data }: { data: TVShowType }) => {
   return (
     <>
       <div className="h-[70vh] w-full relative text-white">

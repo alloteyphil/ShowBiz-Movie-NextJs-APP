@@ -6,7 +6,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-
 import TVShowCard from "./TVShowCard";
 import type { TVType } from "@/types/genre";
 
