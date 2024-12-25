@@ -1,7 +1,7 @@
 import MovieContentDetails from "@/app/components/MovieContentDetails";
 import MovieHeaderDetails from "@/app/components/MovieHeaderDetails";
 import RelatedMovies from "@/app/components/RelatedMovies";
-import type { Movie } from "@/types/movie";
+import type { IMovie } from "@/types/movie";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -14,7 +14,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     );
 
     if (res.ok) {
-      data = (await res.json()) as Movie;
+      data = (await res.json()) as IMovie;
     }
   } catch (error) {
     console.log(error);

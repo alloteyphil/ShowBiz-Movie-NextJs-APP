@@ -8,7 +8,7 @@ const Subscribe = () => {
     <div
       className={`${
         pathname !== "/" ? "border-t-[0.5px] border-themeGray" : ""
-      } h-[100px]`}
+      } h-[100px] w-full`}
     >
       Subscribe
     </div>

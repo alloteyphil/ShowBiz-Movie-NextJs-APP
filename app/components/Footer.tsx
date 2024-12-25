@@ -6,10 +6,12 @@ import {
   YoutubeIcon,
 } from "lucide-react";
 import Link from "next/link";
+import Subscribe from "./Subscribe";
 
 const Footer = () => {
   return (
     <div className="flex flex-col w-full bg-[#111111]">
+      <Subscribe />
       <div className="flex flex-col justify-between  border-t-[0.5px] border-themeGray mt-20 pb-8">
         <div className="flex justify-between max-w-[1600px] w-full mx-auto py-36">
           <div className="flex flex-col gap-12">

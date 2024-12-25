@@ -1,7 +1,7 @@
 import RelatedTV from "@/app/components/RelatedTV";
 import TVContentDetails from "@/app/components/TVContentDetails";
 import TVHeaderDetails from "@/app/components/TVHeaderDetails";
-import type { TVShowType } from "@/types/tv";
+import type { ITVShow } from "@/types/tv";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -14,7 +14,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     );
 
     if (res.ok) {
-      data = (await res.json()) as TVShowType;
+      data = (await res.json()) as ITVShow;
     }
   } catch (error) {
     console.log(error);
