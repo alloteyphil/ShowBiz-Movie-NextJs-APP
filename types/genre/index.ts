@@ -4,7 +4,7 @@ export interface GenreType {
   href?: string;
 }
 
-export interface MovieType {
+export interface TrendingGenreType {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -12,6 +12,7 @@ export interface MovieType {
   original_language: string;
   original_title?: string;
   original_name?: string;
+  name?: string;
   overview: string;
   popularity: number;
   poster_path: string;
@@ -23,7 +24,7 @@ export interface MovieType {
   media_type?: string;
 }
 
-export interface TVType {
+export interface TVGenreType {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];

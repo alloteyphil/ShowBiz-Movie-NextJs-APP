@@ -1,4 +1,4 @@
-export interface TVShowType {
+export interface ITVShow {
   adult: boolean;
   backdrop_path: string;
   created_by: {

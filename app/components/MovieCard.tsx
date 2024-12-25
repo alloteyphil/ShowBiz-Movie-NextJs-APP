@@ -1,6 +1,7 @@
 import { movieGenreData } from "@/data/genresData";
 import Image from "next/image";
 import Link from "next/link";
+import noImage from "../../public/no-image.png";
 
 const MovieCard = ({
   image,
@@ -23,7 +24,11 @@ const MovieCard = ({
         <Image
           width={270}
           height={400}
-          src={`https://image.tmdb.org/t/p/original${image}`}
+          src={
+            image !== null
+              ? `https://image.tmdb.org/t/p/original${image}`
+              : noImage
+          }
           alt={title}
           className="object-cover w-full object-center transition group-hover:scale-125 duration-700 ease-in-out"
         />

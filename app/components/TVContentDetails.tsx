@@ -1,11 +1,11 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { formatBudget } from "@/lib/helpers/formatBudget";
 import { formatDate } from "@/lib/helpers/formatDate";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import type { TVShowType } from "@/types/tv";
 import { tvGenreData } from "@/data/genresData";
+import type { ITVShow } from "@/types/tv";
+import type { ProductionCompaniesType } from "@/types/movie";
 
 interface NetworksType {
   id: number;
@@ -15,7 +15,7 @@ interface NetworksType {
 }
 [];
 
-const TVContentDetails = ({ data }: { data: TVShowType }) => {
+const TVContentDetails = ({ data }: { data: ITVShow }) => {
   return (
     <Tabs
       defaultValue="key"
@@ -37,6 +37,14 @@ const TVContentDetails = ({ data }: { data: TVShowType }) => {
           }
         />
         <DetailsCard
+          title={"Seasons: "}
+          value={data.number_of_seasons || "N/A"}
+        />
+        <DetailsCard
+          title={"Number of Episodes: "}
+          value={data.number_of_episodes || "N/A"}
+        />
+        <DetailsCard
           title={"Languages: "}
           value={
             data.spoken_languages
@@ -53,10 +61,26 @@ const TVContentDetails = ({ data }: { data: TVShowType }) => {
       </TabsContent>
       <TabsContent value="film">
         <DetailsCard
+          title={"Created by: "}
+          value={data.created_by[0]?.name || "N/A"}
+        />
+        <DetailsCard
           title={"Release Date: "}
           value={formatDate(data.first_air_date) || "N/A"}
         />
         <DetailsCard title={"Status: "} value={data.status || "N/A"} />
+        <DetailsCard
+          title={"In Production: "}
+          value={data.in_production ? "Yes" : "No"}
+        />
+        <DetailsCard
+          title={"Pilot Air Date: "}
+          value={formatDate(data.first_air_date) || "N/A"}
+        />
+        <DetailsCard
+          title={"Last Air Date: "}
+          value={formatDate(data.last_air_date) || "N/A"}
+        />
         <DetailsCard
           title={"Production Countries: "}
           value={
@@ -64,6 +88,11 @@ const TVContentDetails = ({ data }: { data: TVShowType }) => {
               .map((country, i) => country.name)
               .join(", ") || "N/A"
           }
+        />
+        <DetailsCard
+          title={"Production Companies: "}
+          value={""}
+          productionCompanies={data.production_companies}
         />
         <DetailsCard title={"Networks: "} value={""} networks={data.networks} />
       </TabsContent>
@@ -75,10 +104,12 @@ const DetailsCard = ({
   title,
   value,
   networks = undefined,
+  productionCompanies = undefined,
 }: {
   title: string;
   value: string | string[] | number | number[];
   networks?: NetworksType[] | undefined;
+  productionCompanies?: ProductionCompaniesType[] | undefined;
 }) => {
   return (
     <div className="flex flex-col w-full p-6 bg-themeGray/15 gap-4">
@@ -95,6 +126,21 @@ const DetailsCard = ({
                 <AvatarFallback className="rounded-full w-full h-full bg-darkAsh"></AvatarFallback>
               </Avatar>
               <p>{network.name}</p>
+            </div>
+          ))}
+        </div>
+      ) : productionCompanies ? (
+        <div className="flex flex-wrap gap-6">
+          {productionCompanies.map((company, i) => (
+            <div key={i} className="flex gap-1 items-center">
+              <Avatar className="w-6 h-6">
+                <AvatarImage
+                  className="object-center object-cover"
+                  src={`https://image.tmdb.org/t/p/original${company.logo_path}`}
+                />
+                <AvatarFallback className="rounded-full w-full h-full bg-darkAsh"></AvatarFallback>
+              </Avatar>
+              <p>{company.name}</p>
             </div>
           ))}
         </div>

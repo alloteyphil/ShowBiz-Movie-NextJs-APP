@@ -7,9 +7,9 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import TVShowCard from "./TVShowCard";
-import type { TVType } from "@/types/genre";
+import type { TVGenreType } from "@/types/genre";
 
-const RelatedTVCarousel = ({ data }: { data: TVType[] }) => {
+const RelatedTVCarousel = ({ data }: { data: TVGenreType[] }) => {
   return (
     <Carousel
       plugins={[

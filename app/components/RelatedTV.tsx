@@ -1,6 +1,6 @@
 import _ from "lodash";
 import RelatedTVCarousel from "./RelatedTVCarousel";
-import type { TVType } from "@/types/genre";
+import type { TVGenreType } from "@/types/genre";
 
 const RelatedTV = async ({ id }: { id: number }) => {
   let data;
@@ -11,7 +11,7 @@ const RelatedTV = async ({ id }: { id: number }) => {
     );
 
     if (res.ok) {
-      data = (await res.json()).results as TVType[];
+      data = (await res.json()).results as TVGenreType[];
       data = _.shuffle(data);
     }
   } catch (error) {

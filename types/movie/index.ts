@@ -1,4 +1,4 @@
-export interface Movie {
+export interface IMovie {
   adult: boolean;
   backdrop_path: string | null;
   belongs_to_collection: null | object;
