@@ -17,6 +17,14 @@ const FeaturedShows = async () => {
     <div className="my-24 text-white flex flex-wrap justify-between gap-y-14">
       {data ? (
         data.results.map((show: TrendingGenreType) => {
+          if (
+            show.poster_path === null ||
+            show.poster_path === "" ||
+            show.backdrop_path === null ||
+            show.backdrop_path === ""
+          ) {
+            return;
+          }
           if (show.media_type === "tv") {
             return (
               <div key={show.id} className="w-[270px]">

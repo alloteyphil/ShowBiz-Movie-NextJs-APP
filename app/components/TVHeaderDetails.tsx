@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Tooltips from "./Tooltips";
 import type { ITVShow } from "@/types/tv";
+import noImage from "../../public/no-image.png";
 
 const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
   return (
@@ -13,7 +14,11 @@ const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
       <div className="h-[70vh] w-full relative text-white">
         <div className="absolute inset-0 w-full h-full bg-black/60 z-[3]" />
         <Image
-          src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
+          src={
+            data.backdrop_path !== null
+              ? `https://image.tmdb.org/t/p/original${data?.backdrop_path}`
+              : noImage
+          }
           alt={data.name || ""}
           layout="fill"
           objectFit="cover"
@@ -23,7 +28,11 @@ const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
         <div className="flex h-full max-w-[1400px] mx-auto">
           <div className="w-1/3 z-20 relative">
             <Image
-              src={`https://image.tmdb.org/t/p/original${data?.poster_path}`}
+              src={
+                data.poster_path !== null
+                  ? `https://image.tmdb.org/t/p/original${data?.poster_path}`
+                  : noImage
+              }
               alt={data.name || ""}
               width={400}
               height={600}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useToast } from "@/hooks/use-toast";
+import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import isEmail from "validator/es/lib/isEmail";
@@ -32,6 +33,15 @@ const Subscribe = () => {
         title: "Invalid Email",
         description: "Please enter a valid email",
         className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+      });
+      return;
+    }
+
+    if (isPotentialSQLInjection(email)) {
+      toast({
+        title: "Invalid Field(s)",
+        description: "Please enter a valid input",
+        className: "bg-red-500 text-white",
       });
       return;
     }

@@ -7,6 +7,7 @@ import type { IMovie } from "@/types/movie";
 import { DotIcon, HeartIcon, PlayIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import noImage from "../../public/no-image.png";
 
 const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
   return (
@@ -14,7 +15,11 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
       <div className="h-[70vh] w-full relative">
         <div className="absolute inset-0 w-full h-full bg-black/60 z-[3]" />
         <Image
-          src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
+          src={
+            data.backdrop_path === null
+              ? noImage
+              : `https://image.tmdb.org/t/p/original${data?.backdrop_path}`
+          }
           alt={data.original_title || ""}
           layout="fill"
           objectFit="cover"
@@ -24,7 +29,11 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
         <div className="flex h-full max-w-[1400px] mx-auto">
           <div className="w-1/3 z-20 relative">
             <Image
-              src={`https://image.tmdb.org/t/p/original${data?.poster_path}`}
+              src={
+                data.poster_path === null
+                  ? noImage
+                  : `https://image.tmdb.org/t/p/original${data?.poster_path}`
+              }
               alt={data.original_title || ""}
               width={400}
               height={600}
@@ -82,7 +91,7 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
             </div>
             <div className="flex flex-col gap-1 py-4 px-12 border-r-[0.5px] border-themeGray">
               <p className="text-darkAsh text-sm">Language</p>
-              <p className="">{data.spoken_languages[0].english_name}</p>
+              <p className="">{data.spoken_languages[0].english_name || ""}</p>
             </div>
             <div className="flex flex-col gap-1 py-4 px-12">
               <p className="text-darkAsh text-sm">Status</p>

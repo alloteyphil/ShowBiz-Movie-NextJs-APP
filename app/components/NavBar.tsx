@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { NavLinks } from "./NavLinks";
-import SearchBar from "./SearchBar";
+import SearchButton from "./SearchButton";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -41,7 +41,7 @@ const NavBar = () => {
           </div>
           <div className="flex gap-4 items-center">
             <User />
-            <SearchBar />
+            <SearchButton />
           </div>
           <div className="flex gap-4">
             <Link href="#">

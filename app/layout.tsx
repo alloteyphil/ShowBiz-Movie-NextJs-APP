@@ -4,6 +4,8 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import AuthDrawer from "./components/AuthDrawer";
+import SearchDrawer from "./components/SearchDrawer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +34,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${raleway.variable} antialiased bg-[#111111] `}>
+      <body className={`${raleway.variable} antialiased bg-[#111111] relative`}>
         <NavBar />
+        <AuthDrawer />
+        <SearchDrawer />
         {children}
         <Footer />
         <Toaster />

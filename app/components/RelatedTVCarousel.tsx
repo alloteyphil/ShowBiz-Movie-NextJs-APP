@@ -26,16 +26,26 @@ const RelatedTVCarousel = ({ data }: { data: TVGenreType[] }) => {
       className="w-full"
     >
       <CarouselContent className="justify-between">
-        {data.map((movie, i) => (
-          <CarouselItem key={i} className="lg:basis-1/4">
-            <TVShowCard
-              id={movie.id}
-              image={movie.poster_path}
-              title={movie.name || ""}
-              genres={movie.genre_ids}
-            />
-          </CarouselItem>
-        ))}
+        {data.map((tv, i) => {
+          if (
+            tv.poster_path === null ||
+            tv.poster_path === "" ||
+            tv.backdrop_path === null ||
+            tv.backdrop_path === ""
+          ) {
+            return;
+          }
+          return (
+            <CarouselItem key={i} className="lg:basis-1/4">
+              <TVShowCard
+                id={tv.id}
+                image={tv.poster_path}
+                title={tv.name || ""}
+                genres={tv.genre_ids}
+              />
+            </CarouselItem>
+          );
+        })}
       </CarouselContent>
     </Carousel>
   );

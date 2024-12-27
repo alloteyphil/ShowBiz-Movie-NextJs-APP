@@ -11,7 +11,15 @@ export const useStore = create<StoreState>((set) => ({
   authDrawerOpen: false,
   searchDrawerOpen: false,
   setAuthDrawerOpen: (state: StoreState) =>
-    set({ ...state, authDrawerOpen: !state.authDrawerOpen }),
+    set({
+      ...state,
+      authDrawerOpen: !state.authDrawerOpen,
+      searchDrawerOpen: false,
+    }),
   setSearchDrawerOpen: (state: StoreState) =>
-    set({ ...state, searchDrawerOpen: !state.searchDrawerOpen }),
+    set({
+      ...state,
+      searchDrawerOpen: !state.searchDrawerOpen,
+      authDrawerOpen: false,
+    }),
 }));
