@@ -1,6 +1,4 @@
 import _ from "lodash";
-
-import * as React from "react";
 import RelatedMovieCarousel from "./RelatedMovieCarousel";
 import type { TrendingGenreType } from "@/types/genre";
 
@@ -21,7 +19,7 @@ const RelatedMovies = async ({ id }: { id: number }) => {
   }
 
   return (
-    <div className="flex flex-col gap-16 max-w-[1400px] mx-auto text-[#111111]">
+    <div className="flex flex-col gap-16 pb-32 max-w-[1400px] mx-auto text-[#111111]">
       <h4 className="text-4xl font-bold">Related Titles</h4>
       {data ? <RelatedMovieCarousel data={data} /> : <p>Loading...</p>}
     </div>

@@ -18,7 +18,6 @@ const Subscribe = () => {
   };
 
   const handleSubmit = () => {
-    // Validate Email
     if (email.trim() === "") {
       toast({
         title: "Field is required",
@@ -56,13 +55,13 @@ const Subscribe = () => {
   return (
     <div
       className={`${
-        pathname === "/" ? "border-t-[0.5px] border-themeGray" : ""
+        !pathname.includes("details") ? "border-t-[0.5px] border-themeGray" : ""
       } w-full`}
     >
       <div className="w-[1600px] mx-auto py-36 flex justify-between items-center">
         <div className="flex flex-col gap-4">
           <h3 className="text-3xl font-bold text-white">
-            Subscribe to Newsletter
+            Subscribe to our Newsletter
           </h3>
           <p className="text-themeGray max-w-[600px]">
             Stay in the loop with ShowBiz, your ultimate movie app! Discover the

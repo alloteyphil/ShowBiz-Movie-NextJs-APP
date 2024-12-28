@@ -1,7 +1,8 @@
 import MovieCard from "@/app/components/MovieCard";
 import MovieSearchBar from "@/app/components/MovieSearchBar";
+import NotFoundCard from "@/app/components/NotFoundCard";
 import SearchPagination from "@/app/components/SearchPagination";
-import type { ISearchMovieResponse } from "@/types/search";
+import type { ISearchMovie, ISearchMovieResponse } from "@/types/search";
 
 const page = async ({
   searchParams,
@@ -68,7 +69,7 @@ const page = async ({
   }
 
   return (
-    <div className="flex flex-col gap-24 text-white w-full pt-[160px] max-w-[1400px] mx-auto">
+    <div className="flex flex-col gap-24 text-white w-full pt-[160px] pb-32 max-w-[1400px] mx-auto">
       {query ? (
         <div className="flex flex-col">
           <div className="flex w-full items-center justify-between">
@@ -90,28 +91,22 @@ const page = async ({
       ) : (
         <p>Loading</p>
       )}
-      <div className="flex flex-wrap gap-14 w-full justify-between">
+      <div className="flex flex-wrap gap-14 w-full justify-evenly">
         {data ? (
-          data.results.map((movie) => {
-            if (
-              movie.poster_path === null ||
-              movie.poster_path === "" ||
-              movie.backdrop_path === null ||
-              movie.backdrop_path === ""
-            ) {
-              return;
-            }
-            return (
-              <div key={movie.id} className="w-[270px]">
-                <MovieCard
-                  id={movie.id}
-                  image={movie.poster_path || ""}
-                  title={movie.original_title || ""}
-                  genres={movie.genre_ids}
-                />
-              </div>
-            );
-          })
+          data.results
+            .filter((result: ISearchMovie) => result.poster_path !== null)
+            .map((movie) => {
+              return (
+                <div key={movie.id} className="w-[270px]">
+                  <MovieCard
+                    id={movie.id}
+                    image={movie.poster_path || ""}
+                    title={movie.original_title || ""}
+                    genres={movie.genre_ids}
+                  />
+                </div>
+              );
+            })
         ) : (
           <p>Loading...</p>
         )}

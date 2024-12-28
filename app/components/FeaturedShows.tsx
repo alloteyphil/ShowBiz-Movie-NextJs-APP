@@ -1,6 +1,7 @@
 import type { TrendingGenreType } from "@/types/genre";
 import MovieCard from "./MovieCard";
 import TVShowCard from "./TVShowCard";
+import NotFoundCard from "./NotFoundCard";
 
 const FeaturedShows = async () => {
   let data;
@@ -16,38 +17,44 @@ const FeaturedShows = async () => {
   return (
     <div className="my-24 text-white flex flex-wrap justify-between gap-y-14">
       {data ? (
-        data.results.map((show: TrendingGenreType) => {
-          if (
-            show.poster_path === null ||
-            show.poster_path === "" ||
-            show.backdrop_path === null ||
-            show.backdrop_path === ""
-          ) {
-            return;
-          }
-          if (show.media_type === "tv") {
+        data.results
+          .filter((result: TrendingGenreType) => result.poster_path !== null)
+          .map((show: TrendingGenreType) => {
+            // if (
+            //   show.poster_path === null ||
+            //   show.poster_path === "" ||
+            //   show.backdrop_path === null ||
+            //   show.backdrop_path === ""
+            // ) {
+            //   return (
+            //     <div key={show.id} className="w-[270px]">
+            //       <NotFoundCard />
+            //     </div>
+            //   );
+            // }
+            if (show.media_type === "tv") {
+              return (
+                <div key={show.id} className="w-[270px]">
+                  <TVShowCard
+                    image={show.poster_path}
+                    title={show.name || show.original_name || ""}
+                    genres={show.genre_ids}
+                    id={show.id}
+                  />
+                </div>
+              );
+            }
             return (
               <div key={show.id} className="w-[270px]">
-                <TVShowCard
+                <MovieCard
                   image={show.poster_path}
-                  title={show.name || show.original_name || ""}
+                  title={show.original_title || ""}
                   genres={show.genre_ids}
                   id={show.id}
                 />
               </div>
             );
-          }
-          return (
-            <div key={show.id} className="w-[270px]">
-              <MovieCard
-                image={show.poster_path}
-                title={show.original_title || ""}
-                genres={show.genre_ids}
-                id={show.id}
-              />
-            </div>
-          );
-        })
+          })
       ) : (
         <p>Loading...</p>
       )}

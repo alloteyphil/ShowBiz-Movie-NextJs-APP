@@ -1,7 +1,8 @@
+import NotFoundCard from "@/app/components/NotFoundCard";
 import SearchPagination from "@/app/components/SearchPagination";
 import TVSearchBar from "@/app/components/TVSearchBar";
 import TVShowCard from "@/app/components/TVShowCard";
-import type { ISearchTVResponse } from "@/types/search";
+import type { ISearchTv, ISearchTVResponse } from "@/types/search";
 
 const page = async ({
   searchParams,
@@ -68,7 +69,7 @@ const page = async ({
   }
 
   return (
-    <div className="flex flex-col gap-24 text-white w-full pt-[160px] max-w-[1400px] mx-auto">
+    <div className="flex flex-col gap-24 text-white w-full pt-[160px] pb-32 max-w-[1400px] mx-auto">
       {query ? (
         <div className="flex flex-col">
           <div className="flex w-full items-center justify-between">
@@ -90,28 +91,22 @@ const page = async ({
       ) : (
         <p>Loading</p>
       )}
-      <div className="flex flex-wrap gap-14 w-full justify-between">
+      <div className="flex flex-wrap gap-14 w-full justify-evenly">
         {data ? (
-          data.results.map((tv) => {
-            if (
-              tv.poster_path === null ||
-              tv.poster_path === "" ||
-              tv.backdrop_path === null ||
-              tv.backdrop_path === ""
-            ) {
-              return;
-            }
-            return (
-              <div key={tv.id} className="w-[270px]">
-                <TVShowCard
-                  id={tv.id}
-                  image={tv.poster_path || ""}
-                  title={tv.original_name || ""}
-                  genres={tv.genre_ids}
-                />
-              </div>
-            );
-          })
+          data.results
+            .filter((result: ISearchTv) => result.poster_path !== null)
+            .map((tv) => {
+              return (
+                <div key={tv.id} className="w-[270px]">
+                  <TVShowCard
+                    id={tv.id}
+                    image={tv.poster_path || ""}
+                    title={tv.original_name || ""}
+                    genres={tv.genre_ids}
+                  />
+                </div>
+              );
+            })
         ) : (
           <p>Loading...</p>
         )}
