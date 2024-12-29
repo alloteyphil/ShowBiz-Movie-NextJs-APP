@@ -19,7 +19,7 @@ const TVContentDetails = ({ data }: { data: ITVShow }) => {
   return (
     <Tabs
       defaultValue="key"
-      className="grid grid-cols-4 gap-14 w-full max-w-[1400px] py-20 border-b-[0.5px] border-themeGray mb-32 mx-auto"
+      className="grid grid-cols-4 gap-14 w-full max-w-[1400px] pb-28 pt-20 border-b-[0.5px] border-themeGray mb-20 mx-auto"
     >
       <TabsList>
         <TabsTrigger value="key">Key Details</TabsTrigger>
