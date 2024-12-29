@@ -18,7 +18,14 @@ const FeaturedShows = async () => {
     <div className="mt-24 mb-32 text-white flex flex-wrap justify-between gap-y-14">
       {data ? (
         data.results
-          .filter((result: TrendingGenreType) => result.poster_path !== null)
+          .filter(
+            (result: TrendingGenreType) =>
+              result.poster_path !== null &&
+              result.genre_ids !== undefined &&
+              (result.original_title !== undefined ||
+                result.name !== undefined ||
+                result.original_name !== undefined)
+          )
           .map((show: TrendingGenreType) => {
             if (show.media_type === "tv") {
               return (

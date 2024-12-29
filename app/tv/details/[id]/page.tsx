@@ -1,12 +1,16 @@
 import RelatedTV from "@/app/components/RelatedTV";
 import TVContentDetails from "@/app/components/TVContentDetails";
 import TVHeaderDetails from "@/app/components/TVHeaderDetails";
+import type { FailedDetailsPageResponse } from "@/types/general";
 import type { ITVShow } from "@/types/tv";
+import { redirect } from "next/navigation";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
   let data;
+
+  let error;
 
   try {
     const res = await fetch(
@@ -15,9 +19,15 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
     if (res.ok) {
       data = (await res.json()) as ITVShow;
+    } else {
+      error = (await res.json()) as FailedDetailsPageResponse;
     }
   } catch (error) {
     console.log(error);
+  }
+
+  if (error) {
+    redirect("/not-found");
   }
 
   return (

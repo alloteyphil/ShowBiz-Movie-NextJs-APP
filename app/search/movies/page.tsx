@@ -94,7 +94,12 @@ const page = async ({
       <div className="flex flex-wrap gap-14 w-full justify-evenly">
         {data ? (
           data.results
-            .filter((result: ISearchMovie) => result.poster_path !== null)
+            .filter(
+              (result: ISearchMovie) =>
+                result.poster_path !== null &&
+                result.genre_ids !== undefined &&
+                result.original_title !== undefined
+            )
             .map((movie) => {
               return (
                 <div key={movie.id} className="w-[270px]">
