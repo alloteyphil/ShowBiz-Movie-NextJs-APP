@@ -1,8 +1,8 @@
-import NotFoundCard from "@/app/components/NotFoundCard";
 import SearchPagination from "@/app/components/SearchPagination";
 import TVSearchBar from "@/app/components/TVSearchBar";
 import TVShowCard from "@/app/components/TVShowCard";
 import type { ISearchTv, ISearchTVResponse } from "@/types/search";
+import { LoaderIcon } from "lucide-react";
 
 const page = async ({
   searchParams,
@@ -81,7 +81,7 @@ const page = async ({
                   data
                     ? data.total_results +
                       ` Title${data.total_results === 1 ? "" : "s"}`
-                    : ""
+                    : "Finding titles..."
                 })`}
               </p>
             </div>
@@ -89,7 +89,7 @@ const page = async ({
           </div>
         </div>
       ) : (
-        <p>Loading</p>
+        <LoaderIcon size={20} className="text-white mx-auto animate-spin" />
       )}
       <div className="flex flex-wrap gap-14 w-full justify-evenly">
         {data ? (
@@ -108,7 +108,10 @@ const page = async ({
               );
             })
         ) : (
-          <p>Loading...</p>
+          <LoaderIcon
+            size={36}
+            className="text-white my-56 mx-auto animate-spin"
+          />
         )}
       </div>
       <div className="w-full my-10 grid place-items-center">

@@ -57,9 +57,14 @@ const Header = async () => {
           </div>
         ))
       ) : (
-        <div className="w-full grid place-items-center h-full">
-          <LoaderIcon size={36} className="text-white animate-spin" />
-        </div>
+        <>
+          <div className="w-full grid place-items-center h-full">
+            <LoaderIcon size={36} className="text-white animate-spin" />
+          </div>
+          <div className="w-full grid place-items-center h-full">
+            <LoaderIcon size={36} className="text-white animate-spin" />
+          </div>
+        </>
       )}
     </div>
   );

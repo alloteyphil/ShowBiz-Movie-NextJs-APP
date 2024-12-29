@@ -1,6 +1,7 @@
 import _ from "lodash";
 import RelatedMovieCarousel from "./RelatedMovieCarousel";
 import type { TrendingGenreType } from "@/types/genre";
+import { LoaderIcon } from "lucide-react";
 
 const RelatedMovies = async ({ id }: { id: number }) => {
   let data;
@@ -21,7 +22,14 @@ const RelatedMovies = async ({ id }: { id: number }) => {
   return (
     <div className="flex flex-col gap-16 pb-32 max-w-[1400px] mx-auto text-[#111111]">
       <h4 className="text-4xl font-bold">Related Titles</h4>
-      {data ? <RelatedMovieCarousel data={data} /> : <p>Loading...</p>}
+      {data ? (
+        <RelatedMovieCarousel data={data} />
+      ) : (
+        <LoaderIcon
+          size={36}
+          className="text-[#111111] mx-auto my-12 animate-spin"
+        />
+      )}
     </div>
   );
 };

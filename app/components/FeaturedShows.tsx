@@ -1,7 +1,7 @@
 import type { TrendingGenreType } from "@/types/genre";
 import MovieCard from "./MovieCard";
 import TVShowCard from "./TVShowCard";
-import NotFoundCard from "./NotFoundCard";
+import { LoaderIcon } from "lucide-react";
 
 const FeaturedShows = async () => {
   let data;
@@ -15,23 +15,11 @@ const FeaturedShows = async () => {
   }
 
   return (
-    <div className="my-24 text-white flex flex-wrap justify-between gap-y-14">
+    <div className="mt-24 mb-32 text-white flex flex-wrap justify-between gap-y-14">
       {data ? (
         data.results
           .filter((result: TrendingGenreType) => result.poster_path !== null)
           .map((show: TrendingGenreType) => {
-            // if (
-            //   show.poster_path === null ||
-            //   show.poster_path === "" ||
-            //   show.backdrop_path === null ||
-            //   show.backdrop_path === ""
-            // ) {
-            //   return (
-            //     <div key={show.id} className="w-[270px]">
-            //       <NotFoundCard />
-            //     </div>
-            //   );
-            // }
             if (show.media_type === "tv") {
               return (
                 <div key={show.id} className="w-[270px]">
@@ -56,7 +44,10 @@ const FeaturedShows = async () => {
             );
           })
       ) : (
-        <p>Loading...</p>
+        <LoaderIcon
+          size={36}
+          className="text-white mx-auto my-56 animate-spin"
+        />
       )}
     </div>
   );

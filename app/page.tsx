@@ -8,6 +8,7 @@ export default async function Home() {
     <div className="relative min-h-screen bg-[#111111] w-full">
       <div className="max-w-[1600px] mx-auto flex flex-col">
         <Header />
+
         <FeaturedShows />
       </div>
     </div>
