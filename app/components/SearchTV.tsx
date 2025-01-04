@@ -3,7 +3,6 @@
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { useStore } from "@/store";
-import { set } from "lodash";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
