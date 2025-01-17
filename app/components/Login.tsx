@@ -80,6 +80,7 @@ const Login = () => {
           description: "Please enter your email and password",
           className: "bg-red-500 text-white",
         });
+        setLoading(false);
         return;
       }
 
@@ -89,6 +90,7 @@ const Login = () => {
           description: "An account with this email does not exist",
           className: "bg-red-500 text-white",
         });
+        setLoading(false);
         return;
       }
 
@@ -98,6 +100,7 @@ const Login = () => {
           description: "Please enter the correct password",
           className: "bg-red-500 text-white",
         });
+        setLoading(false);
         return;
       }
 
@@ -107,6 +110,7 @@ const Login = () => {
           description: "Please try again later",
           className: "bg-red-500 text-white",
         });
+        setLoading(false);
         return;
       }
 
@@ -143,6 +147,11 @@ const Login = () => {
           onChange={handleChange}
           id="email"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
       </div>
       <div className="flex flex-col relative gap-4">
@@ -153,6 +162,11 @@ const Login = () => {
           onChange={handleChange}
           id="password"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
         {passwordVisible ? (
           <EyeIcon

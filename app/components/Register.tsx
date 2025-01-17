@@ -58,11 +58,34 @@ const Register = () => {
       return;
     }
 
+    // Validate Name for Numbers
+    if (
+      containsNumber(userDetails.fName) ||
+      containsNumber(userDetails.lName)
+    ) {
+      toast({
+        title: "Invalid Name",
+        description: "Name cannot contain numbers",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
     // Validate Email
     if (userDetails.email.trim() === "") {
       toast({
         title: "Field is required",
         description: "Please enter your email",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    // Validate Email Format
+    if (!isEmail(userDetails.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email",
         className: "bg-red-500 text-white",
       });
       return;
@@ -83,26 +106,6 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please re-enter your password",
-        className: "bg-red-500 text-white",
-      });
-      return;
-    }
-
-    // Validate Name for Numbers
-    if (containsNumber(userDetails.fName || userDetails.lName)) {
-      toast({
-        title: "Invalid Name",
-        description: "Name cannot contain numbers",
-        className: "bg-red-500 text-white",
-      });
-      return;
-    }
-
-    // Validate Email Format
-    if (!isEmail(userDetails.email)) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email",
         className: "bg-red-500 text-white",
       });
       return;
@@ -217,6 +220,11 @@ const Register = () => {
           type="text"
           id="fName"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
       </div>
       <div className="flex flex-col gap-4">
@@ -227,6 +235,11 @@ const Register = () => {
           type="text"
           id="lName"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
       </div>
       <div className="flex flex-col gap-4">
@@ -237,6 +250,11 @@ const Register = () => {
           type="email"
           id="email"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
       </div>
       <div className="flex flex-col gap-4 relative">
@@ -247,6 +265,11 @@ const Register = () => {
           type={passwordVisible ? "text" : "password"}
           id="password"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
         {passwordVisible ? (
           <EyeIcon
@@ -274,6 +297,11 @@ const Register = () => {
           type={passwordVisible ? "text" : "password"}
           id="re-password"
           className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
         {passwordVisible ? (
           <EyeIcon

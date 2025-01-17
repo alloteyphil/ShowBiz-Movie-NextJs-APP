@@ -5,9 +5,14 @@ export const logout = async (): Promise<{
   statusCode: number;
   message: string;
 }> => {
-  const cookieStore = await cookies();
+  try {
+    const cookieStore = await cookies();
 
-  cookieStore.delete("session");
+    cookieStore.delete("session");
 
-  return { statusCode: 200, message: "Successfully logged out" };
+    return { statusCode: 200, message: "Successfully logged out" };
+  } catch (error) {
+    console.log(error);
+    return { statusCode: 500, message: "Failed to log out" };
+  }
 };

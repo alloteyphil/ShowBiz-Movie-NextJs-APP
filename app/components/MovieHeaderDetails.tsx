@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import noImage from "../../public/no-image.png";
 import WatchlistTooltip from "./WatchlistTooltips";
+import FavoritesTooltip from "./FavoritesTooltip";
 
 const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
   return (
@@ -100,15 +101,7 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
             </div>
             <div className="flex gap-4 ml-28">
               <WatchlistTooltip />
-
-              <Tooltips message="Add to favourites">
-                <div className="relative w-16 h-12 p-6 my-auto text-[#111111] bg-white border-[0.5px] border-themeGray">
-                  <HeartIcon
-                    size={20}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  />
-                </div>
-              </Tooltips>
+              <FavoritesTooltip />
             </div>
           </div>
         </div>

@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  addToWatchlist,
-  checkWatchlist,
-  removeFromWatchlist,
-} from "@/actions/watchlist.actions";
+  addToFavorites,
+  checkFavorites,
+  removeFromFavorites,
+} from "@/actions/favorites.actions";
 import {
   Tooltip,
   TooltipContent,
@@ -14,13 +14,13 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useStore } from "@/store";
 import type { UserResponseType } from "@/types/user";
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { HeartIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-type isInWatchlistType = "loading" | true | false;
+type isInFavoritesType = "loading" | true | false;
 
-const WatchlistTooltip = () => {
+const FavoritesTooltip = () => {
   const [user, setUser] = useState<UserResponseType | null>(null);
 
   const storeState = useStore((state) => state);
@@ -33,8 +33,8 @@ const WatchlistTooltip = () => {
 
   const { toast } = useToast();
 
-  const [isInWatchlist, setIsInWatchlist] =
-    useState<isInWatchlistType>("loading");
+  const [isInFavorites, setIsInFavorites] =
+    useState<isInFavoritesType>("loading");
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -44,17 +44,16 @@ const WatchlistTooltip = () => {
 
   useEffect(() => {
     if (user !== null && user !== undefined) {
-      const handleCheckWatchlist = async () => {
-        const response = await checkWatchlist(user?.email, movieId);
+      const handleCheckFavorites = async () => {
+        const response = await checkFavorites(user?.email, movieId);
 
         if (response.response) {
-          setIsInWatchlist(true);
+          setIsInFavorites(true);
         } else {
-          setIsInWatchlist(false);
+          setIsInFavorites(false);
         }
       };
-
-      handleCheckWatchlist();
+      handleCheckFavorites();
     }
   }, [user, movieId]);
 
@@ -63,15 +62,36 @@ const WatchlistTooltip = () => {
       setOpen(storeState);
       return;
     }
-    if (isInWatchlist === true) {
-      const res = await removeFromWatchlist(user?.email, movieId);
-      if (res.statusCode === 200) {
+    if (isInFavorites === true) {
+      const response = await removeFromFavorites(user?.email, movieId);
+
+      if (response.statusCode === 200) {
         toast({
-          title: "Removed from watchlist",
-          description: "Movie has been removed from your watchlist",
+          title: "Removed from favorites",
+          description: "Movie has been removed from your favorites",
           className: "bg-white border-[0.5px] border-[#111111] text-[#111111]",
         });
-        setIsInWatchlist(false);
+        setIsInFavorites(false);
+        return;
+      }
+      toast({
+        title: "Error",
+        description: "An error occurred. Please try again",
+        className: "bg-red-400 text-white",
+      });
+
+      return;
+    }
+    if (isInFavorites === false) {
+      const response = await addToFavorites(user?.email, movieId);
+
+      if (response.statusCode === 200) {
+        setIsInFavorites(true);
+        toast({
+          title: "Added to favorites",
+          description: "Movie has been added to your favorites",
+          className: "bg-white border-[0.5px] border-[#111111] text-[#111111]",
+        });
         return;
       }
       toast({
@@ -81,27 +101,6 @@ const WatchlistTooltip = () => {
       });
       return;
     }
-
-    if (isInWatchlist === false) {
-      const res = await addToWatchlist(user?.email, movieId);
-      if (res.statusCode === 200) {
-        toast({
-          title: "Added to watchlist",
-          description: "Movie has been added to your watchlist",
-          className: "bg-white border-[0.5px] border-[#111111] text-[#111111]",
-        });
-        setIsInWatchlist(true);
-        return;
-      }
-      toast({
-        title: "Error",
-        description: "An error occurred. Please try again",
-        className: "bg-red-400 text-white",
-      });
-      return;
-    }
-
-    return;
   };
 
   if (user === null || user === undefined) {
@@ -109,8 +108,8 @@ const WatchlistTooltip = () => {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger onClick={() => setOpen(storeState)}>
-            <div className="relative w-16 h-12 p-6 my-auto bg-[#111111] text-white">
-              <PlusIcon
+            <div className="relative w-16 h-12 p-6 my-auto text-[#111111] bg-white border-[0.5px] border-themeGray">
+              <HeartIcon
                 size={20}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               />
@@ -127,39 +126,31 @@ const WatchlistTooltip = () => {
   return (
     <TooltipProvider>
       <Tooltip>
-        {isInWatchlist === "loading" ? (
+        {isInFavorites === "loading" ? (
           <TooltipTrigger className="cursor-default">
             <div className="relative w-16 h-12 p-6 my-auto bg-white"></div>
           </TooltipTrigger>
-        ) : isInWatchlist === true ? (
-          <TooltipTrigger onClick={handleClick}>
-            <div className="relative w-16 h-12 p-6 my-auto bg-[#111111] text-white">
-              <MinusIcon
-                size={20}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              />
-            </div>
-          </TooltipTrigger>
         ) : (
           <TooltipTrigger onClick={handleClick}>
-            <div className="relative w-16 h-12 p-6 my-auto bg-[#111111] text-white">
-              <PlusIcon
+            <div className="relative w-16 h-12 p-6 my-auto bg-white text-[#111111] border-[0.5px] border-themeGray">
+              <HeartIcon
                 size={20}
+                fill={isInFavorites ? "#111111" : "#ffffff"}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               />
             </div>
           </TooltipTrigger>
         )}
         <>
-          {isInWatchlist === "loading" ? (
+          {isInFavorites === "loading" ? (
             <></>
-          ) : isInWatchlist === true ? (
+          ) : isInFavorites === true ? (
             <TooltipContent>
-              <p>Remove from watchlist</p>
+              <p>Remove from favourites</p>
             </TooltipContent>
           ) : (
             <TooltipContent>
-              <p>Add to watchlist</p>
+              <p>Add to favourites</p>
             </TooltipContent>
           )}
         </>
@@ -168,4 +159,4 @@ const WatchlistTooltip = () => {
   );
 };
 
-export default WatchlistTooltip;
+export default FavoritesTooltip;

@@ -40,7 +40,7 @@ const User = () => {
               <NavigationMenuContent>
                 <ul className="flex flex-col gap-3 p-4 w-[200px]">
                   <ListItem href={"/profile"} title={"My Profile"}></ListItem>
-                  <ListItem href={"#"} title={"Logout"}></ListItem>
+                  <ListItem title={"Logout"}></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -60,19 +60,9 @@ const ListItem = React.forwardRef<
   const { toast } = useToast();
 
   const handleLogout = async () => {
-    try {
-      await logout();
+    const res = await logout();
 
-      toast({
-        title: "Success",
-        description: "You have successfully logged out.",
-        className: "bg-green-400 text-white",
-      });
-      localStorage.removeItem("user");
-      window.location.reload();
-      return;
-    } catch (error) {
-      console.log(error);
+    if (res.statusCode === 500) {
       toast({
         title: "Error",
         description: "A problem occurred when logging out. Please try again.",
@@ -80,6 +70,15 @@ const ListItem = React.forwardRef<
       });
       return;
     }
+
+    toast({
+      title: "Success",
+      description: "You have successfully logged out.",
+      className: "bg-green-400 text-white",
+    });
+    localStorage.removeItem("user");
+    window.location.reload();
+    return;
   };
 
   return (
