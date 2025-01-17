@@ -23,6 +23,8 @@ const registerUser = async (
       email,
       password: await encryptPassword(password),
       photo: "",
+      watchlist: [],
+      favorites: [],
     };
 
     const existingUser: IUser | null = await User.findOne({

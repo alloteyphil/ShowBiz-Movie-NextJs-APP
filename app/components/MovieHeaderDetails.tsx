@@ -8,6 +8,7 @@ import { DotIcon, HeartIcon, PlayIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import noImage from "../../public/no-image.png";
+import WatchlistTooltip from "./WatchlistTooltips";
 
 const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
   return (
@@ -98,14 +99,7 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
               <p className="capitalize">{data.status}</p>
             </div>
             <div className="flex gap-4 ml-28">
-              <Tooltips message="Add to watchlist">
-                <div className="relative w-16 h-12 p-6 my-auto bg-[#111111] text-white">
-                  <PlusIcon
-                    size={20}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  />
-                </div>
-              </Tooltips>
+              <WatchlistTooltip />
 
               <Tooltips message="Add to favourites">
                 <div className="relative w-16 h-12 p-6 my-auto text-[#111111] bg-white border-[0.5px] border-themeGray">

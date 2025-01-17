@@ -4,6 +4,8 @@ export interface UserInputType {
   email: string;
   password: string;
   photo?: string;
+  watchlist?: number[];
+  favorites?: number[];
 }
 
 export interface UserResponseType {
