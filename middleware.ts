@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { verifyToken } from "./lib/helpers/generateSession";
 
 export async function middleware(req: NextRequest) {
@@ -11,17 +10,19 @@ export async function middleware(req: NextRequest) {
     const session = req.cookies.get("session");
 
     if (!session) {
-      return NextResponse.redirect(new URL("/", req.url));
+      return NextResponse.redirect(new URL("/?auth-open=true", req.url));
     }
 
     const payload = await verifyToken(session?.value);
 
-    if (!payload && pathname === "/dashboard") {
-      return NextResponse.redirect("/login");
+    if (!payload && pathname === "/profile") {
+      return NextResponse.redirect(new URL("/?auth-open=true", req.url));
     }
 
     return res;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export const config = {

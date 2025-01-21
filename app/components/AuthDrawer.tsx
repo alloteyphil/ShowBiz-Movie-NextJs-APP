@@ -5,8 +5,13 @@ import gsap from "gsap";
 import { XIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
 import Auth from "./Auth";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const AuthDrawer = () => {
+  const pathname = usePathname();
+
+  const search = useSearchParams().get("auth-open");
+
   const storeState = useStore((state) => state);
 
   const setOpen = useStore((state) => state.setAuthDrawerOpen);
@@ -18,7 +23,10 @@ const AuthDrawer = () => {
     if (drawerRef.current && toggleRef.current) {
       const newTimeline = gsap.timeline();
 
-      if (storeState.authDrawerOpen) {
+      if (
+        (pathname === "/" && search === "true") ||
+        storeState.authDrawerOpen
+      ) {
         newTimeline
           .to(drawerRef.current, {
             height: "100vh",
@@ -62,7 +70,7 @@ const AuthDrawer = () => {
           );
       }
     }
-  }, [storeState.authDrawerOpen]);
+  }, [storeState, pathname, search]);
 
   return (
     <div

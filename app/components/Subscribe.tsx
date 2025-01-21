@@ -1,24 +1,33 @@
 "use client";
 
+import { sendEmail, storeEmail } from "@/actions/subscribe.action";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
+import type { UserSubscribeDetailsType } from "@/types/subscribe";
+import { LoaderCircleIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import isEmail from "validator/es/lib/isEmail";
 
 const Subscribe = () => {
-  const [email, setEmail] = useState<string>("");
+  const [userDetails, setUserDetails] = useState<UserSubscribeDetailsType>({
+    email: "",
+    fName: "",
+    lName: "",
+  });
 
-  const pathname = usePathname();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const pathname = usePathname() || "";
 
   const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    setUserDetails((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleSubmit = () => {
-    if (email.trim() === "") {
+  const handleSubmit = async () => {
+    if (userDetails.email.trim() === "") {
       toast({
         title: "Field is required",
         description: "Please enter your email",
@@ -27,7 +36,25 @@ const Subscribe = () => {
       return;
     }
 
-    if (!isEmail(email)) {
+    if (userDetails.fName.trim() === "") {
+      toast({
+        title: "Field is required",
+        description: "Please enter your name",
+        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+      });
+      return;
+    }
+
+    if (userDetails.lName.trim() === "") {
+      toast({
+        title: "Field is required",
+        description: "Please enter your name",
+        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+      });
+      return;
+    }
+
+    if (!isEmail(userDetails.email)) {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email",
@@ -36,7 +63,11 @@ const Subscribe = () => {
       return;
     }
 
-    if (isPotentialSQLInjection(email)) {
+    if (
+      isPotentialSQLInjection(
+        userDetails.email || userDetails.fName || userDetails.lName
+      )
+    ) {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
@@ -45,11 +76,79 @@ const Subscribe = () => {
       return;
     }
 
-    toast({
-      title: "Great!",
-      description: "You have successfully subscribed to our newsletter",
-      className: "bg-[#111111] border-[0.5px] border-white-400 text-white",
-    });
+    try {
+      setLoading(true);
+      const response = await sendEmail(
+        userDetails.email,
+        userDetails.fName,
+        userDetails.lName
+      );
+
+      if (response.status === "error") {
+        toast({
+          title: "Error",
+          description: "An error occurred while subscribing to our newsletter",
+          className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        });
+        setLoading(false);
+
+        return response.message;
+      }
+
+      const savedSubscriber:
+        | {
+            statusCode: number;
+            message: string;
+            subscriber: UserSubscribeDetailsType | null;
+          }
+        | undefined = await storeEmail(
+        userDetails.email,
+        userDetails.fName,
+        userDetails.lName
+      );
+
+      if (savedSubscriber?.statusCode === 409) {
+        toast({
+          title: "Already subscribed",
+          description: "You have already subscribed to our newsletter",
+          className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        });
+        setLoading(false);
+
+        return;
+      }
+
+      if (savedSubscriber?.statusCode === 200) {
+        toast({
+          title: "Great!",
+          description: "You have successfully subscribed to our newsletter",
+          className: "bg-[#111111] border-[0.5px] border-white-400 text-white",
+        });
+        setLoading(false);
+
+        setUserDetails({
+          email: "",
+          fName: "",
+          lName: "",
+        });
+
+        return;
+      }
+
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again",
+        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+      });
+
+      return;
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again",
+        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+      });
+    }
   };
 
   return (
@@ -73,20 +172,57 @@ const Subscribe = () => {
           </p>
         </div>
         <div className="flex flex-col text-themeGray">
-          <div className="flex">
+          <div className="flex w-[450px] flex-col gap-4">
+            <div className="flex gap-2">
+              <input
+                onChange={handleChange}
+                value={userDetails.fName}
+                type="text"
+                id="fName"
+                className="w-[225px] p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+                placeholder="Your first name"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit();
+                  }
+                }}
+              />
+              <input
+                onChange={handleChange}
+                value={userDetails.lName}
+                type="text"
+                id="lName"
+                className="w-[225px] p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+                placeholder="Your last name"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit();
+                  }
+                }}
+              />
+            </div>
             <input
               onChange={handleChange}
-              value={email}
+              value={userDetails.email}
               type="email"
               id="email"
-              className="w-[450px] p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+              className="p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
               placeholder="Your email address"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmit();
+                }
+              }}
             />
             <button
               onClick={handleSubmit}
-              className="border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] text-white font-semibold uppercase p-4"
+              className="flex justify-center items-center border-[0.5px] h-14 text-white font-semibold uppercase p-4"
             >
-              Subscribe
+              {loading ? (
+                <LoaderCircleIcon size={20} className="animate-spin" />
+              ) : (
+                "Subscribe"
+              )}
             </button>
           </div>
         </div>

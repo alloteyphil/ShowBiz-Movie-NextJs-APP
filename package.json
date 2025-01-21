@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "email": "email dev"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
@@ -30,9 +31,10 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.468.0",
     "mongoose": "^8.9.1",
-    "next": "15.1.0",
+    "next": "^15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "resend": "^4.1.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "validator": "^13.12.0",

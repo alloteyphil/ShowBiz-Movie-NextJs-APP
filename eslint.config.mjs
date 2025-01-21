@@ -15,6 +15,8 @@ const eslintConfig = [
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-unused-expressions": "off",
+      "import/no-anonymous-default-export": "off",
+      "react/no-unescaped-entities": "off",
     },
   }),
 ];
