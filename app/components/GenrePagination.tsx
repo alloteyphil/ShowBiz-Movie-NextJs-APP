@@ -11,12 +11,10 @@ import {
 } from "@/components/ui/pagination";
 import { usePathname, useSearchParams } from "next/navigation";
 
-const SearchPagination = ({ totalResults }: { totalResults: number }) => {
+const GenrePagination = ({ totalResults }: { totalResults: number }) => {
   const page = useSearchParams()?.get("page");
 
   const pathname = usePathname();
-
-  const search = useSearchParams()?.get("query");
 
   const totalPages = Math.ceil(totalResults / 10);
 
@@ -29,15 +27,15 @@ const SearchPagination = ({ totalResults }: { totalResults: number }) => {
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            href={`/search/${pathname?.split("/")[2]}?query=${search}&page=${
+            href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=${
               Number(page) === 1 ? 1 : Number(page) - 1
             }`}
           />
         </PaginationItem>
         <PaginationItem>
           <PaginationLink
-            isActive={checkPage(1)}
-            href={`/search/${pathname?.split("/")[2]}?query=${search}&page=1`}
+            isActive={page === null || checkPage(1)}
+            href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=1`}
           >
             1
           </PaginationLink>
@@ -45,7 +43,7 @@ const SearchPagination = ({ totalResults }: { totalResults: number }) => {
         <PaginationItem>
           <PaginationLink
             isActive={checkPage(2)}
-            href={`/search/${pathname?.split("/")[2]}?query=${search}&page=2`}
+            href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=2`}
           >
             2
           </PaginationLink>
@@ -53,7 +51,7 @@ const SearchPagination = ({ totalResults }: { totalResults: number }) => {
         <PaginationItem>
           <PaginationLink
             isActive={checkPage(3)}
-            href={`/search/${pathname?.split("/")[2]}?query=${search}&page=3`}
+            href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=3`}
           >
             3
           </PaginationLink>
@@ -65,9 +63,7 @@ const SearchPagination = ({ totalResults }: { totalResults: number }) => {
           <PaginationItem>
             <PaginationLink
               isActive={true}
-              href={`/search/${
-                pathname?.split("/")[2]
-              }?query=${search}&page=${page}`}
+              href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=${page}`}
             >
               {page}
             </PaginationLink>
@@ -75,8 +71,12 @@ const SearchPagination = ({ totalResults }: { totalResults: number }) => {
         )}
         <PaginationItem>
           <PaginationNext
-            href={`/search/${pathname?.split("/")[2]}?query=${search}&page=${
-              totalPages === Number(page) ? totalPages : Number(page) + 1
+            href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=${
+              totalPages === Number(page)
+                ? totalPages
+                : page === null
+                  ? 2
+                  : Number(page) + 1
             }`}
           />
         </PaginationItem>
@@ -85,4 +85,4 @@ const SearchPagination = ({ totalResults }: { totalResults: number }) => {
   );
 };
 
-export default SearchPagination;
+export default GenrePagination;

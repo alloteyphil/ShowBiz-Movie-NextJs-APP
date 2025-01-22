@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { movieGenreData, tvGenreData } from "@/data/genresData";
+import { updatedMovieGenres, updatedTvGenres } from "@/data/genresData";
 import { cn } from "@/lib/utils";
 
 export function NavLinks() {
@@ -29,7 +29,7 @@ export function NavLinks() {
           <NavigationMenuTrigger>Movies</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              {movieGenreData.map((genre, i) => (
+              {updatedMovieGenres.map((genre, i) => (
                 <ListItem
                   key={i}
                   href={genre.href}
@@ -43,7 +43,7 @@ export function NavLinks() {
           <NavigationMenuTrigger>TV Shows</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              {tvGenreData.map((genre, i) => (
+              {updatedTvGenres.map((genre, i) => (
                 <ListItem
                   key={i}
                   href={genre.href}
@@ -69,7 +69,7 @@ const ListItem = React.forwardRef<
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            className,
           )}
           {...props}
         >

@@ -16,7 +16,7 @@ const NavBar = () => {
   const pathname = usePathname();
 
   const isDetailedPage =
-    pathname.includes("/movie/details") || pathname.includes("/tv/details");
+    pathname?.includes("/movie/details") || pathname?.includes("/tv/details");
 
   return (
     <div
