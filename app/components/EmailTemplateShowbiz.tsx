@@ -20,9 +20,7 @@ interface ShowbizNewsletterEmailProps {
 }
 
 export const ShowbizNewsletterEmail = ({
-  email,
   fName,
-  lName,
 }: ShowbizNewsletterEmailProps) => {
   const previewText = `Welcome to the Showbiz Insider, ${fName}!`;
 
@@ -79,11 +77,5 @@ export const ShowbizNewsletterEmail = ({
     </Html>
   );
 };
-
-// ShowbizNewsletterEmail.PreviewProps = {
-//   email: "subscriber@example.com",
-//   fName: "John",
-//   lName: "Doe",
-// } as ShowbizNewsletterEmailProps;
 
 export default ShowbizNewsletterEmail;

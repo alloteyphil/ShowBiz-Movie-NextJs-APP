@@ -27,7 +27,7 @@ const FavoritesTooltip = () => {
 
   const setOpen = useStore((state) => state.setAuthDrawerOpen);
 
-  const pathname = usePathname();
+  const pathname = usePathname()!;
 
   const movieId = parseInt(pathname.split("/")[3]);
 

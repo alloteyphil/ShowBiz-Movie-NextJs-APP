@@ -1,8 +1,8 @@
 "use server";
 
+import ShowbizNewsletterEmail from "@/app/components/EmailTemplateShowbiz";
 import { connectToDatabase } from "@/mongo/connectToDatabase";
 import { SubscribeInfo, type ISubscribe } from "@/mongo/models/Subscribe.model";
-import ShowbizNewsletterEmail from "@/react-email-starter/emails/vercel-invite-user";
 import type { UserSubscribeDetailsType } from "@/types/subscribe";
 import { Resend, type ErrorResponse } from "resend";
 
@@ -20,7 +20,7 @@ interface ResendEmailResponse {
 export const sendEmail = async (
   email: string,
   fName: string,
-  lName: string
+  lName: string,
 ): Promise<{
   status: string;
   message: ResendEmailResponse | ErrorResponse;
@@ -32,6 +32,7 @@ export const sendEmail = async (
     react: ShowbizNewsletterEmail({ email, fName, lName }),
   });
 
+  console.log(error, data);
   if (error) {
     return { status: "error", message: error };
   }
@@ -42,7 +43,7 @@ export const sendEmail = async (
 export const storeEmail = async (
   email: string,
   fName: string,
-  lName: string
+  lName: string,
 ): Promise<
   | {
       statusCode: number;

@@ -10,13 +10,13 @@ export async function middleware(req: NextRequest) {
     const session = req.cookies.get("session");
 
     if (!session) {
-      return NextResponse.redirect(new URL("/?auth-open=true", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
 
     const payload = await verifyToken(session?.value);
 
     if (!payload && pathname === "/profile") {
-      return NextResponse.redirect(new URL("/?auth-open=true", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
 
     return res;
