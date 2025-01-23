@@ -33,7 +33,7 @@ const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
                   ? `https://image.tmdb.org/t/p/original${data?.poster_path}`
                   : noImage
               }
-              alt={data.name || ""}
+              alt={data.name || data.original_name || "N/A"}
               width={400}
               height={600}
               className="object-cover object-center absolute -bottom-36 h-[650px] w-[420px] left-0"
@@ -43,7 +43,9 @@ const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
             <h4 className="font-semibold text-3xl">
               {data.first_air_date.split("-")[0]}
             </h4>
-            <h1 className="text-6xl font-bold text-white">{data.name}</h1>
+            <h1 className="text-6xl font-bold text-white">
+              {data.name || data.original_name || "N/A"}
+            </h1>
             <p className="max-w-[900px]">{data.overview}</p>
             <div className="flex mt-8">
               <div className="flex items-center gap-4 border-r border-white pr-8">
@@ -64,7 +66,7 @@ const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
                   {data.genres
                     .map(
                       (genre: GenreType) =>
-                        tvGenreData.find((g) => g.id === genre.id)?.name
+                        tvGenreData.find((g) => g.id === genre.id)?.name,
                     )
                     .join(", ")}
                 </p>

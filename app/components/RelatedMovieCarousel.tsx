@@ -40,7 +40,7 @@ const RelatedMovieCarousel = ({ data }: { data: TrendingGenreType[] }) => {
               <MovieCard
                 id={movie.id}
                 image={movie.poster_path}
-                title={movie.original_title || ""}
+                title={movie.title || movie.original_title || "N/A"}
                 genres={movie.genre_ids}
               />
             </CarouselItem>

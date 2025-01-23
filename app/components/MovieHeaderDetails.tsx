@@ -36,7 +36,7 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
                   ? noImage
                   : `https://image.tmdb.org/t/p/original${data?.poster_path}`
               }
-              alt={data.original_title || ""}
+              alt={data.title || data.original_title || ""}
               width={400}
               height={600}
               className="object-cover object-center absolute -bottom-36 h-[650px] w-[420px] left-0"
@@ -47,7 +47,7 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
               {data.release_date.split("-")[0]}
             </h4>
             <h1 className="text-6xl font-bold text-white">
-              {data.original_title}
+              {data.title || data.original_title || "N/A"}
             </h1>
             <p className="max-w-[900px]">{data.overview}</p>
             <div className="flex mt-8">
@@ -71,7 +71,7 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
                   {data.genres
                     .map(
                       (genre: GenreType) =>
-                        movieGenreData.find((g) => g.id === genre.id)?.name
+                        movieGenreData.find((g) => g.id === genre.id)?.name,
                     )
                     .join(", ")}
                 </p>

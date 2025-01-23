@@ -61,7 +61,7 @@ const page = async ({
                 key={i}
                 id={movie.id}
                 image={movie.poster_path}
-                title={movie.original_title || ""}
+                title={movie.title || movie.original_title || "N/A"}
                 genres={movie.genre_ids}
               />
             );

@@ -40,7 +40,7 @@ const RelatedTVCarousel = ({ data }: { data: TVGenreType[] }) => {
               <TVShowCard
                 id={tv.id}
                 image={tv.poster_path}
-                title={tv.name || ""}
+                title={tv.name || tv.original_name || "N/A"}
                 genres={tv.genre_ids}
               />
             </CarouselItem>

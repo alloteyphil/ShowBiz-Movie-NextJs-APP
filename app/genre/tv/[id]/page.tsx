@@ -47,22 +47,22 @@ const page = async ({
       <GenrePageBreadcrumbs id={id} />
       <div className="grid grid-cols-4 gap-y-14 gap-x-6">
         {results &&
-          results.map((movie, i) => {
+          results.map((tv, i) => {
             if (
-              movie.poster_path === null ||
-              movie.poster_path === "" ||
-              movie.backdrop_path === null ||
-              movie.backdrop_path === ""
+              tv.poster_path === null ||
+              tv.poster_path === "" ||
+              tv.backdrop_path === null ||
+              tv.backdrop_path === ""
             ) {
               return;
             }
             return (
               <TVShowCard
                 key={i}
-                id={movie.id}
-                image={movie.poster_path}
-                title={movie.original_name || ""}
-                genres={movie.genre_ids}
+                id={tv.id}
+                image={tv.poster_path}
+                title={tv.name || tv.original_name || "N/A"}
+                genres={tv.genre_ids}
               />
             );
           })}

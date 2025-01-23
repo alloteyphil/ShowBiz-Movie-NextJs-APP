@@ -7,7 +7,7 @@ const FeaturedShows = async () => {
   let data;
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.IMDB_API_KEY}&language=en-US`
+    `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.IMDB_API_KEY}&language=en-US`,
   );
 
   if (response.ok) {
@@ -24,7 +24,7 @@ const FeaturedShows = async () => {
               result.genre_ids !== undefined &&
               (result.original_title !== undefined ||
                 result.name !== undefined ||
-                result.original_name !== undefined)
+                result.original_name !== undefined),
           )
           .map((show: TrendingGenreType) => {
             if (show.media_type === "tv") {
@@ -32,7 +32,7 @@ const FeaturedShows = async () => {
                 <div key={show.id} className="w-[270px]">
                   <TVShowCard
                     image={show.poster_path}
-                    title={show.name || show.original_name || ""}
+                    title={show.name || show.original_name || "N/A"}
                     genres={show.genre_ids}
                     id={show.id}
                   />
@@ -43,7 +43,7 @@ const FeaturedShows = async () => {
               <div key={show.id} className="w-[270px]">
                 <MovieCard
                   image={show.poster_path}
-                  title={show.original_title || ""}
+                  title={show.title || show.original_title || "N/A"}
                   genres={show.genre_ids}
                   id={show.id}
                 />

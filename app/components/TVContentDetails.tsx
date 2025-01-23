@@ -26,7 +26,10 @@ const TVContentDetails = ({ data }: { data: ITVShow }) => {
         <TabsTrigger value="film">Filming and Production</TabsTrigger>
       </TabsList>
       <TabsContent value="key">
-        <DetailsCard title={"Title: "} value={data.name || "N/A"} />
+        <DetailsCard
+          title={"Title: "}
+          value={data.name || data.original_name || "N/A"}
+        />
         <DetailsCard title={"Overview: "} value={data.overview || "N/A"} />
         <DetailsCard
           title={"Genres: "}

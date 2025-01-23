@@ -12,7 +12,7 @@ const Header = async () => {
 
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.IMDB_API_KEY}&language=en-US&page=1`,
-    { cache: "no-store" }
+    { cache: "no-store" },
   );
 
   if (response.ok) {
@@ -33,16 +33,22 @@ const Header = async () => {
               layout="fill"
               objectFit="cover"
               objectPosition="center"
-              alt={movie.original_title || movie.original_name || ""}
+              alt={
+                movie.title ||
+                movie.name ||
+                movie.original_title ||
+                movie.original_name ||
+                ""
+              }
             />
             <div className="absolute top-16 left-16 flex flex-col gap-3 z-20">
               <h3 className="text-white text-3xl font-bold">
-                {movie.original_title}
+                {movie.title || movie.original_title || "N/A"}
               </h3>
               <p className="text-lg text-themeGray ">
                 {movie.genre_ids
                   .map(
-                    (genre) => movieGenreData.find((g) => g.id === genre)?.name
+                    (genre) => movieGenreData.find((g) => g.id === genre)?.name,
                   )
                   .join(", ")}
               </p>

@@ -40,7 +40,7 @@ const page = async ({
         process.env.IMDB_API_KEY
       }&query=${query.query}&include_adult=false&language=en-US&page=${
         query.page || 1
-      }`
+      }`,
     );
     data = (await res.json()) as ISearchTVResponse;
   } catch (error) {
@@ -98,7 +98,7 @@ const page = async ({
               (result: ISearchTv) =>
                 result.poster_path !== null &&
                 result.genre_ids !== undefined &&
-                result.original_name !== undefined
+                result.original_name !== undefined,
             )
             .map((tv) => {
               return (
@@ -106,7 +106,7 @@ const page = async ({
                   <TVShowCard
                     id={tv.id}
                     image={tv.poster_path || ""}
-                    title={tv.original_name || ""}
+                    title={tv.name || tv.original_name || "N/A"}
                     genres={tv.genre_ids}
                   />
                 </div>

@@ -19,14 +19,17 @@ const MovieContentDetails = ({ data }: { data: IMovie }) => {
         <TabsTrigger value="film">Filming and Production</TabsTrigger>
       </TabsList>
       <TabsContent value="key">
-        <DetailsCard title={"Title: "} value={data.original_title || "N/A"} />
+        <DetailsCard
+          title={"Title: "}
+          value={data.title || data.original_title || "N/A"}
+        />
         <DetailsCard title={"Overview: "} value={data.overview || "N/A"} />
         <DetailsCard
           title={"Genres: "}
           value={
             data.genres
               .map(
-                (genre) => movieGenreData.find((g) => g.id === genre.id)?.name
+                (genre) => movieGenreData.find((g) => g.id === genre.id)?.name,
               )
               .join(", ") || "N/A"
           }
