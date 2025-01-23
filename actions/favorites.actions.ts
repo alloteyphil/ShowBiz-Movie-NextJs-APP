@@ -40,10 +40,12 @@ export const addToFavorites = async (email: string, movieId: number) => {
       response: existingUser.favorites,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Add to favorites error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Failed to add movie to favorites",
+      message: `Failed to add movie to favorites: ${errorMessage}`,
       response: null,
     };
   }
@@ -82,10 +84,12 @@ export const checkFavorites = async (email: string, movieId: number) => {
       response: false,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Check favorites error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Failed to check movie in favorites",
+      message: `Failed to check movie in favorites: ${errorMessage}`,
       response: null,
     };
   }
@@ -119,7 +123,7 @@ export const removeFromFavorites = async (email: string, movieId: number) => {
       };
 
     existingUser.favorites = existingUser.favorites.filter(
-      (id: number) => id !== movieId
+      (id: number) => id !== movieId,
     );
 
     await existingUser.save();
@@ -130,10 +134,12 @@ export const removeFromFavorites = async (email: string, movieId: number) => {
       response: existingUser.favorites,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Remove from favorites error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Failed to remove movie from favorites",
+      message: `Failed to remove movie from favorites: ${errorMessage}`,
       response: null,
     };
   }

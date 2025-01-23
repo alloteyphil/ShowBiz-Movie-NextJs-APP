@@ -66,7 +66,13 @@ const registerUser = async (
       },
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    console.error('User registration error:', errorMessage);
+    return {
+      statusCode: 500,
+      message: `Failed to register user: ${errorMessage}`,
+      user: null,
+    };
   }
 };
 

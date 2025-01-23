@@ -148,7 +148,7 @@ const Register = () => {
         userDetails.fName ||
           userDetails.lName ||
           userDetails.email ||
-          userDetails.password
+          userDetails.password,
       )
     ) {
       toast({
@@ -166,7 +166,7 @@ const Register = () => {
         userDetails.fName,
         userDetails.lName,
         userDetails.email,
-        userDetails.password
+        userDetails.password,
       );
 
       // Handle Duplicate User
@@ -188,7 +188,7 @@ const Register = () => {
 
       const storedUser = localStorage.setItem(
         "user",
-        JSON.stringify(response?.user)
+        JSON.stringify(response?.user),
       );
 
       setLoading(false);
@@ -206,7 +206,16 @@ const Register = () => {
 
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
+      console.error("Registration error:", errorMessage);
+      toast({
+        title: "Registration Failed",
+        description:
+          "An unexpected error occurred during registration. Please try again.",
+        className: "bg-red-500 text-white",
+      });
+      setLoading(false);
     }
   };
 

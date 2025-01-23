@@ -27,7 +27,7 @@ export const loginUser = async (email: string, password: string) => {
 
     const passwordMatch = await decryptPassword(
       password,
-      existingUser.password
+      existingUser.password,
     );
 
     if (!passwordMatch)
@@ -57,10 +57,12 @@ export const loginUser = async (email: string, password: string) => {
       },
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Login error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Internal server error",
+      message: `Login failed: ${errorMessage}`,
       response: null,
     };
   }

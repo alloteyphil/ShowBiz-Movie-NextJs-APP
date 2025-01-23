@@ -8,21 +8,32 @@ import {
 } from "@/components/ui/breadcrumb";
 import type { GenreType } from "@/types/genre";
 
-const GenrePageBreadcrumbs = async ({ id }: { id: string }) => {
+const GenreMoviePageBreadcrumbs = async ({ id }: { id: string }) => {
   let genre;
 
-  let error;
+  let error: string | null = null;
 
   try {
     const res = await fetch(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.IMDB_API_KEY}&language=en`,
     );
 
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch genre data: ${res.status} ${res.statusText}`,
+      );
+    }
+
     const data = await res.json();
 
     genre = data.genres.find((g: GenreType) => g.id === parseInt(id));
-  } catch (error) {
-    console.log(error);
+
+    if (!genre) {
+      error = `Genre with ID ${id} not found`;
+    }
+  } catch (err) {
+    error =
+      err instanceof Error ? err.message : "Failed to load genre information";
   }
 
   return (
@@ -36,7 +47,7 @@ const GenrePageBreadcrumbs = async ({ id }: { id: string }) => {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage className="text-white">
-            {genre && genre.name}
+            {error ? "Unknown Genre" : genre?.name}
           </BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
@@ -44,4 +55,4 @@ const GenrePageBreadcrumbs = async ({ id }: { id: string }) => {
   );
 };
 
-export default GenrePageBreadcrumbs;
+export default GenreMoviePageBreadcrumbs;

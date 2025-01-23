@@ -23,23 +23,31 @@ export const verifyToken = async (token: string | undefined) => {
 
     return payload;
   } catch (error) {
-    console.log("Failed to verify session", error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Session verification error:", errorMessage);
+    return null;
   }
 };
 
 export const createSession = async (email: string) => {
-  const expireAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  try {
+    const expireAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    const token = await generateToken(email);
+    const cookieStore = await cookies();
 
-  const token = await generateToken(email);
+    cookieStore.set("session", token, {
+      expires: expireAt,
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
 
-  const cookieStore = await cookies();
-
-  cookieStore.set("session", token, {
-    expires: expireAt,
-    httpOnly: true,
-    sameSite: "strict",
-    secure: true,
-  });
-
-  return cookieStore.get("session");
+    return cookieStore.get("session");
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Session creation error:", errorMessage);
+    return null;
+  }
 };

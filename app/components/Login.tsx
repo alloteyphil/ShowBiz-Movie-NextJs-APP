@@ -133,7 +133,15 @@ const Login = () => {
 
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
+      console.error("Login error:", errorMessage);
+      toast({
+        title: "Login Failed",
+        description: "An unexpected error occurred. Please try again.",
+        className: "bg-red-500 text-white",
+      });
+      setLoading(false);
     }
   };
 

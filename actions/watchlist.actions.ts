@@ -40,10 +40,12 @@ export const addToWatchlist = async (email: string, movieId: number) => {
       response: existingUser.watchlist,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Add to watchlist error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Failed to add movie to watchlist",
+      message: `Failed to add movie to watchlist: ${errorMessage}`,
       response: null,
     };
   }
@@ -82,10 +84,12 @@ export const checkWatchlist = async (email: string, movieId: number) => {
       response: false,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Check watchlist error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Failed to check watchlist",
+      message: `Failed to check watchlist: ${errorMessage}`,
       response: null,
     };
   }
@@ -119,7 +123,7 @@ export const removeFromWatchlist = async (email: string, movieId: number) => {
       };
 
     existingUser.watchlist = existingUser.watchlist.filter(
-      (id: number) => id !== movieId
+      (id: number) => id !== movieId,
     );
 
     await existingUser.save();
@@ -130,10 +134,12 @@ export const removeFromWatchlist = async (email: string, movieId: number) => {
       response: existingUser.watchlist,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Remove from watchlist error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Failed to remove movie from watchlist",
+      message: `Failed to remove movie from watchlist: ${errorMessage}`,
       response: null,
     };
   }

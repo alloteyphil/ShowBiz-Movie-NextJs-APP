@@ -42,9 +42,19 @@ const page = async ({
         query.page || 1
       }`,
     );
+
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch search results: ${res.status} ${res.statusText}`,
+      );
+    }
+
     data = (await res.json()) as ISearchMovieResponse;
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Movie search error:", errorMessage);
+    data = { results: [], total_results: 0 };
   }
 
   if (data?.total_results === 0) {

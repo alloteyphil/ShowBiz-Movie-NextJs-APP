@@ -14,7 +14,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.IMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.IMDB_API_KEY}&language=en-US`,
     );
 
     if (res.ok) {
@@ -23,7 +23,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       error = (await res.json()) as FailedDetailsPageResponse;
     }
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("TV show details fetch error:", errorMessage);
+    redirect("/not-found");
   }
 
   if (error) {

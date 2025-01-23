@@ -8,15 +8,21 @@ const RelatedMovies = async ({ id }: { id: number }) => {
 
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.IMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.IMDB_API_KEY}&language=en-US&page=1`,
     );
 
     if (res.ok) {
       data = (await res.json()).results as TrendingGenreType[];
       data = _.shuffle(data);
+    } else {
+      throw new Error(
+        `Failed to fetch related movies: ${res.status} ${res.statusText}`,
+      );
     }
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Related movies fetch error:", errorMessage);
   }
 
   return (

@@ -1,9 +1,9 @@
-import GenrePageBreadcrumbs from "@/app/components/GenrePageBreadcrumbs";
 import GenrePagination from "@/app/components/GenrePagination";
 import TVShowCard from "@/app/components/TVShowCard";
 import type { FailedDetailsPageResponse } from "@/types/general";
 import type { TVGenreType } from "@/types/genre";
 import { redirect } from "next/navigation";
+import GenreTVPageBreadcrumbs from "@/app/components/GenreTVPageBreadcrumbs";
 
 const page = async ({
   params,
@@ -29,13 +29,15 @@ const page = async ({
 
     if (res.ok) {
       data = await res.json();
-
       results = data.results as TVGenreType[];
     } else {
       error = (await res.json()) as FailedDetailsPageResponse;
     }
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Genre TV shows fetch error:", errorMessage);
+    redirect("/not-found");
   }
 
   if (error) {
@@ -44,7 +46,7 @@ const page = async ({
 
   return (
     <div className="mt-24 mb-32 text-white flex flex-col gap-14 max-w-[1400px] mx-auto">
-      <GenrePageBreadcrumbs id={id} />
+      <GenreTVPageBreadcrumbs id={id} />
       <div className="grid grid-cols-4 gap-y-14 gap-x-6">
         {results &&
           results.map((tv, i) => {

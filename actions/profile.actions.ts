@@ -34,10 +34,12 @@ export const getUserProfile = async (email: string) => {
       },
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Get user profile error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Internal server error",
+      message: `Failed to fetch user profile: ${errorMessage}`,
       response: null,
     };
   }
@@ -45,7 +47,7 @@ export const getUserProfile = async (email: string) => {
 
 export const updateUserProfile = async (
   email: string,
-  updatedData: Partial<{ fName: string; lName: string; photo: string }>
+  updatedData: Partial<{ fName: string; lName: string; photo: string }>,
 ) => {
   if (!email)
     return {
@@ -76,7 +78,7 @@ export const updateUserProfile = async (
     const updatedUser = await User.findOneAndUpdate(
       { email },
       { $set: updatedData },
-      { new: true }
+      { new: true },
     );
 
     return {
@@ -85,10 +87,12 @@ export const updateUserProfile = async (
       response: updatedUser,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Update user profile error:", errorMessage);
     return {
       statusCode: 500,
-      message: "Internal server error",
+      message: `Failed to update user profile: ${errorMessage}`,
       response: null,
     };
   }

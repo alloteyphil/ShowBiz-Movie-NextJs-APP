@@ -32,8 +32,8 @@ export const sendEmail = async (
     react: ShowbizNewsletterEmail({ email, fName, lName }),
   });
 
-  console.log(error, data);
   if (error) {
+    console.error("Email sending error:", error);
     return { status: "error", message: error };
   }
 
@@ -86,10 +86,15 @@ export const storeEmail = async (
       },
     };
   } catch (error) {
-    return {
-      statusCode: 500,
-      message: "Failed to create subscriber",
-      subscriber: null,
-    };
+    {
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
+      console.error("Store subscriber error:", errorMessage);
+      return {
+        statusCode: 500,
+        message: `Failed to create subscriber: ${errorMessage}`,
+        subscriber: null,
+      };
+    }
   }
 };
