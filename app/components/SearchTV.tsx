@@ -2,7 +2,7 @@
 
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -13,9 +13,9 @@ const SearchTV = () => {
 
   const router = useRouter();
 
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
-  const setSearchDrawer = useStore((state) => state.setSearchDrawerOpen);
+  const setSearchDrawer = useDrawerStore((state) => state.setSearchDrawerOpen);
 
   const handleSearch = () => {
     if (search.trim() === "") {

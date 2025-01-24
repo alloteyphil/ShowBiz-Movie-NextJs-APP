@@ -1,6 +1,6 @@
 "use client";
 
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 import { SearchIcon } from "lucide-react";
 
 const SearchButton = ({
@@ -8,9 +8,9 @@ const SearchButton = ({
 }: {
   isProfilePage: boolean | undefined;
 }) => {
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
-  const setSearch = useStore((state) => state.setSearchDrawerOpen);
+  const setSearch = useDrawerStore((state) => state.setSearchDrawerOpen);
 
   return (
     <div>

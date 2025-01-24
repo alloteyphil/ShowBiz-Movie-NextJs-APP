@@ -3,7 +3,7 @@
 import { loginUser } from "../../actions/Login.actions";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 import type { UserLoginType } from "@/types/user";
 import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
 import Link from "next/link";
@@ -26,7 +26,7 @@ const Login = () => {
 
   const { toast } = useToast();
 
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
   const handleSubmit = async () => {
     // Validate Email

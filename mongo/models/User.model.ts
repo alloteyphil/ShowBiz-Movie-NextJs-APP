@@ -20,21 +20,7 @@ const UserSchema = new Schema<IUser>(
     watchlist: { type: [Number], required: true, default: [] },
     favorites: { type: [Number], required: true, default: [] },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
-
-// UserSchema.set("toJSON", {
-//   transform: (doc: any, ret: any) => {
-//     delete ret.password;
-//     return ret;
-//   },
-// });
-
-// UserSchema.set("toObject", {
-//   transform: (doc: any, ret: any) => {
-//     delete ret.password;
-//     return ret;
-//   },
-// });
 
 export const User = models.User || mongoose.model<IUser>("User", UserSchema);

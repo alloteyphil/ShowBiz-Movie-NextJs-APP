@@ -1,15 +1,15 @@
 "use client";
 
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 import gsap from "gsap";
 import { XIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
 import Auth from "./Auth";
 
 const AuthDrawer = () => {
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
-  const setOpen = useStore((state) => state.setAuthDrawerOpen);
+  const setOpen = useDrawerStore((state) => state.setAuthDrawerOpen);
 
   const drawerRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -37,7 +37,7 @@ const AuthDrawer = () => {
               duration: 0.7,
               ease: "expo.inOut",
             },
-            "-=0.7"
+            "-=0.7",
           );
       } else {
         newTimeline
@@ -58,7 +58,7 @@ const AuthDrawer = () => {
               duration: 0.7,
               ease: "expo.inOut",
             },
-            "-=0.7"
+            "-=0.7",
           );
       }
     }

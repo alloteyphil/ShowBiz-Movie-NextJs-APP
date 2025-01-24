@@ -1,29 +1,29 @@
 import type { GenreType } from "@/types/genre";
 
 export const movieGenreData: GenreType[] = [
-  { id: 28, name: "Action", href: "/genre/movies/action?page=1" },
-  { id: 12, name: "Adventure", href: "/genre/movies/adventure?page=1" },
-  { id: 16, name: "Animation", href: "/genre/movies/animation?page=1" },
-  { id: 35, name: "Comedy", href: "/genre/movies/comedy?page=1" },
-  { id: 80, name: "Crime", href: "/genre/movies/crime?page=1" },
-  { id: 99, name: "Documentary", href: "/genre/movies/documentary?page=1" },
-  { id: 18, name: "Drama", href: "/genre/movies/drama?page=1" },
-  { id: 10751, name: "Family", href: "/genre/movies/family?page=1" },
-  { id: 14, name: "Fantasy", href: "/genre/movies/fantasy?page=1" },
-  { id: 36, name: "History", href: "/genre/movies/history?page=1" },
-  { id: 27, name: "Horror", href: "/genre/movies/horror?page=1" },
-  { id: 10402, name: "Music", href: "/genre/movies/music?page=1" },
-  { id: 9648, name: "Mystery", href: "/genre/movies/mystery?page=1" },
-  { id: 10749, name: "Romance", href: "/genre/movies/romance?page=1" },
+  { id: 28, name: "Action", href: "/genre/movie/action?page=1" },
+  { id: 12, name: "Adventure", href: "/genre/movie/adventure?page=1" },
+  { id: 16, name: "Animation", href: "/genre/movie/animation?page=1" },
+  { id: 35, name: "Comedy", href: "/genre/movie/comedy?page=1" },
+  { id: 80, name: "Crime", href: "/genre/movie/crime?page=1" },
+  { id: 99, name: "Documentary", href: "/genre/movie/documentary?page=1" },
+  { id: 18, name: "Drama", href: "/genre/movie/drama?page=1" },
+  { id: 10751, name: "Family", href: "/genre/movie/family?page=1" },
+  { id: 14, name: "Fantasy", href: "/genre/movie/fantasy?page=1" },
+  { id: 36, name: "History", href: "/genre/movie/history?page=1" },
+  { id: 27, name: "Horror", href: "/genre/movie/horror?page=1" },
+  { id: 10402, name: "Music", href: "/genre/movie/music?page=1" },
+  { id: 9648, name: "Mystery", href: "/genre/movie/mystery?page=1" },
+  { id: 10749, name: "Romance", href: "/genre/movie/romance?page=1" },
   {
     id: 878,
     name: "Science Fiction",
-    href: "/genre/movies/science-fiction?page=1",
+    href: "/genre/movie/science-fiction?page=1",
   },
-  { id: 10770, name: "TV movie", href: "/genre/movies/tv-movies?page=1" },
-  { id: 53, name: "Thriller", href: "/genre/movies/thriller?page=1" },
-  { id: 10752, name: "War", href: "/genre/movies/war?page=1" },
-  { id: 37, name: "Western", href: "/genre/movies/western?page=1" },
+  { id: 10770, name: "TV movie", href: "/genre/movie/tv-movie?page=1" },
+  { id: 53, name: "Thriller", href: "/genre/movie/thriller?page=1" },
+  { id: 10752, name: "War", href: "/genre/movie/war?page=1" },
+  { id: 37, name: "Western", href: "/genre/movie/western?page=1" },
 ];
 
 export const tvGenreData: GenreType[] = [
@@ -55,7 +55,7 @@ export const tvGenreData: GenreType[] = [
 
 export const updatedMovieGenres = movieGenreData.map((genre) => ({
   ...genre,
-  href: `/genre/movies/${genre.id}?page=1`,
+  href: `/genre/movie/${genre.id}?page=1`,
 }));
 
 export const updatedTvGenres = tvGenreData.map((genre) => ({

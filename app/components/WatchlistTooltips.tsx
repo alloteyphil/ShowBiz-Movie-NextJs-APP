@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 import type { UserResponseType } from "@/types/user";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -23,9 +23,9 @@ type isInWatchlistType = "loading" | true | false;
 const WatchlistTooltip = () => {
   const [user, setUser] = useState<UserResponseType | null>(null);
 
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
-  const setOpen = useStore((state) => state.setAuthDrawerOpen);
+  const setOpen = useDrawerStore((state) => state.setAuthDrawerOpen);
 
   const pathname = usePathname();
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 import { UserIcon } from "lucide-react";
 
 const UserButton = ({
@@ -8,9 +8,9 @@ const UserButton = ({
 }: {
   isProfilePage: boolean | undefined;
 }) => {
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
-  const setOpen = useStore((state) => state.setAuthDrawerOpen);
+  const setOpen = useDrawerStore((state) => state.setAuthDrawerOpen);
   return (
     <div>
       <UserIcon

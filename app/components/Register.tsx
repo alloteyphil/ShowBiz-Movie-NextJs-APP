@@ -11,7 +11,7 @@ import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
 import registerUser from "@/actions/registerUser.actions";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState<UserInputType>({
@@ -31,7 +31,7 @@ const Register = () => {
 
   const router = useRouter();
 
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserDetails((prev) => ({ ...prev, [e.target.id]: e.target.value }));

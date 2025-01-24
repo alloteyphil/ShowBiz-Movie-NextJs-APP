@@ -9,10 +9,9 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "lucide-react";
-import User from "./User";
 import { usePathname } from "next/navigation";
 
-const NavBar = () => {
+const NavBar = ({ children }: { children: Readonly<React.ReactNode> }) => {
   const pathname = usePathname();
 
   const isDetailedPage =
@@ -44,7 +43,7 @@ const NavBar = () => {
             <NavLinks isProfilePage={isProfilePage} />
           </div>
           <div className="flex gap-4 items-center">
-            <User isProfilePage={isProfilePage} />
+            {children}
             <SearchButton isProfilePage={isProfilePage} />
           </div>
           <div

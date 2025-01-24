@@ -16,9 +16,27 @@ import {
 import { cn } from "@/lib/utils";
 import { logout } from "@/actions/logout.actions";
 import { useToast } from "@/hooks/use-toast";
+import { usePathname } from "next/navigation";
+import { useUserProfileStore } from "@/store";
+import Image from "next/image";
+import userPhoto from "../../public/images/user.png";
 
-const User = ({ isProfilePage }: { isProfilePage: boolean | undefined }) => {
+const User = ({
+  session,
+  userData,
+}: {
+  session: string | undefined;
+  userData: UserResponseType | null | undefined;
+}) => {
+  const userState = useUserProfileStore((state) => state);
+
+  const { name, photo, setName, setPhoto } = userState;
+
   const [user, setUser] = useState<UserResponseType | null>(null);
+
+  const pathname = usePathname();
+
+  const isProfilePage = pathname?.includes("/profile");
 
   useEffect(() => {
     const user: UserResponseType | null = JSON.parse(
@@ -27,20 +45,30 @@ const User = ({ isProfilePage }: { isProfilePage: boolean | undefined }) => {
 
     if (user !== null) {
       setUser(user);
+      setName(user.fName, userState);
+      if (user.photo) {
+        setPhoto(user.photo, userState);
+      }
     }
-  }, []);
+  }, [name]);
 
   return (
     <>
-      {user !== null ? (
+      {session && user && userData ? (
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger
-                className={`${isProfilePage ? "text-[#111111]" : "text-white"}`}
+                className={`flex gap-2 items-center ${isProfilePage ? "text-[#111111]" : "text-white"}`}
               >
-                {" "}
-                Hi, {user.fName}
+                <Image
+                  src={photo || userData.photo || userPhoto}
+                  width={40}
+                  height={40}
+                  alt="Profile picture"
+                  className="rounded-full w-6 h-6 object-center object-cover mr-1"
+                />
+                Hi, {name || userData.fName}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="flex flex-col gap-3 p-4 w-[200px]">

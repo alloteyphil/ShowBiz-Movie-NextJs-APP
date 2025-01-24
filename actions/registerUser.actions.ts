@@ -10,7 +10,7 @@ const registerUser = async (
   fName: string,
   lName: string,
   email: string,
-  password: string
+  password: string,
 ): Promise<
   | { statusCode: number; message: string; user: UserResponseType | null }
   | undefined
@@ -66,8 +66,9 @@ const registerUser = async (
       },
     };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-    console.error('User registration error:', errorMessage);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("User registration error:", errorMessage);
     return {
       statusCode: 500,
       message: `Failed to register user: ${errorMessage}`,

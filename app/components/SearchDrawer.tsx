@@ -1,15 +1,15 @@
 "use client";
 
-import { useStore } from "@/store";
+import { useDrawerStore } from "@/store";
 import gsap from "gsap";
 import { XIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
 import Search from "./Search";
 
 const SearchDrawer = () => {
-  const storeState = useStore((state) => state);
+  const storeState = useDrawerStore((state) => state);
 
-  const setSearch = useStore((state) => state.setSearchDrawerOpen);
+  const setSearch = useDrawerStore((state) => state.setSearchDrawerOpen);
 
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +38,7 @@ const SearchDrawer = () => {
               duration: 0.7,
               ease: "expo.inOut",
             },
-            "-=0.7"
+            "-=0.7",
           );
       } else {
         newTimeline
@@ -59,7 +59,7 @@ const SearchDrawer = () => {
               duration: 0.7,
               ease: "expo.inOut",
             },
-            "-=0.7"
+            "-=0.7",
           );
       }
     }
