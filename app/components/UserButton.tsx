@@ -3,7 +3,11 @@
 import { useStore } from "@/store";
 import { UserIcon } from "lucide-react";
 
-const UserButton = () => {
+const UserButton = ({
+  isProfilePage,
+}: {
+  isProfilePage: boolean | undefined;
+}) => {
   const storeState = useStore((state) => state);
 
   const setOpen = useStore((state) => state.setAuthDrawerOpen);
@@ -14,8 +18,7 @@ const UserButton = () => {
           setOpen(storeState);
         }}
         size={22}
-        className="cursor-pointer"
-        color="#fff"
+        className={`cursor-pointer ${isProfilePage ? "text-[#111111]" : "text-white"}`}
       />
     </div>
   );

@@ -3,7 +3,11 @@
 import { useStore } from "@/store";
 import { SearchIcon } from "lucide-react";
 
-const SearchButton = () => {
+const SearchButton = ({
+  isProfilePage,
+}: {
+  isProfilePage: boolean | undefined;
+}) => {
   const storeState = useStore((state) => state);
 
   const setSearch = useStore((state) => state.setSearchDrawerOpen);
@@ -15,8 +19,7 @@ const SearchButton = () => {
           setSearch(storeState);
         }}
         size={22}
-        className="cursor-pointer"
-        color="#fff"
+        className={`cursor-pointer ${isProfilePage ? "text-[#111111]" : "text-white"}`}
       />
     </div>
   );

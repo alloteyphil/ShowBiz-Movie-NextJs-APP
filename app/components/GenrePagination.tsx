@@ -40,25 +40,31 @@ const GenrePagination = ({ totalResults }: { totalResults: number }) => {
             1
           </PaginationLink>
         </PaginationItem>
-        <PaginationItem>
-          <PaginationLink
-            isActive={checkPage(2)}
-            href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=2`}
-          >
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink
-            isActive={checkPage(3)}
-            href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=3`}
-          >
-            3
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
+        {totalPages > 1 && (
+          <PaginationItem>
+            <PaginationLink
+              isActive={checkPage(2)}
+              href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=2`}
+            >
+              2
+            </PaginationLink>
+          </PaginationItem>
+        )}
+        {totalPages > 2 && (
+          <PaginationItem>
+            <PaginationLink
+              isActive={checkPage(3)}
+              href={`/genre/${pathname?.split("/")[2]}/${pathname?.split("/")[3]}?page=3`}
+            >
+              3
+            </PaginationLink>
+          </PaginationItem>
+        )}
+        {totalPages > 3 && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
         {Number(page) > 3 && (
           <PaginationItem>
             <PaginationLink

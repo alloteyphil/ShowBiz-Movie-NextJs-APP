@@ -1,7 +1,7 @@
 import { tvGenreData } from "@/data/genresData";
 import Image from "next/image";
 import Link from "next/link";
-import noImage from "../../public/no-image.png";
+import noImage from "../../public/images/no-image.png";
 
 const TVShowCard = ({
   image,

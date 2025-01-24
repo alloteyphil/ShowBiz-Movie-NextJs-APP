@@ -3,6 +3,8 @@ import MovieSearchBar from "@/app/components/MovieSearchBar";
 import SearchPagination from "@/app/components/SearchPagination";
 import type { ISearchMovie, ISearchMovieResponse } from "@/types/search";
 import { LoaderIcon } from "lucide-react";
+import Image from "next/image";
+import noResults from "../../../public/images/folder.png";
 
 const page = async ({
   searchParams,
@@ -26,9 +28,12 @@ const page = async ({
               <MovieSearchBar />
             </div>
           </div>
-          <p className="text-white text-center w-full font-bold text-5xl">
-            No results
-          </p>
+          <div className="flex flex-col gap-4 w-full justify-center items-center">
+            <Image src={noResults} alt="No results" className="w-56" />
+            <p className="text-themeGray text-center w-full text-lg">
+              No results
+            </p>
+          </div>
         </div>
       </>
     );
@@ -60,7 +65,7 @@ const page = async ({
   if (data?.total_results === 0) {
     return (
       <>
-        <div className="flex flex-col gap-24 text-white w-full pt-[160px] max-w-[1400px] mx-auto">
+        <div className="flex flex-col gap-24 pb-32 text-white w-full pt-[160px] max-w-[1400px] mx-auto">
           <div className="flex flex-col">
             <div className="flex w-full items-center justify-between">
               <div className="flex flex-col gap-1">
@@ -70,9 +75,12 @@ const page = async ({
               <MovieSearchBar />
             </div>
           </div>
-          <p className="text-white text-center w-full font-bold text-5xl">
-            No results
-          </p>
+          <div className="flex flex-col gap-4 w-full justify-center items-center">
+            <Image src={noResults} alt="No results" className="w-56" />
+            <p className="text-themeGray text-center w-full text-lg">
+              No results
+            </p>
+          </div>
         </div>
       </>
     );

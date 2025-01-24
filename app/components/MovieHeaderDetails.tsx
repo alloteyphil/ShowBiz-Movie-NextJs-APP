@@ -1,13 +1,12 @@
-import Tooltips from "@/app/components/Tooltips";
 import { movieGenreData } from "@/data/genresData";
 import { convertMinutes } from "@/lib/helpers/convertMinutes";
 import { formatDate } from "@/lib/helpers/formatDate";
 import type { GenreType } from "@/types/genre";
 import type { IMovie } from "@/types/movie";
-import { DotIcon, HeartIcon, PlayIcon, PlusIcon } from "lucide-react";
+import { DotIcon, PlayIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import noImage from "../../public/no-image.png";
+import noImage from "../../public/images/no-image.png";
 import WatchlistTooltip from "./WatchlistTooltips";
 import FavoritesTooltip from "./FavoritesTooltip";
 

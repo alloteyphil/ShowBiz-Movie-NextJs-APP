@@ -3,6 +3,9 @@ import { verifyToken } from "@/lib/helpers/generateSession";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import noUser from "../../public/images/user.png";
+import { redirect } from "next/navigation";
+import EditUserProfile from "../components/EditUserProfile";
 
 type PayloadType = {
   email: string;
@@ -22,26 +25,30 @@ const page = async () => {
 
   const payload = (await verifyToken(session.value)) as PayloadType;
 
-  if (!payload) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
   const userData = await getUserProfile(payload.email);
 
+  if (userData.response === null) {
+    redirect("/");
+  }
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   userData.response
+  //    = e.target.value;
+  // };
+
   return (
-    <div className="flex flex-col  text-white w-full pt-[250px] pb-32 max-w-[1400px] mx-auto">
-      <div className="flex flex-col items-center">
+    <div className="grid place-items-center bg-white text-[#111111] w-full min-h-screen">
+      <div className="flex flex-col gap-6">
+        <h1 className="font-bold text-5xl mb-4">Manage Profile</h1>
+
         <Image
-          src={userData.response?.photo}
+          src={userData.response.photo || noUser}
           alt="Profile Picture"
-          className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
+          className="w-32 h-32 rounded-none "
         />
-        <h1 className="text-4xl font-bold mt-6">
+        <EditUserProfile userData={userData.response} />
+
+        <h1 className="text-4xl font-bold">
           {userData.response?.fName + " " + userData.response?.lName}
         </h1>
         <div className="flex flex-col w-[550px] h-[300px] relative gap-8 mt-7 border-[0.5px] p-8 rounded-lg shadow-lg">

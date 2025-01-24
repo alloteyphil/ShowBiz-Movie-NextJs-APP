@@ -17,12 +17,12 @@ import { cn } from "@/lib/utils";
 import { logout } from "@/actions/logout.actions";
 import { useToast } from "@/hooks/use-toast";
 
-const User = () => {
+const User = ({ isProfilePage }: { isProfilePage: boolean | undefined }) => {
   const [user, setUser] = useState<UserResponseType | null>(null);
 
   useEffect(() => {
     const user: UserResponseType | null = JSON.parse(
-      localStorage.getItem("user") || "null"
+      localStorage.getItem("user") || "null",
     );
 
     if (user !== null) {
@@ -36,7 +36,12 @@ const User = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger> Hi, {user.fName}</NavigationMenuTrigger>
+              <NavigationMenuTrigger
+                className={`${isProfilePage ? "text-[#111111]" : "text-white"}`}
+              >
+                {" "}
+                Hi, {user.fName}
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="flex flex-col gap-3 p-4 w-[200px]">
                   <ListItem href={"/profile"} title={"My Profile"}></ListItem>
@@ -47,7 +52,7 @@ const User = () => {
           </NavigationMenuList>
         </NavigationMenu>
       ) : (
-        <UserButton />
+        <UserButton isProfilePage={isProfilePage} />
       )}
     </>
   );
@@ -88,7 +93,7 @@ const ListItem = React.forwardRef<
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            className,
           )}
           {...props}
         >

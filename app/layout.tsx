@@ -32,8 +32,6 @@ export default function RootLayout({
 }: {
   children: Readonly<React.ReactNode>;
 }) {
-  const noFooterRoutes = ["/profile"];
-
   return (
     <html lang="en">
       <body className={`${raleway.variable} antialiased bg-[#111111] relative`}>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Tooltips from "./Tooltips";
 import type { ITVShow } from "@/types/tv";
-import noImage from "../../public/no-image.png";
+import noImage from "../../public/images/no-image.png";
 
 const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
   return (

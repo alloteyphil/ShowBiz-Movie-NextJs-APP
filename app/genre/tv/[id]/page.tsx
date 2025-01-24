@@ -45,7 +45,7 @@ const page = async ({
   }
 
   return (
-    <div className="mt-24 mb-32 text-white flex flex-col gap-14 max-w-[1400px] mx-auto">
+    <div className="pt-24 pb-32 text-white flex flex-col gap-14 max-w-[1400px] mx-auto">
       <GenreTVPageBreadcrumbs id={id} />
       <div className="grid grid-cols-4 gap-y-14 gap-x-6">
         {results &&
