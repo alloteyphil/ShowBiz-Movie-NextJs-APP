@@ -10,7 +10,6 @@
     "email": "email dev"
   },
   "dependencies": {
-    "@plaiceholder/next": "^3.0.0",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-navigation-menu": "^1.2.2",
     "@radix-ui/react-popover": "^1.1.4",
@@ -36,7 +35,6 @@
     "lucide-react": "^0.468.0",
     "mongoose": "^8.9.1",
     "next": "^15.1.5",
-    "plaiceholder": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-email": "^3.0.6",

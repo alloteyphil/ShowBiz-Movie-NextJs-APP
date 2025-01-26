@@ -2,9 +2,8 @@ import { tvGenreData } from "@/data/genresData";
 import Image from "next/image";
 import Link from "next/link";
 import noImage from "../../public/images/no-image.png";
-import { getPlaiceholder } from "plaiceholder";
 
-const TVShowCard = async ({
+const TVShowCard = ({
   image,
   title,
   genres,
@@ -15,24 +14,6 @@ const TVShowCard = async ({
   genres: number[];
   id: number;
 }) => {
-  let blurData = "";
-
-  if (image || image !== "") {
-    try {
-      const src = `https://image.tmdb.org/t/p/original${image}`;
-
-      const buffer = await fetch(src).then(async (res) =>
-        Buffer.from(await res.arrayBuffer()),
-      );
-
-      const placeholder = await getPlaiceholder(buffer);
-
-      blurData = placeholder.base64;
-    } catch (err) {
-      err;
-    }
-  }
-
   return (
     <div className="flex flex-col gap-8 items-center group">
       <Link
