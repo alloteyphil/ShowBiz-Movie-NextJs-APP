@@ -10,7 +10,7 @@ const UserImage = ({ image }: { image: string }) => {
 
   return (
     <>
-      <Avatar className="w-52 h-52 mb-4">
+      <Avatar className="w-40 h-40 mb-4">
         <AvatarImage
           src={photo || image}
           className="object-cover object-center"

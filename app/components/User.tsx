@@ -68,7 +68,10 @@ const User = ({
                   alt="Profile picture"
                   className="rounded-full w-6 h-6 object-center object-cover mr-1"
                 />
-                Hi, {name || userData.fName}
+                <p>
+                  Hi,{" "}
+                  <span className="capitalize">{name || userData.fName}</span>
+                </p>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="flex flex-col gap-3 p-4 w-[200px]">
