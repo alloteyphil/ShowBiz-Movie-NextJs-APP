@@ -10,6 +10,7 @@
     "email": "email dev"
   },
   "dependencies": {
+    "@plaiceholder/next": "^3.0.0",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-navigation-menu": "^1.2.2",
     "@radix-ui/react-popover": "^1.1.4",
