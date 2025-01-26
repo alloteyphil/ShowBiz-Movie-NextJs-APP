@@ -4,6 +4,7 @@ import Link from "next/link";
 import { movieGenreData } from "@/data/genresData";
 import { LoaderIcon } from "lucide-react";
 import type { TrendingGenreType } from "@/types/genre";
+import { getPlaiceholder } from "plaiceholder";
 
 const Header = async () => {
   let data;
@@ -15,20 +16,55 @@ const Header = async () => {
     { cache: "no-store" },
   );
 
+  let src1;
+
+  let src2;
+
+  let blurData1 = "";
+
+  let blurData2 = "";
+
   if (response.ok) {
     data = await response.json();
-    shuffleData = _.shuffle(data.results);
+    shuffleData = _.shuffle(data.results).slice(0, 2);
+    try {
+      src1 = `https://image.tmdb.org/t/p/original${shuffleData[0].backdrop_path}`;
+
+      src2 = `https://image.tmdb.org/t/p/original${shuffleData[1].backdrop_path}`;
+
+      const buffer1 = await fetch(src1).then(async (res) =>
+        Buffer.from(await res.arrayBuffer()),
+      );
+
+      const buffer2 = await fetch(src2).then(async (res) =>
+        Buffer.from(await res.arrayBuffer()),
+      );
+
+      const placeholder1 = await getPlaiceholder(buffer1);
+
+      blurData1 = placeholder1.base64;
+
+      const placeholder2 = await getPlaiceholder(buffer2);
+
+      blurData2 = placeholder2.base64;
+    } catch (err) {
+      err;
+    }
   }
 
   return (
     <div className="grid grid-cols-2 pt-[88.5px] h-[700px]">
       {data ? (
-        shuffleData?.slice(0, 2).map((movie: TrendingGenreType) => (
+        shuffleData?.map((movie: TrendingGenreType) => (
           <div
             key={movie.id}
             className="relative w-full overflow-hidden group cursor-pointer"
           >
             <Image
+              placeholder="blur"
+              blurDataURL={
+                movie.id === shuffleData[0].id ? blurData1 : blurData2
+              }
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
               layout="fill"
               objectFit="cover"

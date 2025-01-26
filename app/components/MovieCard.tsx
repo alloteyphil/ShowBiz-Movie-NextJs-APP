@@ -2,8 +2,9 @@ import { movieGenreData } from "@/data/genresData";
 import Image from "next/image";
 import Link from "next/link";
 import noImage from "../../public/images/no-image.png";
+import { getPlaiceholder } from "plaiceholder";
 
-const MovieCard = ({
+const MovieCard = async ({
   image,
   title,
   genres,
@@ -14,6 +15,24 @@ const MovieCard = ({
   genres: number[];
   id: number;
 }) => {
+  let blurData = "";
+
+  if (image || image !== "") {
+    try {
+      const src = `https://image.tmdb.org/t/p/original${image}`;
+
+      const buffer = await fetch(src).then(async (res) =>
+        Buffer.from(await res.arrayBuffer()),
+      );
+
+      const placeholder = await getPlaiceholder(buffer);
+
+      blurData = placeholder.base64;
+    } catch (err) {
+      err;
+    }
+  }
+
   return (
     <div className="flex flex-col gap-8 items-center group">
       <Link
@@ -22,6 +41,8 @@ const MovieCard = ({
         className="w-full h-[400px] overflow-hidden cursor-pointer"
       >
         <Image
+          placeholder="blur"
+          blurDataURL={blurData || ""}
           width={270}
           height={400}
           src={
