@@ -1,11 +1,33 @@
+import { getUserProfile } from "@/actions/profile.actions";
+import Comment from "@/app/components/Comment";
 import MovieContentDetails from "@/app/components/MovieContentDetails";
 import MovieHeaderDetails from "@/app/components/MovieHeaderDetails";
 import RelatedMovies from "@/app/components/RelatedMovies";
+import { verifyToken } from "@/lib/helpers/generateSession";
 import type { FailedDetailsPageResponse } from "@/types/general";
 import type { IMovie } from "@/types/movie";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+type PayloadType = {
+  email: string;
+  timestamp: number;
+  iat: number;
+  exp: number;
+};
+
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const cookieStore = await cookies();
+
+  const session = cookieStore.get("session");
+
+  let userEmail: string | undefined;
+
+  if (session) {
+    const payload = (await verifyToken(session.value)) as PayloadType;
+    userEmail = payload?.email;
+  }
+
   const { id } = await params;
 
   let data;
@@ -39,6 +61,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <>
           <MovieHeaderDetails data={data} />
           <MovieContentDetails data={data} />
+          <Comment id={data.id} email={userEmail ?? ""} />
           <RelatedMovies id={data.id} />
         </>
       )}

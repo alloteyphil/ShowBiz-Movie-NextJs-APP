@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import noImage from "../../public/images/no-image.png";
 
-const MovieCard = async ({
+const MovieCard = ({
   image,
   title,
   genres,
