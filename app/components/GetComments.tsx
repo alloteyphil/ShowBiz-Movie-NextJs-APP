@@ -1,46 +1,144 @@
 "use client";
 
-import { getMovieComments } from "@/actions/comment.action";
+import { deleteComment, getMovieComments } from "@/actions/comment.action";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { CommentResponseType } from "@/types/comments";
 
-const GetComments = ({ id }: { id: number }) => {
+const GetComments = ({
+  id,
+  email,
+  refresh,
+}: {
+  id: number;
+  email: string;
+  refresh: number;
+}) => {
   const { toast } = useToast();
 
   const [comments, setComments] = useState<CommentResponseType[]>([]);
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const res = await getMovieComments(id);
-        if (res.statusCode === 200) {
-          setComments(res.response as CommentResponseType[]);
-        } else {
-          toast({
-            title: "Error",
-            description: "Failed to fetch comments",
-            className: "bg-red-500 text-white",
-          });
-        }
-      } catch (error) {
+  const fetchComments = async () => {
+    try {
+      const res = await getMovieComments(id);
+      if (res.statusCode === 200) {
+        setComments(res.response as CommentResponseType[]);
+      } else {
         toast({
           title: "Error",
           description: "Failed to fetch comments",
           className: "bg-red-500 text-white",
         });
       }
-    };
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to fetch comments",
+        className: "bg-red-500 text-white",
+      });
+    }
+  };
 
+  useEffect(() => {
     fetchComments();
-  }, [id, toast]);
+  }, [id, refresh]);
+
+  const handleDelete = async (commentId: string) => {
+    try {
+      const res = await deleteComment(email, commentId);
+
+      if (res.statusCode === 200) {
+        toast({
+          title: "Success",
+          description: "Comment deleted successfully",
+          className: "bg-green-500 text-white",
+        });
+        // Refresh comments after successful deletion
+        await fetchComments();
+      } else {
+        if (res.statusCode === 403) {
+          toast({
+            title: "Error",
+            description: "You are not authorized to delete this comment",
+            className: "bg-red-500 text-white",
+          });
+          return;
+        }
+
+        if (res.statusCode === 401) {
+          toast({
+            title: "Error",
+            description: "You must be login before you can delete the comment",
+            className: "bg-red-500 text-white",
+          });
+          return;
+        }
+
+        if (res.statusCode === 404) {
+          toast({
+            title: "Error",
+            description: "Comment not found",
+            className: "bg-red-500 text-white",
+          });
+          return;
+        }
+
+        if (res.statusCode === 500) {
+          toast({
+            title: "Error",
+            description: "Failed to delete comment",
+            className: "bg-red-500 text-white",
+          });
+          return;
+        }
+
+        if (res.statusCode === 200) {
+          toast({
+            title: "Success",
+            description: "Comment deleted successfully",
+            className: "bg-green-500 text-white",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: "Failed to delete comment",
+            className: "bg-red-500 text-white",
+          });
+        }
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete comment",
+        className: "bg-red-500 text-white",
+      });
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return "Just now";
+      }
+      return date.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    } catch {
+      return "Just now";
+    }
+  };
 
   return (
     <div className="flex flex-col gap-6">
       {comments.map((comment) => (
         <div
-          key={comment.movieId}
+          key={comment.id}
           className="flex gap-4 bg-white p-6 rounded-lg shadow-sm"
         >
           <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0">
@@ -60,11 +158,13 @@ const GetComments = ({ id }: { id: number }) => {
                 <span className="font-semibold">
                   {comment.user.fName} {comment.user.lName}
                 </span>
-                <span className="text-sm text-gray-500">
-                  {new Date(comment.createdAt).toLocaleDateString()}
-                </span>
+
+                <span className="text-sm text-gray-500"></span>
               </div>
-              <button className="text-sm text-red-500 hover:text-red-600">
+              <button
+                onClick={() => handleDelete(comment.id)}
+                className="text-sm text-red-500 hover:text-red-600"
+              >
                 Delete
               </button>
             </div>

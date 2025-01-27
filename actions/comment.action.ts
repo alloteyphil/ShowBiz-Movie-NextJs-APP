@@ -88,6 +88,7 @@ export const getMovieComments = async (movieId: number) => {
 
     const serializedComments: CommentResponseType[] = comments.map(
       (comment) => ({
+        id: comment.id.toString(), // Add this line
         movieId: comment.movieId,
         comment: comment.comment,
         user: {
@@ -132,7 +133,7 @@ export const deleteComment = async (email: string, commentId: string) => {
 
     if (!existingUser)
       return {
-        statusCode: 404,
+        statusCode: 401,
         message: "User not found",
         response: null,
       };

@@ -12,6 +12,7 @@ type UserInfo = {
 };
 
 export interface CommentResponseType {
+  id: string;
   movieId: number;
   comment: string;
   user: UserInfo;

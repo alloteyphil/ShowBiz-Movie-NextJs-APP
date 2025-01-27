@@ -12,6 +12,8 @@ const Comment = ({ id, email }: { id: number; email: string }) => {
 
   const [loading, setLoading] = useState(false);
 
+  const [refresh, setRefresh] = useState(0);
+
   const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -56,45 +58,48 @@ const Comment = ({ id, email }: { id: number; email: string }) => {
     }
     try {
       setLoading(true);
-
       const res = await addComment(email, id, commentData);
 
-      if (res.statusCode === 400) {
+      if (res.statusCode === 200) {
         toast({
-          title: "Field(s) missing",
-          description: "Please enter your email and password",
-          className: "bg-red-500 text-white",
+          title: "Success",
+          description: "Comment added successfully",
+          className: "bg-green-500 text-white",
         });
-        setLoading(false);
-        return;
-      }
+        setCommentData("");
 
-      if (res.statusCode === 404) {
-        toast({
-          title: "User not found",
-          description: "An account with this email does not exist",
-          className: "bg-red-500 text-white",
-        });
-        setLoading(false);
-        return;
-      }
+        setRefresh((prev) => prev + 1);
+      } else {
+        if (res.statusCode === 400) {
+          toast({
+            title: "Field(s) missing",
+            description: "Please enter your email and password",
+            className: "bg-red-500 text-white",
+          });
+          setLoading(false);
+          return;
+        }
 
-      if (res.statusCode === 500) {
-        toast({
-          title: "Internal Server Error",
-          description: "Please try again later",
-          className: "bg-red-500 text-white",
-        });
-        setLoading(false);
-        return;
-      }
+        if (res.statusCode === 404) {
+          toast({
+            title: "User not found",
+            description: "An account with this email does not exist",
+            className: "bg-red-500 text-white",
+          });
+          setLoading(false);
+          return;
+        }
 
-      toast({
-        title: "Success",
-        description: "Comment added successfully",
-        className: "bg-green-500 text-white",
-      });
-      setCommentData("");
+        if (res.statusCode === 500) {
+          toast({
+            title: "Internal Server Error",
+            description: "Please try again later",
+            className: "bg-red-500 text-white",
+          });
+          setLoading(false);
+          return;
+        }
+      }
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -149,7 +154,7 @@ const Comment = ({ id, email }: { id: number; email: string }) => {
           </button>
         </div>
 
-        <GetComments id={id} />
+        <GetComments id={id} email={email} refresh={refresh} />
       </div>
     </div>
   );
