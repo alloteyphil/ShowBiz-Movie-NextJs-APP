@@ -5,7 +5,6 @@ import { LoaderCircleIcon, LockIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { addComment } from "@/actions/comment.action";
-import FetchComments from "./FetchComments";
 
 const Comment = ({ id, email }: { id: number; email: string }) => {
   const [commentData, setCommentData] = useState("");
