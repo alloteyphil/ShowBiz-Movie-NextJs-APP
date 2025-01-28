@@ -1,12 +1,11 @@
 "use client";
 
-import { deleteComment, getMovieComments } from "@/actions/comment.action";
+import { deleteComment } from "@/actions/comment.action";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import type { CommentResponseType } from "@/types/comments";
 
-const GetComments = ({
+const FetchComments = ({
   id,
   email,
   refresh,
@@ -54,7 +53,7 @@ const GetComments = ({
           description: "Comment deleted successfully",
           className: "bg-green-500 text-white",
         });
-        // Refresh comments after successful deletion
+
         await fetchComments();
       } else {
         if (res.statusCode === 403) {
@@ -159,7 +158,9 @@ const GetComments = ({
                   {comment.user.fName} {comment.user.lName}
                 </span>
 
-                <span className="text-sm text-gray-500"></span>
+                <span className="text-sm text-gray-500">
+                  {formatDate(comment.createdAt)}
+                </span>
               </div>
               <button
                 onClick={() => handleDelete(comment.id)}
@@ -182,4 +183,4 @@ const GetComments = ({
   );
 };
 
-export default GetComments;
+export default FetchComments;

@@ -5,7 +5,7 @@ import { LoaderCircleIcon, LockIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { addComment } from "@/actions/comment.action";
-import GetComments from "./GetComments";
+import FetchComments from "./FetchComments";
 
 const Comment = ({ id, email }: { id: number; email: string }) => {
   const [commentData, setCommentData] = useState("");
@@ -30,15 +30,6 @@ const Comment = ({ id, email }: { id: number; email: string }) => {
       return;
     }
 
-    if (commentData.trim().length < 5) {
-      toast({
-        title: "Comment is too short",
-        description: "Please enter a comment more than 5 characters",
-        className: "bg-red-500 text-white",
-      });
-      return;
-    }
-
     if (commentData.trim().length > 200) {
       toast({
         title: "Comment is too long",
@@ -58,6 +49,7 @@ const Comment = ({ id, email }: { id: number; email: string }) => {
     }
     try {
       setLoading(true);
+
       const res = await addComment(email, id, commentData);
 
       if (res.statusCode === 200) {
@@ -66,40 +58,50 @@ const Comment = ({ id, email }: { id: number; email: string }) => {
           description: "Comment added successfully",
           className: "bg-green-500 text-white",
         });
+
         setCommentData("");
 
         setRefresh((prev) => prev + 1);
-      } else {
-        if (res.statusCode === 400) {
-          toast({
-            title: "Field(s) missing",
-            description: "Please enter your email and password",
-            className: "bg-red-500 text-white",
-          });
-          setLoading(false);
-          return;
-        }
 
-        if (res.statusCode === 404) {
-          toast({
-            title: "User not found",
-            description: "An account with this email does not exist",
-            className: "bg-red-500 text-white",
-          });
-          setLoading(false);
-          return;
-        }
-
-        if (res.statusCode === 500) {
-          toast({
-            title: "Internal Server Error",
-            description: "Please try again later",
-            className: "bg-red-500 text-white",
-          });
-          setLoading(false);
-          return;
-        }
+        setLoading(false);
+        return;
       }
+      if (res.statusCode === 400) {
+        toast({
+          title: "Field(s) missing",
+          description: "Please enter your email and password",
+          className: "bg-red-500 text-white",
+        });
+        setLoading(false);
+        return;
+      }
+
+      if (res.statusCode === 404) {
+        toast({
+          title: "User not found",
+          description: "An account with this email does not exist",
+          className: "bg-red-500 text-white",
+        });
+        setLoading(false);
+        return;
+      }
+
+      if (res.statusCode === 500) {
+        toast({
+          title: "Internal Server Error",
+          description: "Please try again later",
+          className: "bg-red-500 text-white",
+        });
+        setLoading(false);
+        return;
+      }
+
+      toast({
+        title: "Error",
+        description: "Failed to add comment",
+        className: "bg-red-500 text-white",
+      });
+
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -154,7 +156,7 @@ const Comment = ({ id, email }: { id: number; email: string }) => {
           </button>
         </div>
 
-        <GetComments id={id} email={email} refresh={refresh} />
+        {/* <FetchComments id={id} email={email} refresh={refresh} /> */}
       </div>
     </div>
   );

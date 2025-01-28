@@ -3,16 +3,7 @@ import mongoose, { Schema, Document, type Types, Model } from "mongoose";
 export interface IComment extends Document {
   movieId: number;
   comment: string;
-  user:
-    | Types.ObjectId
-    | {
-        _id: Types.ObjectId;
-        fName: string;
-        lName: string;
-        photo?: string;
-      };
-  createdAt: Date;
-  updatedAt: Date;
+  user: Types.ObjectId;
 }
 
 const CommentSchema: Schema = new Schema(

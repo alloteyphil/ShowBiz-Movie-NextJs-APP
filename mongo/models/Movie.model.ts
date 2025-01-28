@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, type Types } from "mongoose";
+import mongoose, { Schema, Document, models, type Types } from "mongoose";
 
 export interface IMovie extends Document {
   movieId: number;
@@ -7,7 +7,8 @@ export interface IMovie extends Document {
 
 const MovieSchema: Schema = new Schema({
   movieId: { type: Number, required: true },
-  comments: { type: Array(Schema.Types.ObjectId), required: false },
+  comments: [{ type: Schema.Types.ObjectId, required: false }],
 });
 
-export const Movie = mongoose.model<IMovie>("Movie", MovieSchema);
+export const Movie =
+  models.Movie || mongoose.model<IMovie>("Movie", MovieSchema);

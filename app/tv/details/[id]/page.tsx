@@ -1,11 +1,31 @@
+import Comment from "@/app/components/Comment";
 import RelatedTV from "@/app/components/RelatedTV";
 import TVContentDetails from "@/app/components/TVContentDetails";
 import TVHeaderDetails from "@/app/components/TVHeaderDetails";
+import { verifyToken } from "@/lib/helpers/generateSession";
 import type { FailedDetailsPageResponse } from "@/types/general";
 import type { ITVShow } from "@/types/tv";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+type PayloadType = {
+  email: string;
+  timestamp: number;
+  iat: number;
+  exp: number;
+};
+
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const cookieStore = await cookies();
+
+  const session = cookieStore.get("session");
+
+  let userEmail: string | undefined;
+
+  if (session) {
+    const payload = (await verifyToken(session.value)) as PayloadType;
+    userEmail = payload?.email;
+  }
   const { id } = await params;
 
   let data;
@@ -39,6 +59,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <>
           <TVHeaderDetails data={data} />
           <TVContentDetails data={data} />
+          <Comment id={data.id} email={userEmail ?? ""} />
           <RelatedTV id={data.id} />
         </>
       )}
