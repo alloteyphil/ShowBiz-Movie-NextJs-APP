@@ -3,17 +3,13 @@
 import { useState } from "react";
 import { LoaderCircleIcon, LockIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { addComment } from "@/actions/comment.action";
-import FetchComments from "./FetchComments";
 import { toastVariants } from "@/lib/utils";
 
 const PostComment = ({ id, email }: { id: number; email: string }) => {
   const [commentData, setCommentData] = useState("");
 
   const [loading, setLoading] = useState(false);
-
-  const [refresh, setRefresh] = useState(0);
 
   const { toast } = useToast();
 
@@ -44,8 +40,6 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
         });
 
         setCommentData("");
-
-        setRefresh((prev) => prev + 1);
 
         setLoading(false);
         return;

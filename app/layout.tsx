@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import AuthDrawer from "./components/AuthDrawer";
 import SearchDrawer from "./components/SearchDrawer";
 import UserWrapper from "./components/UserWrapper";
+import { Analytics } from "@vercel/analytics/react";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -26,6 +27,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${raleway.variable} antialiased bg-[#111111] relative`}>
+        <Analytics />
         <NavBar>
           <UserWrapper />
         </NavBar>
