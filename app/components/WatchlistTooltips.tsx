@@ -12,6 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
+import { toastVariants } from "@/lib/utils";
 import { useDrawerStore } from "@/store";
 import type { UserResponseType } from "@/types/user";
 import { MinusIcon, PlusIcon } from "lucide-react";
@@ -29,7 +30,7 @@ const WatchlistTooltip = () => {
 
   const pathname = usePathname();
 
-  const movieId = parseInt(pathname.split("/")[3]);
+  const movieId = parseInt(pathname!.split("/")[3]);
 
   const { toast } = useToast();
 
@@ -69,7 +70,7 @@ const WatchlistTooltip = () => {
         toast({
           title: "Removed from watchlist",
           description: "Movie has been removed from your watchlist",
-          className: "bg-white border-[0.5px] border-[#111111] text-[#111111]",
+          className: toastVariants.success,
         });
         setIsInWatchlist(false);
         return;
@@ -77,7 +78,7 @@ const WatchlistTooltip = () => {
       toast({
         title: "Error",
         description: "An error occurred. Please try again",
-        className: "bg-red-400 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -88,7 +89,7 @@ const WatchlistTooltip = () => {
         toast({
           title: "Added to watchlist",
           description: "Movie has been added to your watchlist",
-          className: "bg-white border-[0.5px] border-[#111111] text-[#111111]",
+          className: toastVariants.success,
         });
         setIsInWatchlist(true);
         return;
@@ -96,7 +97,7 @@ const WatchlistTooltip = () => {
       toast({
         title: "Error",
         description: "An error occurred. Please try again",
-        className: "bg-red-400 text-white",
+        className: toastVariants.error,
       });
       return;
     }

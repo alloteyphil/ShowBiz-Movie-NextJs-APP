@@ -13,10 +13,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
+import { cn, toastVariants } from "@/lib/utils";
 import { logout } from "@/actions/logout.actions";
 import { useToast } from "@/hooks/use-toast";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useUserProfileStore } from "@/store";
 import Image from "next/image";
 import userPhoto from "../../public/images/user.png";
@@ -95,6 +95,8 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, ref) => {
   const { toast } = useToast();
 
+  const router = useRouter();
+
   const handleLogout = async () => {
     const res = await logout();
 
@@ -102,7 +104,7 @@ const ListItem = React.forwardRef<
       toast({
         title: "Error",
         description: "A problem occurred when logging out. Please try again.",
-        className: "bg-red-400 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -110,10 +112,12 @@ const ListItem = React.forwardRef<
     toast({
       title: "Success",
       description: "You have successfully logged out.",
-      className: "bg-green-400 text-white",
+      className: toastVariants.success,
     });
     localStorage.removeItem("user");
-    window.location.reload();
+
+    router.refresh();
+
     return;
   };
 

@@ -17,7 +17,9 @@ const UserWrapper = async () => {
 
   const session = cookieStore.get("session");
 
-  if (session) {
+  if (!session || session.value === "") {
+    userData = undefined;
+  } else {
     const payload = (await verifyToken(session.value)) as PayloadType;
 
     if (!payload) {
@@ -26,7 +28,6 @@ const UserWrapper = async () => {
 
     userData = await getUserProfile(payload.email);
   }
-
   return (
     <div>
       <User session={session?.value} userData={userData?.response} />

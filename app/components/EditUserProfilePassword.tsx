@@ -7,6 +7,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { validateRegisterPassword } from "@/lib/helpers/validateRegisterPassword";
+import { toastVariants } from "@/lib/utils";
 import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -38,7 +39,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Field is required",
         description: "Please enter your current password",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -47,7 +48,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Field is required",
         description: "Please enter your new password",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -56,7 +57,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Field is required",
         description: "Please confirm your new password",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -71,7 +72,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -84,7 +85,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
         toast({
           title: "Unauthorized",
           description: "Current password is incorrect. Please try again",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -95,7 +96,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Same Password",
             description: "Please enter a different password",
-            className: "bg-red-500 text-white",
+            className: toastVariants.error,
           });
           setLoading(false);
           return;
@@ -105,7 +106,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Short Password",
             description: "Password must be at least 6 characters long",
-            className: "bg-red-500 text-white",
+            className: toastVariants.error,
           });
           setLoading(false);
           return;
@@ -116,7 +117,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
             title: "Weak Password",
             description:
               "Password must contain at least one letter, one number and one special character",
-            className: "bg-red-500 text-white",
+            className: toastVariants.error,
           });
           setLoading(false);
           return;
@@ -126,7 +127,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Passwords do not match",
             description: "Please enter matching passwords",
-            className: "bg-red-500 text-white",
+            className: toastVariants.error,
           });
           setLoading(false);
           return;
@@ -141,7 +142,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Password Updated",
             description: "Password updated successfully",
-            className: "bg-green-500 text-white",
+            className: toastVariants.success,
           });
           setLoading(false);
           setPasswordData({
@@ -155,7 +156,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
         toast({
           title: "Error",
           description: "An error occurred. Please try again",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -164,7 +165,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Error",
         description: "An error occurred. Please try again",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       setLoading(false);
     }

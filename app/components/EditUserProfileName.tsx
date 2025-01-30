@@ -8,6 +8,7 @@ import { containsNumber } from "@/lib/helpers/containsNumber";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { updateUserName } from "@/actions/profile.actions";
 import { useUserProfileStore } from "@/store";
+import { toastVariants } from "@/lib/utils";
 
 const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
   const [userDetails, setUserDetails] = useState<UserResponseType>(userData);
@@ -25,7 +26,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
       toast({
         title: "Field is required",
         description: "Please enter your first name",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -34,7 +35,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
       toast({
         title: "Field is required",
         description: "Please enter your last name",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -46,7 +47,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
       toast({
         title: "Invalid Name",
         description: "Name cannot contain numbers",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -55,7 +56,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -72,7 +73,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
         toast({
           title: "Error",
           description: "Both names same as previous",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -82,7 +83,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
         toast({
           title: "Success",
           description: "Name updated successfully",
-          className: "bg-green-500 text-white",
+          className: toastVariants.success,
         });
         const user: UserResponseType | null = JSON.parse(
           localStorage.getItem("user") || "null",
@@ -104,7 +105,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
       toast({
         title: "Error",
         description: "Something went wrong",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       setLoading(false);
       return;
@@ -112,7 +113,7 @@ const EditUserProfileName = ({ userData }: { userData: UserResponseType }) => {
       toast({
         title: "Error",
         description: "Something went wrong",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       setLoading(false);
       return;

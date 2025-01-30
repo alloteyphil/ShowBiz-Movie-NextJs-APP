@@ -6,12 +6,29 @@ import { Movie } from "@/mongo/models/Movie.model";
 import { User } from "@/mongo/models/User.model";
 import type { AddCommentResponseType } from "@/types/comments";
 import type { ObjectId } from "mongoose";
+import { revalidatePath } from "next/cache";
+
+interface IUser {
+  _id: ObjectId;
+  fName: string;
+  lName: string;
+  email: string;
+  password: string;
+  photo: string;
+  watchlist: string[];
+  favorites: string[];
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
 
 interface Comment {
   _id: ObjectId;
   movieId: number;
   comment: string;
-  user: ObjectId;
+  user: IUser;
+  likes: number;
+  createdAt: Date;
   __v: number;
 }
 
@@ -93,6 +110,8 @@ export const addComment = async (
         model: "Comment",
       });
 
+      revalidatePath("/movie/details/[id]", "page");
+
       return {
         statusCode: 200,
         message: "Comment added successfully",
@@ -123,57 +142,63 @@ export const addComment = async (
   }
 };
 
-// export const fetchComments = async (movieId: number) => {
-//   if (!movieId)
-//     return {
-//       statusCode: 400,
-//       message: "Movie ID is required",
-//       response: null,
-//     };
+// Get comments for a movie
+export const getComments = async (movieId: number) => {
+  if (!movieId)
+    return {
+      statusCode: 400,
+      message: "Movie ID is required",
+      response: null,
+    };
 
-//   await connectToDatabase();
+  await connectToDatabase();
 
-//   try {
-//     const comments = await Comment.find({ movieId }).populate<{
-//       user: {
-//         _id: Types.ObjectId;
-//         fName: string;
-//         lName: string;
-//         photo?: string;
-//       };
-//     }>("user", "fName lName photo");
+  try {
+    const existingMovie = await Movie.findOne({ movieId }).populate({
+      path: "comments",
+      model: "Comment",
+      populate: {
+        path: "user",
+        model: "User",
+      },
+    });
 
-//     const serializedComments: CommentResponseType[] = comments.map(
-//       (comment) => ({
-//         id: comment.id.toString(),
-//         movieId: comment.movieId,
-//         comment: comment.comment,
-//         user: {
-//           id: comment.user._id.toString(),
-//           fName: comment.user.fName,
-//           lName: comment.user.lName,
-//           photo: comment.user.photo || null,
-//         },
-//         createdAt: new Date(comment.createdAt).toISOString(),
-//       }),
-//     );
-
-//     return {
-//       statusCode: 200,
-//       message: "Comments retrieved successfully",
-//       response: serializedComments,
-//     };
-//   } catch (error) {
-//     const errorMessage =
-//       error instanceof Error ? error.message : "Unknown error occurred";
-//     console.error("Get comments error:", errorMessage);
-//     return {
-//       statusCode: 500,
-//       message: `Failed to get comments: ${errorMessage}`,
-//       response: null,
-//     };
-//   }
-// };
+    if (!existingMovie)
+      return {
+        statusCode: 404,
+        message: "Movie not found",
+        response: null,
+      };
+    return {
+      statusCode: 200,
+      message: "Comments fetched successfully",
+      response: {
+        movieId: existingMovie.movieId,
+        comments: existingMovie.comments.map((comment: Comment) => ({
+          id: comment._id.toString(),
+          commentText: comment.comment,
+          commentAuthor: {
+            fName: comment.user.fName,
+            lName: comment.user.lName,
+            photo: comment.user.photo,
+            email: comment.user.email,
+          },
+          likes: comment.likes,
+          createdAt: comment.createdAt,
+        })),
+      },
+    };
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Get comments error:", errorMessage);
+    return {
+      statusCode: 500,
+      message: `Failed to get comments: ${errorMessage}`,
+      response: null,
+    };
+  }
+};
 
 export const deleteComment = async (email: string, commentId: string) => {
   if (!commentId || !email)

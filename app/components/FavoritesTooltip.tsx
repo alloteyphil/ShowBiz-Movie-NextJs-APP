@@ -12,6 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
+import { toastVariants } from "@/lib/utils";
 import { useDrawerStore } from "@/store";
 import type { UserResponseType } from "@/types/user";
 import { HeartIcon } from "lucide-react";
@@ -69,7 +70,7 @@ const FavoritesTooltip = () => {
         toast({
           title: "Removed from favorites",
           description: "Movie has been removed from your favorites",
-          className: "bg-white border-[0.5px] border-[#111111] text-[#111111]",
+          className: toastVariants.success,
         });
         setIsInFavorites(false);
         return;
@@ -77,7 +78,7 @@ const FavoritesTooltip = () => {
       toast({
         title: "Error",
         description: "An error occurred. Please try again",
-        className: "bg-red-400 text-white",
+        className: toastVariants.error,
       });
 
       return;
@@ -90,14 +91,14 @@ const FavoritesTooltip = () => {
         toast({
           title: "Added to favorites",
           description: "Movie has been added to your favorites",
-          className: "bg-white border-[0.5px] border-[#111111] text-[#111111]",
+          className: toastVariants.success,
         });
         return;
       }
       toast({
         title: "Error",
         description: "An error occurred. Please try again",
-        className: "bg-red-400 text-white",
+        className: toastVariants.error,
       });
       return;
     }

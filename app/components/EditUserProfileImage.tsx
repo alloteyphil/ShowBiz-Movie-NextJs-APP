@@ -3,6 +3,7 @@ import { UploadDropzone } from "../../utils/uploadthing";
 import type { UserResponseType } from "@/types/user";
 import { updateUserImage } from "@/actions/profile.actions";
 import { useUserProfileStore } from "@/store";
+import { toastVariants } from "@/lib/utils";
 
 const EditUserProfileImage = ({ email }: { email: string }) => {
   const userState = useUserProfileStore((state) => state);
@@ -39,7 +40,7 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
               toast({
                 title: "Photo uploaded",
                 description: "Photo uploaded successfully",
-                className: "bg-green-500 text-white",
+                className: toastVariants.success,
               });
               return;
             }
@@ -48,7 +49,7 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
               title: "Error",
               description:
                 "There was a problem uploading your photo. Please try again",
-              className: "bg-red-500 text-white",
+              className: toastVariants.error,
             });
             return;
           } catch (error) {
@@ -56,7 +57,7 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
               title: "Error",
               description:
                 "There was a problem uploading your photo. Please try again",
-              className: "bg-red-500 text-white",
+              className: toastVariants.error,
             });
           }
         };
@@ -67,7 +68,7 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
         toast({
           title: "Error uploading photo",
           description: "Please try again",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
       }}
     />

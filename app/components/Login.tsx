@@ -3,6 +3,7 @@
 import { loginUser } from "../../actions/Login.actions";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
+import { toastVariants } from "@/lib/utils";
 import { useDrawerStore } from "@/store";
 import type { UserLoginType } from "@/types/user";
 import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
@@ -34,7 +35,7 @@ const Login = () => {
       toast({
         title: "Field is required",
         description: "Please enter your email",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -44,7 +45,7 @@ const Login = () => {
       toast({
         title: "Field is required",
         description: "Please enter your password",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -54,7 +55,7 @@ const Login = () => {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -64,7 +65,7 @@ const Login = () => {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -78,7 +79,7 @@ const Login = () => {
         toast({
           title: "Field(s) missing",
           description: "Please enter your email and password",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -88,7 +89,7 @@ const Login = () => {
         toast({
           title: "User not found",
           description: "An account with this email does not exist",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -98,7 +99,7 @@ const Login = () => {
         toast({
           title: "Incorrect Password",
           description: "Please enter the correct password",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -108,7 +109,7 @@ const Login = () => {
         toast({
           title: "Internal Server Error",
           description: "Please try again later",
-          className: "bg-red-500 text-white",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -117,7 +118,7 @@ const Login = () => {
       toast({
         title: "Successfully Logged In",
         description: "You have successfully logged in",
-        className: "bg-green-400 text-white",
+        className: toastVariants.success,
       });
 
       localStorage.setItem("user", JSON.stringify(response.response));
@@ -139,7 +140,7 @@ const Login = () => {
       toast({
         title: "Login Failed",
         description: "An unexpected error occurred. Please try again.",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       setLoading(false);
     }

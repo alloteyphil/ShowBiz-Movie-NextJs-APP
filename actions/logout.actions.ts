@@ -7,7 +7,9 @@ export const logout = async (): Promise<{
 }> => {
   try {
     const cookieStore = await cookies();
+
     cookieStore.delete("session");
+
     return { statusCode: 200, message: "Successfully logged out" };
   } catch (error) {
     const errorMessage =

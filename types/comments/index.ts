@@ -1,4 +1,9 @@
 import type { ObjectId } from "mongoose";
+
+export interface GetAllMovieCommentsResponseType {
+  id: string;
+  commentText: string;
+}
 export interface CommentInputType {
   movieId: number;
   comment: string;
@@ -15,6 +20,7 @@ export interface CommentType {
     lName: string;
     photo: string | null;
   };
+  likes: number;
   createdAt: string;
 }
 

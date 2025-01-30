@@ -13,28 +13,30 @@ type PayloadType = {
 };
 
 const page = async () => {
+  let userData;
+
   const cookieStore = await cookies();
 
   const session = cookieStore.get("session");
 
-  if (!session || session.value === "") {
-    return;
-  }
+  if (session) {
+    if (session.value !== "") {
+      const payload = (await verifyToken(session.value)) as PayloadType;
 
-  const payload = (await verifyToken(session.value)) as PayloadType;
+      userData = await getUserProfile(payload.email);
 
-  const userData = await getUserProfile(payload.email);
-
-  if (userData.response === null) {
-    redirect("/");
+      if (userData.response === null) {
+        redirect("/");
+      }
+    }
   }
 
   return (
     <div className="grid place-items-center bg-white text-[#111111] pt-56 pb-36 w-full min-h-screen">
       <div className="flex flex-col gap-6 w-full items-center">
         <h1 className="font-bold text-5xl mb-4">Manage Profile</h1>
-        <UserImage image={userData.response.photo || ""} />
-        <EditUserProfile userData={userData.response} />
+        <UserImage image={userData?.response?.photo || ""} />
+        <EditUserProfile userData={userData?.response} />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { sendEmail, storeEmail } from "@/actions/subscribe.action";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
+import { toastVariants } from "@/lib/utils";
 import type { UserSubscribeDetailsType } from "@/types/subscribe";
 import { LoaderCircleIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -31,7 +32,8 @@ const Subscribe = () => {
       toast({
         title: "Field is required",
         description: "Please enter your email",
-        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        className:
+          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -40,7 +42,8 @@ const Subscribe = () => {
       toast({
         title: "Field is required",
         description: "Please enter your name",
-        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        className:
+          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -49,7 +52,8 @@ const Subscribe = () => {
       toast({
         title: "Field is required",
         description: "Please enter your name",
-        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        className:
+          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -58,20 +62,22 @@ const Subscribe = () => {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email",
-        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        className:
+          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
 
     if (
       isPotentialSQLInjection(
-        userDetails.email || userDetails.fName || userDetails.lName
+        userDetails.email || userDetails.fName || userDetails.lName,
       )
     ) {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
-        className: "bg-red-500 text-white",
+        className:
+          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -81,14 +87,15 @@ const Subscribe = () => {
       const response = await sendEmail(
         userDetails.email,
         userDetails.fName,
-        userDetails.lName
+        userDetails.lName,
       );
 
       if (response.status === "error") {
         toast({
           title: "Error",
           description: "An error occurred while subscribing to our newsletter",
-          className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+          className:
+            "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
 
@@ -104,14 +111,15 @@ const Subscribe = () => {
         | undefined = await storeEmail(
         userDetails.email,
         userDetails.fName,
-        userDetails.lName
+        userDetails.lName,
       );
 
       if (savedSubscriber?.statusCode === 409) {
         toast({
           title: "Already subscribed",
           description: "You have already subscribed to our newsletter",
-          className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+          className:
+            "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
 
@@ -122,7 +130,8 @@ const Subscribe = () => {
         toast({
           title: "Great!",
           description: "You have successfully subscribed to our newsletter",
-          className: "bg-[#111111] border-[0.5px] border-white-400 text-white",
+          className:
+            "bg-green-200 text-green-600 shadow-md shadow-green-400/30 rounded-xl py-6",
         });
         setLoading(false);
 
@@ -138,7 +147,8 @@ const Subscribe = () => {
       toast({
         title: "Error",
         description: "Something went wrong. Please try again",
-        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        className:
+          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
 
       return;
@@ -146,7 +156,7 @@ const Subscribe = () => {
       toast({
         title: "Error",
         description: "Something went wrong. Please try again",
-        className: "bg-[#111111] border-[0.5px] border-red-400 text-red-400",
+        className: toastVariants.error,
       });
     }
   };

@@ -1,4 +1,4 @@
-import Comment from "@/app/components/Comment";
+import Comment from "@/app/components/PostComment";
 import RelatedTV from "@/app/components/RelatedTV";
 import TVContentDetails from "@/app/components/TVContentDetails";
 import TVHeaderDetails from "@/app/components/TVHeaderDetails";
@@ -22,10 +22,13 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   let userEmail: string | undefined;
 
-  if (session) {
+  if (!session || session.value === "") {
+    userEmail = undefined;
+  } else {
     const payload = (await verifyToken(session.value)) as PayloadType;
     userEmail = payload?.email;
   }
+
   const { id } = await params;
 
   let data;

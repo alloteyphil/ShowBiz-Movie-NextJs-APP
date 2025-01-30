@@ -12,6 +12,7 @@ import registerUser from "@/actions/registerUser.actions";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { useRouter } from "next/navigation";
 import { useDrawerStore } from "@/store";
+import { toastVariants } from "@/lib/utils";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState<UserInputType>({
@@ -43,7 +44,7 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your first name",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -53,7 +54,7 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your last name",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -66,7 +67,7 @@ const Register = () => {
       toast({
         title: "Invalid Name",
         description: "Name cannot contain numbers",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -76,7 +77,7 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your email",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -86,7 +87,7 @@ const Register = () => {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -96,7 +97,7 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your password",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -106,7 +107,7 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please re-enter your password",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -116,7 +117,7 @@ const Register = () => {
       toast({
         title: "Short Password",
         description: "Password must be at least 6 characters long",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -127,7 +128,7 @@ const Register = () => {
         title: "Weak Password",
         description:
           "Password must contain at least one letter, one number and one special character",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -137,7 +138,7 @@ const Register = () => {
       toast({
         title: "Password Mismatch",
         description: "Please re-enter your password correctly",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -154,7 +155,7 @@ const Register = () => {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       return;
     }
@@ -174,6 +175,7 @@ const Register = () => {
         toast({
           title: "User already exists",
           description: "An account with this email already been registered",
+          className: toastVariants.error,
         });
         setLoading(false);
         return;
@@ -183,7 +185,7 @@ const Register = () => {
       toast({
         title: "Successfully!",
         description: "Your account has successfully been registered",
-        className: "bg-green-400 text-white",
+        className: toastVariants.success,
       });
 
       const storedUser = localStorage.setItem(
@@ -213,7 +215,7 @@ const Register = () => {
         title: "Registration Failed",
         description:
           "An unexpected error occurred during registration. Please try again.",
-        className: "bg-red-500 text-white",
+        className: toastVariants.error,
       });
       setLoading(false);
     }

@@ -1,5 +1,3 @@
-import { getUserProfile } from "@/actions/profile.actions";
-import Comment from "@/app/components/Comment";
 import MovieContentDetails from "@/app/components/MovieContentDetails";
 import MovieHeaderDetails from "@/app/components/MovieHeaderDetails";
 import RelatedMovies from "@/app/components/RelatedMovies";
@@ -8,6 +6,7 @@ import type { FailedDetailsPageResponse } from "@/types/general";
 import type { IMovie } from "@/types/movie";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import CommentSection from "@/app/components/CommentSection";
 
 type PayloadType = {
   email: string;
@@ -23,7 +22,9 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   let userEmail: string | undefined;
 
-  if (session) {
+  if (!session || session.value === "") {
+    userEmail = undefined;
+  } else {
     const payload = (await verifyToken(session.value)) as PayloadType;
     userEmail = payload?.email;
   }
@@ -61,7 +62,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <>
           <MovieHeaderDetails data={data} />
           <MovieContentDetails data={data} />
-          <Comment id={data.id} email={userEmail ?? ""} />
+          <CommentSection id={data.id} email={userEmail ?? ""} />
           <RelatedMovies id={data.id} />
         </>
       )}
