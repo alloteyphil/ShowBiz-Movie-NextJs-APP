@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { cn, toastVariants } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { logout } from "@/actions/logout.actions";
 import { useToast } from "@/hooks/use-toast";
 import { usePathname, useRouter } from "next/navigation";
@@ -104,7 +104,8 @@ const ListItem = React.forwardRef<
       toast({
         title: "Error",
         description: "A problem occurred when logging out. Please try again.",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -112,7 +113,8 @@ const ListItem = React.forwardRef<
     toast({
       title: "Success",
       description: "You have successfully logged out.",
-      className: toastVariants.success,
+      className:
+        "bg-green-100 text-green-600 shadow-md shadow-green-400/30 rounded-xl py-6",
     });
     localStorage.removeItem("user");
 

@@ -3,7 +3,6 @@ import { UploadDropzone } from "../../utils/uploadthing";
 import type { UserResponseType } from "@/types/user";
 import { updateUserImage } from "@/actions/profile.actions";
 import { useUserProfileStore } from "@/store";
-import { toastVariants } from "@/lib/utils";
 
 const EditUserProfileImage = ({ email }: { email: string }) => {
   const userState = useUserProfileStore((state) => state);
@@ -40,7 +39,8 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
               toast({
                 title: "Photo uploaded",
                 description: "Photo uploaded successfully",
-                className: toastVariants.success,
+                className:
+                  "bg-green-100 text-green-600 shadow-md shadow-green-400/30 rounded-xl py-6",
               });
               return;
             }
@@ -49,7 +49,8 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
               title: "Error",
               description:
                 "There was a problem uploading your photo. Please try again",
-              className: toastVariants.error,
+              className:
+                "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
             });
             return;
           } catch (error) {
@@ -57,7 +58,8 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
               title: "Error",
               description:
                 "There was a problem uploading your photo. Please try again",
-              className: toastVariants.error,
+              className:
+                "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
             });
           }
         };
@@ -68,7 +70,8 @@ const EditUserProfileImage = ({ email }: { email: string }) => {
         toast({
           title: "Error uploading photo",
           description: "Please try again",
-          className: toastVariants.error,
+          className:
+            "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
       }}
     />

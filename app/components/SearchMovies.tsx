@@ -38,7 +38,7 @@ const SearchMovies = () => {
 
     setSearchDrawer(storeState);
 
-    router.push(`/search/movies?query=${search}&page=1`);
+    router.push(`/search/movie?query=${search}&page=1`);
   };
 
   return (

@@ -12,7 +12,6 @@ import registerUser from "@/actions/registerUser.actions";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { useRouter } from "next/navigation";
 import { useDrawerStore } from "@/store";
-import { toastVariants } from "@/lib/utils";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState<UserInputType>({
@@ -44,7 +43,8 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your first name",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -54,7 +54,8 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your last name",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -67,7 +68,8 @@ const Register = () => {
       toast({
         title: "Invalid Name",
         description: "Name cannot contain numbers",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -77,7 +79,8 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your email",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -87,7 +90,8 @@ const Register = () => {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -97,7 +101,8 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please enter your password",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -107,7 +112,8 @@ const Register = () => {
       toast({
         title: "Field is required",
         description: "Please re-enter your password",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -117,7 +123,8 @@ const Register = () => {
       toast({
         title: "Short Password",
         description: "Password must be at least 6 characters long",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -128,7 +135,8 @@ const Register = () => {
         title: "Weak Password",
         description:
           "Password must contain at least one letter, one number and one special character",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -138,7 +146,8 @@ const Register = () => {
       toast({
         title: "Password Mismatch",
         description: "Please re-enter your password correctly",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -155,7 +164,8 @@ const Register = () => {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -175,7 +185,8 @@ const Register = () => {
         toast({
           title: "User already exists",
           description: "An account with this email already been registered",
-          className: toastVariants.error,
+          className:
+            "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
         return;
@@ -185,7 +196,8 @@ const Register = () => {
       toast({
         title: "Successfully!",
         description: "Your account has successfully been registered",
-        className: toastVariants.success,
+        className:
+          "bg-green-100 text-green-600 shadow-md shadow-green-400/30 rounded-xl py-6",
       });
 
       const storedUser = localStorage.setItem(
@@ -215,7 +227,8 @@ const Register = () => {
         title: "Registration Failed",
         description:
           "An unexpected error occurred during registration. Please try again.",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       setLoading(false);
     }

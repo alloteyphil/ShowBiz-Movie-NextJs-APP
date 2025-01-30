@@ -12,6 +12,7 @@ const AuthDrawer = () => {
   const setOpen = useDrawerStore((state) => state.setAuthDrawerOpen);
 
   const drawerRef = useRef<HTMLDivElement>(null);
+
   const toggleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

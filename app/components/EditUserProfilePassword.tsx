@@ -7,7 +7,6 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import { validateRegisterPassword } from "@/lib/helpers/validateRegisterPassword";
-import { toastVariants } from "@/lib/utils";
 import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -39,7 +38,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Field is required",
         description: "Please enter your current password",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -48,7 +48,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Field is required",
         description: "Please enter your new password",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -57,7 +58,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Field is required",
         description: "Please confirm your new password",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -72,7 +74,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Invalid Field(s)",
         description: "Please enter a valid input",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -85,7 +88,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
         toast({
           title: "Unauthorized",
           description: "Current password is incorrect. Please try again",
-          className: toastVariants.error,
+          className:
+            "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
         return;
@@ -96,7 +100,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Same Password",
             description: "Please enter a different password",
-            className: toastVariants.error,
+            className:
+              "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
           });
           setLoading(false);
           return;
@@ -106,7 +111,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Short Password",
             description: "Password must be at least 6 characters long",
-            className: toastVariants.error,
+            className:
+              "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
           });
           setLoading(false);
           return;
@@ -117,7 +123,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
             title: "Weak Password",
             description:
               "Password must contain at least one letter, one number and one special character",
-            className: toastVariants.error,
+            className:
+              "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
           });
           setLoading(false);
           return;
@@ -127,7 +134,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Passwords do not match",
             description: "Please enter matching passwords",
-            className: toastVariants.error,
+            className:
+              "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
           });
           setLoading(false);
           return;
@@ -142,7 +150,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           toast({
             title: "Password Updated",
             description: "Password updated successfully",
-            className: toastVariants.success,
+            className:
+              "bg-green-100 text-green-600 shadow-md shadow-green-400/30 rounded-xl py-6",
           });
           setLoading(false);
           setPasswordData({
@@ -156,7 +165,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
         toast({
           title: "Error",
           description: "An error occurred. Please try again",
-          className: toastVariants.error,
+          className:
+            "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
         return;
@@ -165,7 +175,8 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
       toast({
         title: "Error",
         description: "An error occurred. Please try again",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       setLoading(false);
     }

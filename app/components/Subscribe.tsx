@@ -3,7 +3,6 @@
 import { sendEmail, storeEmail } from "@/actions/subscribe.action";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
-import { toastVariants } from "@/lib/utils";
 import type { UserSubscribeDetailsType } from "@/types/subscribe";
 import { LoaderCircleIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -156,7 +155,8 @@ const Subscribe = () => {
       toast({
         title: "Error",
         description: "Something went wrong. Please try again",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
     }
   };

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { LoaderCircleIcon, LockIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { addComment } from "@/actions/comment.action";
-import { toastVariants } from "@/lib/utils";
 
 const PostComment = ({ id, email }: { id: number; email: string }) => {
   const [commentData, setCommentData] = useState("");
@@ -22,7 +21,8 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
       toast({
         title: "Comment is empty",
         description: "Please enter a comment",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
       return;
     }
@@ -36,7 +36,8 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
         toast({
           title: "Success",
           description: "Comment added successfully",
-          className: toastVariants.success,
+          className:
+            "bg-green-100 text-green-600 shadow-md shadow-green-400/30 rounded-xl py-6",
         });
 
         setCommentData("");
@@ -48,7 +49,8 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
         toast({
           title: "Field(s) missing",
           description: "Please enter your email and password",
-          className: toastVariants.error,
+          className:
+            "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
         return;
@@ -58,7 +60,8 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
         toast({
           title: "User not found",
           description: "An account with this email does not exist",
-          className: toastVariants.error,
+          className:
+            "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
         return;
@@ -68,7 +71,8 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
         toast({
           title: "Internal Server Error",
           description: "Please try again later",
-          className: toastVariants.error,
+          className:
+            "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
         return;
@@ -77,7 +81,8 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
       toast({
         title: "Error",
         description: "Failed to add comment",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
 
       setLoading(false);
@@ -86,7 +91,8 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
       toast({
         title: "Error",
         description: "Failed to add comment",
-        className: toastVariants.error,
+        className:
+          "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
     }
   };

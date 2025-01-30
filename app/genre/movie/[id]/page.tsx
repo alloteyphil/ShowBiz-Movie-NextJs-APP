@@ -69,7 +69,7 @@ const page = async ({
             );
           })}
       </div>
-      {data && <GenrePagination totalResults={data.totalResults} />}
+      {data && <GenrePagination totalResults={data.total_results} />}
     </div>
   );
 };
