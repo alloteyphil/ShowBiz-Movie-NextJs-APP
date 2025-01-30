@@ -1,9 +1,10 @@
-import { getComments } from "@/actions/comment.action";
+import { deleteComment, getComments } from "@/actions/comment.action";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import userPhoto from "../../public/images/user.png";
 import Image from "next/image";
-import { formatDate } from "@/lib/helpers/formatDate";
-import { HeartIcon, TrashIcon } from "lucide-react";
+import { timeAgo } from "@/lib/helpers/timeAgo";
+import DeleteComment from "./DeleteComment";
+import LikeComment from "./LikeComment";
 
 interface Comment {
   id: string;
@@ -14,7 +15,7 @@ interface Comment {
     photo: string;
     email: string;
   };
-  likes: number;
+  likes: string[];
   createdAt: Date;
 }
 
@@ -24,14 +25,24 @@ const FetchComments = async ({ id, email }: { id: number; email: string }) => {
   try {
     const res = await getComments(id);
 
-    if (res.response === null) return <div></div>;
+    if (res.response === null)
+      return (
+        <p className="text-lg font-semibold text-darkAsh">No comments yet</p>
+      );
 
     if (res.statusCode === 200) {
       comments = res.response.comments;
     }
+
+    if (comments?.length === 0)
+      return (
+        <p className="text-lg font-semibold text-darkAsh">No comments yet</p>
+      );
   } catch (error) {
     console.error("Fetch comments error:", error);
-    return <div></div>;
+    return (
+      <p className="text-lg font-semibold text-darkAsh">No comments yet</p>
+    );
   }
 
   return (
@@ -64,18 +75,29 @@ const FetchComments = async ({ id, email }: { id: number; email: string }) => {
                 </p>
                 {email && (
                   <div className="flex gap-4">
-                    <HeartIcon size={20} />
+                    <LikeComment
+                      commentId={comment.id}
+                      likes={comment.likes}
+                      email={email}
+                    />
                     {email === comment.commentAuthor.email && (
                       <>
-                        <TrashIcon size={20} />
+                        <DeleteComment commentId={comment.id} email={email} />
                       </>
                     )}
                   </div>
                 )}
               </div>
-              <p className="text-xs text-themeGray uppercase">
-                {formatDate(comment.createdAt.toLocaleString())}
-              </p>
+              <div className="flex gap-4 items-center uppercase mt-1">
+                <p className="text-xs text-themeGray pr-4 border-r-[0.5px] border-themeGray">
+                  {timeAgo(comment.createdAt)}
+                </p>
+                <p className="text-xs text-themeGray">
+                  {comment.likes.length} like
+                  {comment.likes.length === 1 ? "" : "s"}
+                </p>
+              </div>
+
               <p className="mt-4 max-w-[1000px]">{comment.commentText}</p>
             </div>
           </div>

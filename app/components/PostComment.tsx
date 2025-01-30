@@ -102,6 +102,11 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
       <textarea
         value={commentData}
         onChange={handleChange}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit();
+          }
+        }}
         placeholder={
           email || email !== ""
             ? "Share your thoughts..."

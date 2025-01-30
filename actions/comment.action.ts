@@ -27,11 +27,12 @@ interface Comment {
   movieId: number;
   comment: string;
   user: IUser;
-  likes: number;
+  likes: string[];
   createdAt: Date;
   __v: number;
 }
 
+// Add a comment
 export const addComment = async (
   email: string,
   movieId: number,
@@ -142,7 +143,7 @@ export const addComment = async (
   }
 };
 
-// Get comments for a movie
+// Get movie comments
 export const getComments = async (movieId: number) => {
   if (!movieId)
     return {
@@ -200,7 +201,69 @@ export const getComments = async (movieId: number) => {
   }
 };
 
+// Delete a comment
 export const deleteComment = async (email: string, commentId: string) => {
+  if (!commentId || !email)
+    return {
+      statusCode: 400,
+      message: "Comment ID and email are required",
+      response: null,
+    };
+
+  await connectToDatabase();
+
+  try {
+    const existingUser = await User.findOne({ email });
+
+    if (!existingUser)
+      return {
+        statusCode: 401,
+        message: "User not found",
+        response: null,
+      };
+
+    const comment = await Comment.findById(commentId).populate({
+      path: "user",
+      model: "User",
+    });
+
+    if (!comment)
+      return {
+        statusCode: 404,
+        message: "Comment not found",
+        response: null,
+      };
+
+    if (comment.user._id.toString() !== existingUser._id.toString())
+      return {
+        statusCode: 403,
+        message: "Unauthorized to delete this comment",
+        response: null,
+      };
+
+    await Comment.findByIdAndDelete(commentId);
+
+    revalidatePath("/movie/details/[id]", "page");
+
+    return {
+      statusCode: 200,
+      message: "Comment deleted successfully",
+      response: null,
+    };
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Delete comment error:", errorMessage);
+    return {
+      statusCode: 500,
+      message: `Failed to delete comment: ${errorMessage}`,
+      response: null,
+    };
+  }
+};
+
+// Like a comment
+export const likeComment = async (email: string, commentId: string) => {
   if (!commentId || !email)
     return {
       statusCode: 400,
@@ -229,27 +292,58 @@ export const deleteComment = async (email: string, commentId: string) => {
         response: null,
       };
 
-    if (comment.user.toString() !== existingUser._id.toString())
+    const userLiked = comment.likes.includes(existingUser.email);
+
+    if (userLiked) {
+      const updatedComment = await Comment.findByIdAndUpdate(
+        commentId,
+        { $pull: { likes: existingUser.email } },
+        { new: true },
+      );
+
+      if (!updatedComment)
+        return {
+          statusCode: 500,
+          message: "Failed to unlike comment",
+          response: null,
+        };
+
+      revalidatePath("/movie/details/[id]", "page");
+
       return {
-        statusCode: 403,
-        message: "Unauthorized to delete this comment",
+        statusCode: 200,
+        message: "Comment unliked successfully",
+        response: null,
+      };
+    }
+
+    const updatedComment = await Comment.findByIdAndUpdate(
+      commentId,
+      { $push: { likes: existingUser.email } },
+      { new: true },
+    );
+
+    if (!updatedComment)
+      return {
+        statusCode: 500,
+        message: "Failed to like comment",
         response: null,
       };
 
-    await Comment.findByIdAndDelete(commentId);
+    revalidatePath("/movie/details/[id]", "page");
 
     return {
       statusCode: 200,
-      message: "Comment deleted successfully",
+      message: "Comment liked successfully",
       response: null,
     };
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error occurred";
-    console.error("Delete comment error:", errorMessage);
+    console.error("Like comment error:", errorMessage);
     return {
       statusCode: 500,
-      message: `Failed to delete comment: ${errorMessage}`,
+      message: `Failed to like comment: ${errorMessage}`,
       response: null,
     };
   }

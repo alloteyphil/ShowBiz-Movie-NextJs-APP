@@ -4,7 +4,7 @@ export interface IComment extends Document {
   movieId: number;
   comment: string;
   user: Types.ObjectId;
-  likes: number;
+  likes: string[];
 }
 
 const CommentSchema: Schema = new Schema(
@@ -12,7 +12,7 @@ const CommentSchema: Schema = new Schema(
     movieId: { type: Number, required: true },
     comment: { type: String, required: true },
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    likes: { type: Number, default: 0 },
+    likes: { type: [String], default: [] },
   },
   {
     timestamps: true,
