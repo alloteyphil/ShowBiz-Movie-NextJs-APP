@@ -8,6 +8,7 @@ import AuthDrawer from "./components/AuthDrawer";
 import SearchDrawer from "./components/SearchDrawer";
 import UserWrapper from "./components/UserWrapper";
 import { Analytics } from "@vercel/analytics/react";
+import NextTopLoader from "nextjs-toploader";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -27,6 +28,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${raleway.variable} antialiased bg-[#111111] relative`}>
+        <NextTopLoader showSpinner={false} color="#ffffff" />
         <Analytics />
         <NavBar>
           <UserWrapper />

@@ -24,7 +24,7 @@ export function NavLinks({
         <NavigationMenuItem>
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`group inline-flex h-9 w-max items-center justify-center bg-transparent px-4 py-2 text-base font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 ${isProfilePage ? "text-[#111111]" : "text-white"}`}
+              className={`group inline-flex h-9 w-max items-center justify-center bg-transparent px-4 py-2 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 ${isProfilePage ? "text-[#111111]" : "text-white"}`}
             >
               Home
             </NavigationMenuLink>

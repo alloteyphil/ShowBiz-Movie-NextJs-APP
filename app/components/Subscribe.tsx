@@ -165,7 +165,7 @@ const Subscribe = () => {
     <div
       className={`${
         !pathname.includes("details") ? "border-t-[0.5px] border-themeGray" : ""
-      } w-full`}
+      } w-full text-sm`}
     >
       <div className="w-[1600px] mx-auto py-36 flex justify-between items-center">
         <div className="flex flex-col gap-4">

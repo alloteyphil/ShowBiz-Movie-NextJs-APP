@@ -66,9 +66,9 @@ const User = ({
                   width={40}
                   height={40}
                   alt="Profile picture"
-                  className="rounded-full w-6 h-6 object-center object-cover mr-1"
+                  className="rounded-full w-5 h-5 object-center object-cover mr-1"
                 />
-                <p>
+                <p className="text-sm">
                   Hi,{" "}
                   <span className="capitalize">{name || userData.fName}</span>
                 </p>
@@ -76,6 +76,10 @@ const User = ({
               <NavigationMenuContent>
                 <ul className="flex flex-col gap-3 p-4 w-[200px]">
                   <ListItem href={"/profile"} title={"My Profile"}></ListItem>
+                  <ListItem
+                    href={"/watchlist"}
+                    title={"My Watchlist"}
+                  ></ListItem>
                   <ListItem title={"Logout"}></ListItem>
                 </ul>
               </NavigationMenuContent>

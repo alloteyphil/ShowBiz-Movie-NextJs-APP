@@ -42,14 +42,14 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
             />
           </div>
           <div className="w-2/3 z-20 pl-12 pb-20 flex flex-col gap-8 justify-end">
-            <h4 className="font-semibold text-3xl">
+            <h4 className="font-semibold text-xl">
               {data.release_date.split("-")[0]}
             </h4>
             <h1 className="text-6xl font-bold text-white">
               {data.title || data.original_title || "N/A"}
             </h1>
             <p className="max-w-[900px]">{data.overview}</p>
-            <div className="flex mt-8">
+            <div className="flex mt-8 text-sm">
               <div className="flex items-center gap-4 border-r border-white pr-8">
                 <Link
                   href={data.homepage || "/not-found"}
@@ -99,7 +99,12 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
               <p className="capitalize">{data.status}</p>
             </div>
             <div className="flex gap-4 ml-28">
-              <WatchlistTooltip />
+              <WatchlistTooltip
+                title={data.title || data.original_title || ""}
+                genres={data.genres}
+                photo={data.poster_path || ""}
+                type="movie"
+              />
               <FavoritesTooltip />
             </div>
           </div>

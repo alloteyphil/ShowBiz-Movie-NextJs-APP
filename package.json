@@ -36,6 +36,7 @@
     "lucide-react": "^0.468.0",
     "mongoose": "^8.9.1",
     "next": "^15.1.5",
+    "nextjs-toploader": "^3.7.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-email": "^3.0.6",

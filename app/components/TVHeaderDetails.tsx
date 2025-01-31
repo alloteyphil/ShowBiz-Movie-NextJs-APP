@@ -7,6 +7,8 @@ import Link from "next/link";
 import Tooltips from "./Tooltips";
 import type { ITVShow } from "@/types/tv";
 import noImage from "../../public/images/no-image.png";
+import WatchlistTooltip from "./WatchlistTooltips";
+import FavoritesTooltip from "./FavoritesTooltip";
 
 const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
   return (
@@ -40,14 +42,14 @@ const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
             />
           </div>
           <div className="w-2/3 z-20 pl-12 pb-20 flex flex-col gap-8 justify-end">
-            <h4 className="font-semibold text-3xl">
+            <h4 className="font-semibold text-xl">
               {data.first_air_date.split("-")[0]}
             </h4>
             <h1 className="text-6xl font-bold text-white">
               {data.name || data.original_name || "N/A"}
             </h1>
             <p className="max-w-[900px]">{data.overview}</p>
-            <div className="flex mt-8">
+            <div className="flex mt-8 text-sm">
               <div className="flex items-center gap-4 border-r border-white pr-8">
                 <Link
                   href={data.homepage || "/not-found"}
@@ -95,23 +97,13 @@ const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
               <p className="capitalize">{data.status}</p>
             </div>
             <div className="flex gap-4 ml-28">
-              <Tooltips message="Add to watchlist">
-                <div className="relative w-16 h-12 p-6 my-auto bg-[#111111] text-white">
-                  <PlusIcon
-                    size={20}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  />
-                </div>
-              </Tooltips>
-
-              <Tooltips message="Add to favourites">
-                <div className="relative w-16 h-12 p-6 my-auto text-[#111111] bg-white border-[0.5px] border-themeGray">
-                  <HeartIcon
-                    size={20}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  />
-                </div>
-              </Tooltips>
+              <WatchlistTooltip
+                title={data.name || data.original_name || ""}
+                genres={data.genres}
+                photo={data.poster_path || ""}
+                type="tv"
+              />
+              <FavoritesTooltip />
             </div>
           </div>
         </div>

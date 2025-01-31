@@ -37,11 +37,11 @@ const TVShowCard = ({
         <Link
           href={`/tv/details/${id}`}
           prefetch={true}
-          className="text-xl font-semibold cursor-pointer"
+          className="text-lg font-semibold cursor-pointer"
         >
           {title}
         </Link>
-        <p className="text-base text-themeGray">
+        <p className="text-sm text-themeGray">
           {genres
             .map((genre) => tvGenreData.find((g) => g.id === genre)?.name)
             .join(", ")}

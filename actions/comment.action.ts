@@ -66,7 +66,7 @@ export const addComment = async (
     const existingMovie = await Movie.findOne({ movieId });
 
     if (!existingMovie) {
-      const newMovie = await Movie.create({
+      await Movie.create({
         movieId,
         comments: [newComment._id],
       });

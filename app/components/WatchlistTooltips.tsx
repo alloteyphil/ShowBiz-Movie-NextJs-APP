@@ -20,7 +20,17 @@ import { useEffect, useState } from "react";
 
 type isInWatchlistType = "loading" | true | false;
 
-const WatchlistTooltip = () => {
+const WatchlistTooltip = ({
+  title,
+  genres,
+  photo,
+  type,
+}: {
+  title: string;
+  genres: { id: number; name: string }[];
+  photo: string;
+  type: string;
+}) => {
   const [user, setUser] = useState<UserResponseType | null>(null);
 
   const storeState = useDrawerStore((state) => state);
@@ -85,7 +95,14 @@ const WatchlistTooltip = () => {
     }
 
     if (isInWatchlist === false) {
-      const res = await addToWatchlist(user?.email, movieId);
+      const res = await addToWatchlist(
+        user.email,
+        movieId,
+        title,
+        genres,
+        photo,
+        type,
+      );
       if (res.statusCode === 200) {
         toast({
           title: "Added to watchlist",

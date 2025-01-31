@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, models } from "mongoose";
+import mongoose, { Schema, Document, models, type ObjectId } from "mongoose";
 
 export interface IUser extends Document {
   fName: string;
@@ -6,8 +6,8 @@ export interface IUser extends Document {
   email: string;
   password: string;
   photo: string;
-  watchlist: number[];
-  favorites: number[];
+  watchlist: ObjectId[];
+  favorites: ObjectId[];
 }
 
 const UserSchema = new Schema<IUser>(
@@ -17,8 +17,8 @@ const UserSchema = new Schema<IUser>(
     email: { type: String, required: true },
     password: { type: String, required: true },
     photo: { type: String },
-    watchlist: { type: [Number], required: true, default: [] },
-    favorites: { type: [Number], required: true, default: [] },
+    watchlist: { type: [Schema.Types.ObjectId], required: true, default: [] },
+    favorites: { type: [Schema.Types.ObjectId], required: true, default: [] },
   },
   { timestamps: true },
 );

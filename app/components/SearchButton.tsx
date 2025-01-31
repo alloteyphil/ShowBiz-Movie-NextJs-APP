@@ -19,7 +19,7 @@ const SearchButton = ({
           setSearch(storeState);
         }}
         size={22}
-        className={`cursor-pointer ${isProfilePage ? "text-[#111111]" : "text-white"}`}
+        className={`cursor-pointer w-5 ${isProfilePage ? "text-[#111111]" : "text-white"}`}
       />
     </div>
   );

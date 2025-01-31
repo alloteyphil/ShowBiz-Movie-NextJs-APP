@@ -1,23 +1,30 @@
-import { movieGenreData } from "@/data/genresData";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import noImage from "../../public/images/no-image.png";
+import { watchListGenre } from "@/data/genresData";
+import WatchlistTooltip from "./WatchlistTooltips";
 
-const MovieCard = ({
-  image,
-  title,
-  genres,
+const WatchListCard = ({
   id,
+  photo,
+  genres,
+  title,
+  type,
 }: {
-  image: string;
-  title: string;
-  genres: number[];
   id: number;
+  photo: string;
+  genres: Array<{
+    id: number;
+    name: string;
+  }>;
+  title: string;
+  type: string;
 }) => {
   return (
     <div className="flex flex-col gap-8 items-center group">
       <Link
-        href={`/movie/details/${id}`}
+        href={`/${type}/details/${id}`}
         prefetch={true}
         className="w-full h-[400px] overflow-hidden cursor-pointer"
       >
@@ -25,8 +32,8 @@ const MovieCard = ({
           width={270}
           height={400}
           src={
-            image !== null
-              ? `https://image.tmdb.org/t/p/original${image}`
+            photo !== null
+              ? `https://image.tmdb.org/t/p/original${photo}`
               : noImage
           }
           alt={title}
@@ -35,7 +42,7 @@ const MovieCard = ({
       </Link>
       <div className="flex flex-col gap-2 text-center max-w-[250px] text-wrap">
         <Link
-          href={`/movie/details/${id}`}
+          href={`/${type}/details/${id}`}
           prefetch={true}
           className="text-lg font-semibold cursor-pointer"
         >
@@ -43,7 +50,7 @@ const MovieCard = ({
         </Link>
         <p className="text-sm text-themeGray">
           {genres
-            .map((genre) => movieGenreData.find((g) => g.id === genre)?.name)
+            .map((genre) => watchListGenre.find((g) => g.id === genre.id)?.name)
             .join(", ")}
         </p>
       </div>
@@ -51,4 +58,4 @@ const MovieCard = ({
   );
 };
 
-export default MovieCard;
+export default WatchListCard;

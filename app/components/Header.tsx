@@ -45,7 +45,7 @@ const Header = async () => {
               <h3 className="text-white text-3xl font-bold">
                 {movie.title || movie.original_title || "N/A"}
               </h3>
-              <p className="text-lg text-themeGray ">
+              <p className="text-base text-themeGray ">
                 {movie.genre_ids
                   .map(
                     (genre) => movieGenreData.find((g) => g.id === genre)?.name,
