@@ -62,7 +62,13 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <>
           <MovieHeaderDetails data={data} />
           <MovieContentDetails data={data} />
-          <CommentSection id={data.id} email={userEmail ?? ""} />
+          <CommentSection
+            id={data.id}
+            email={userEmail ?? ""}
+            type={"movie"}
+            photo={data.poster_path || ""}
+            title={data.title || data.original_title || ""}
+          />
           <RelatedMovies id={data.id} />
         </>
       )}

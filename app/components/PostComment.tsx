@@ -5,7 +5,19 @@ import { LoaderCircleIcon, LockIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { addComment } from "@/actions/comment.action";
 
-const PostComment = ({ id, email }: { id: number; email: string }) => {
+const PostComment = ({
+  id,
+  email,
+  type,
+  photo,
+  title,
+}: {
+  id: number;
+  email: string;
+  type: string;
+  photo: string;
+  title: string;
+}) => {
   const [commentData, setCommentData] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -30,7 +42,7 @@ const PostComment = ({ id, email }: { id: number; email: string }) => {
     try {
       setLoading(true);
 
-      const res = await addComment(email, id, commentData);
+      const res = await addComment(email, id, commentData, type, photo, title);
 
       if (res.statusCode === 200) {
         toast({

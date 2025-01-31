@@ -37,6 +37,9 @@ export const addComment = async (
   email: string,
   movieId: number,
   comment: string,
+  type: string,
+  photo: string,
+  title: string,
 ): Promise<AddCommentResponseType> => {
   if (!movieId || !email || !comment)
     return {
@@ -66,10 +69,14 @@ export const addComment = async (
     const existingMovie = await Movie.findOne({ movieId });
 
     if (!existingMovie) {
-      await Movie.create({
+      const movie = await Movie.create({
         movieId,
         comments: [newComment._id],
+        type,
+        photo,
+        title,
       });
+      console.log(movie);
 
       const createdMovie = await Movie.findOne({ movieId }).populate({
         path: "comments",
