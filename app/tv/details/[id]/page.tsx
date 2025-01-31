@@ -62,7 +62,13 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <>
           <TVHeaderDetails data={data} />
           <TVContentDetails data={data} />
-          <Comment id={data.id} email={userEmail ?? ""} />
+          <Comment
+            id={data.id}
+            email={userEmail ?? ""}
+            type={"movie"}
+            photo={data.poster_path || ""}
+            title={data.name || data.original_name || ""}
+          />
           <RelatedTV id={data.id} />
         </>
       )}

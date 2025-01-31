@@ -7,6 +7,7 @@ import { useDrawerStore } from "@/store";
 import type { UserLoginType } from "@/types/user";
 import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import isEmail from "validator/es/lib/isEmail";
 
@@ -20,13 +21,15 @@ const Login = () => {
 
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
+  const storeState = useDrawerStore((state) => state);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserDetails((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   const { toast } = useToast();
 
-  const storeState = useDrawerStore((state) => state);
+  const router = useRouter();
 
   const handleSubmit = async () => {
     // Validate Email
@@ -140,7 +143,7 @@ const Login = () => {
 
       storeState.setAuthDrawerOpen(storeState);
 
-      window.location.reload();
+      router.refresh;
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Unknown error occurred";
