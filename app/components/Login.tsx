@@ -143,7 +143,7 @@ const Login = () => {
 
       storeState.setAuthDrawerOpen(storeState);
 
-      router.refresh;
+      window.location.reload();
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Unknown error occurred";
