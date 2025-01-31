@@ -3,7 +3,7 @@ import MovieSearchBar from "@/app/components/search/MovieSearchBar";
 import type { ISearchMovie, ISearchMovieResponse } from "@/types/search";
 import { LoaderIcon } from "lucide-react";
 import Image from "next/image";
-import noResults from "@public/images/folder.png";
+import noResults from "../../../public/images/folder.png";
 import SearchPagination from "@/app/components/search/SearchPagination";
 
 const page = async ({

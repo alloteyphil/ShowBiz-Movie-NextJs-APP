@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import noImage from "@public/images/no-image.png";
+import noImage from "../../../public/images/no-image.png";
 import { watchListGenre } from "@/data/genresData";
 
 const WatchListCard = ({

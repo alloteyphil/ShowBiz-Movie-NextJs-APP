@@ -6,7 +6,7 @@ import type { IMovie } from "@/types/movie";
 import { DotIcon, PlayIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import noImage from "@public/images/no-image.png";
+import noImage from "../../../public/images/no-image.png";
 import WatchlistTooltip from "../watchlist/WatchlistTooltips";
 import FavoritesTooltip from "../tooltip/FavoritesTooltip";
 
