@@ -19,7 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import { usePathname, useRouter } from "next/navigation";
 import { useUserProfileStore } from "@/store";
 import Image from "next/image";
-import userPhoto from "../../public/images/user.png";
+import userPhoto from "../../../public/images/user.png";
 
 const User = ({
   session,

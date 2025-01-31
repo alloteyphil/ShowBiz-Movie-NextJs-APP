@@ -1,5 +1,5 @@
 import Image from "next/image";
-import noImage from "../../public/no-image.png";
+import noImage from "../../../public/images/no-image.png";
 
 const NotFoundCard = () => {
   return (

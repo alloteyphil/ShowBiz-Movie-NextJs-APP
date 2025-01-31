@@ -1,11 +1,11 @@
 import { tvGenreData } from "@/data/genresData";
 import { formatDate } from "@/lib/helpers/formatDate";
 import type { GenreType } from "@/types/genre";
-import { DotIcon, HeartIcon, PlayIcon, PlusIcon } from "lucide-react";
+import { DotIcon, PlayIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ITVShow } from "@/types/tv";
-import noImage from "../../public/images/no-image.png";
+import noImage from "../../../public/images/no-image.png";
 import WatchlistTooltip from "../watchlist/WatchlistTooltips";
 import FavoritesTooltip from "../tooltip/FavoritesTooltip";
 

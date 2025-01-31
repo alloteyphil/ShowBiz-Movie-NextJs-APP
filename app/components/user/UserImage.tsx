@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import noUser from "../../public/images/user.png";
+import noUser from "../../../public/images/user.png";
 import { useUserProfileStore } from "@/store";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
