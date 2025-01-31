@@ -1,6 +1,6 @@
 import { deleteComment, getComments } from "@/actions/comment.action";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import userPhoto from "../../../public/images/user.png";
+import userPhoto from "@/images/user.png";
 import Image from "next/image";
 import { timeAgo } from "@/lib/helpers/timeAgo";
 import LikeComment from "./LikeComment";

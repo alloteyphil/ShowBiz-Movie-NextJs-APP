@@ -5,7 +5,7 @@ import WatchListCard from "../components/watchlist/WatchListCard";
 import type { ObjectId } from "mongoose";
 import WatchListBreadCrumbs from "../components/watchlist/WatchListBreadCrumbs";
 import Image from "next/image";
-import noResults from "../../public/images/empty.png";
+import noResults from "@public/images/empty.png";
 
 type PayloadType = {
   email: string;
