@@ -1,9 +1,9 @@
-import GenrePagination from "@/app/components/GenrePagination";
-import MovieCard from "@/app/components/MovieCard";
+import GenrePagination from "@/app/components/genre/GenrePagination";
+import MovieCard from "@/app/components/movie/MovieCard";
 import type { FailedDetailsPageResponse } from "@/types/general";
 import type { MovieGenreType } from "@/types/genre";
 import { redirect } from "next/navigation";
-import GenreMoviePageBreadcrumbs from "@/app/components/GenreMoviePageBreadcrumbs";
+import GenreMoviePageBreadcrumbs from "@/app/components/genre/GenreMoviePageBreadcrumbs";
 
 const page = async ({
   params,

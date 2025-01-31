@@ -1,10 +1,10 @@
-import MovieCard from "@/app/components/MovieCard";
-import MovieSearchBar from "@/app/components/MovieSearchBar";
-import SearchPagination from "@/app/components/SearchPagination";
+import MovieCard from "@/app/components/movie/MovieCard";
+import MovieSearchBar from "@/app/components/search/MovieSearchBar";
 import type { ISearchMovie, ISearchMovieResponse } from "@/types/search";
 import { LoaderIcon } from "lucide-react";
 import Image from "next/image";
 import noResults from "../../../public/images/folder.png";
+import SearchPagination from "@/app/components/search/SearchPagination";
 
 const page = async ({
   searchParams,

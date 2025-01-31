@@ -1,6 +1,6 @@
 import type { TrendingGenreType } from "@/types/genre";
-import MovieCard from "./MovieCard";
-import TVShowCard from "./TVShowCard";
+import MovieCard from "./movie/MovieCard";
+import TVShowCard from "./tv/TVShowCard";
 import { LoaderIcon } from "lucide-react";
 
 const FeaturedShows = async () => {

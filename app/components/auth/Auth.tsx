@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "../user/Login";
+import Register from "../user/Register";
 
 const Auth = () => {
   const [view, setView] = useState<string>("login");

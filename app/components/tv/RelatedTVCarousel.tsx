@@ -6,10 +6,10 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import MovieCard from "./MovieCard";
-import type { TrendingGenreType } from "@/types/genre";
+import type { TVGenreType } from "@/types/genre";
+import TVShowCard from "./TVShowCard";
 
-const RelatedMovieCarousel = ({ data }: { data: TrendingGenreType[] }) => {
+const RelatedTVCarousel = ({ data }: { data: TVGenreType[] }) => {
   return (
     <Carousel
       plugins={[
@@ -26,22 +26,22 @@ const RelatedMovieCarousel = ({ data }: { data: TrendingGenreType[] }) => {
       className="w-full"
     >
       <CarouselContent className="justify-between">
-        {data.map((movie, i) => {
+        {data.map((tv, i) => {
           if (
-            movie.poster_path === null ||
-            movie.poster_path === "" ||
-            movie.backdrop_path === null ||
-            movie.backdrop_path === ""
+            tv.poster_path === null ||
+            tv.poster_path === "" ||
+            tv.backdrop_path === null ||
+            tv.backdrop_path === ""
           ) {
             return;
           }
           return (
             <CarouselItem key={i} className="lg:basis-1/4">
-              <MovieCard
-                id={movie.id}
-                image={movie.poster_path}
-                title={movie.title || movie.original_title || "N/A"}
-                genres={movie.genre_ids}
+              <TVShowCard
+                id={tv.id}
+                image={tv.poster_path}
+                title={tv.name || tv.original_name || "N/A"}
+                genres={tv.genre_ids}
               />
             </CarouselItem>
           );
@@ -51,4 +51,4 @@ const RelatedMovieCarousel = ({ data }: { data: TrendingGenreType[] }) => {
   );
 };
 
-export default RelatedMovieCarousel;
+export default RelatedTVCarousel;

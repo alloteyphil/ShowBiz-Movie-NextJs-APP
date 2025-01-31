@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import AuthDrawer from "./components/AuthDrawer";
-import SearchDrawer from "./components/SearchDrawer";
-import UserWrapper from "./components/UserWrapper";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
+import UserWrapper from "./components/user/UserWrapper";
+import AuthDrawer from "./components/auth/AuthDrawer";
+import SearchDrawer from "./components/search/SearchDrawer";
 
 const raleway = Raleway({
   variable: "--font-raleway",

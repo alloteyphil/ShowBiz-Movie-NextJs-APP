@@ -1,5 +1,5 @@
 import { useToast } from "@/hooks/use-toast";
-import { UploadDropzone } from "../../utils/uploadthing";
+import { UploadDropzone } from "../../../utils/uploadthing";
 import type { UserResponseType } from "@/types/user";
 import { updateUserImage } from "@/actions/profile.actions";
 import { useUserProfileStore } from "@/store";

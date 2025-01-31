@@ -1,5 +1,5 @@
 import FeaturedShows from "./components/FeaturedShows";
-import Header from "./components/Header";
+import Header from "./components/layout/Header";
 
 const dynamic = "force-dynamic";
 

@@ -1,9 +1,9 @@
 import { getWatchlist } from "@/actions/watchlist.actions";
 import { verifyToken } from "@/lib/helpers/generateSession";
 import { cookies } from "next/headers";
-import WatchListCard from "../components/WatchListCard";
+import WatchListCard from "../components/watchlist/WatchListCard";
 import type { ObjectId } from "mongoose";
-import WatchListBreadCrumbs from "../components/WatchListBreadCrumbs";
+import WatchListBreadCrumbs from "../components/watchlist/WatchListBreadCrumbs";
 import Image from "next/image";
 import noResults from "../../public/images/empty.png";
 

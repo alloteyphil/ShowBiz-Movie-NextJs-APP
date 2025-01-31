@@ -1,9 +1,9 @@
-import GenrePagination from "@/app/components/GenrePagination";
-import TVShowCard from "@/app/components/TVShowCard";
+import GenrePagination from "@/app/components/genre/GenrePagination";
+import TVShowCard from "@/app/components/tv/TVShowCard";
 import type { FailedDetailsPageResponse } from "@/types/general";
 import type { TVGenreType } from "@/types/genre";
 import { redirect } from "next/navigation";
-import GenreTVPageBreadcrumbs from "@/app/components/GenreTVPageBreadcrumbs";
+import GenreTVPageBreadcrumbs from "@/app/components/genre/GenreTVPageBreadcrumbs";
 
 const page = async ({
   params,

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { NavLinks } from "./NavLinks";
-import SearchButton from "./SearchButton";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -10,6 +9,7 @@ import {
   YoutubeIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import SearchButton from "../search/SearchButton";
 
 const NavBar = ({ children }: { children: Readonly<React.ReactNode> }) => {
   const pathname = usePathname();

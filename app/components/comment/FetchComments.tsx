@@ -3,8 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import userPhoto from "../../public/images/user.png";
 import Image from "next/image";
 import { timeAgo } from "@/lib/helpers/timeAgo";
-import DeleteComment from "./DeleteComment";
 import LikeComment from "./LikeComment";
+import DeleteComment from "./DeleteComment";
 
 interface Comment {
   id: string;

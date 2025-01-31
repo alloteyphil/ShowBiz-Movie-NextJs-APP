@@ -1,7 +1,7 @@
-import Comment from "@/app/components/PostComment";
-import RelatedTV from "@/app/components/RelatedTV";
-import TVContentDetails from "@/app/components/TVContentDetails";
-import TVHeaderDetails from "@/app/components/TVHeaderDetails";
+import Comment from "@/app/components/comment/PostComment";
+import RelatedTV from "@/app/components/tv/RelatedTV";
+import TVContentDetails from "@/app/components/tv/TVContentDetails";
+import TVHeaderDetails from "@/app/components/tv/TVHeaderDetails";
 import { verifyToken } from "@/lib/helpers/generateSession";
 import type { FailedDetailsPageResponse } from "@/types/general";
 import type { ITVShow } from "@/types/tv";

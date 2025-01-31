@@ -1,10 +1,10 @@
-import SearchPagination from "@/app/components/SearchPagination";
-import TVSearchBar from "@/app/components/TVSearchBar";
-import TVShowCard from "@/app/components/TVShowCard";
+import TVSearchBar from "@/app/components/search/TVSearchBar";
+import TVShowCard from "@/app/components/tv/TVShowCard";
 import type { ISearchTv, ISearchTVResponse } from "@/types/search";
 import { LoaderIcon } from "lucide-react";
 import Image from "next/image";
 import noResults from "../../../public/images/folder.png";
+import SearchPagination from "@/app/components/search/SearchPagination";
 
 const page = async ({
   searchParams,

@@ -2,8 +2,8 @@ import { getUserProfile } from "@/actions/profile.actions";
 import { verifyToken } from "@/lib/helpers/generateSession";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import EditUserProfile from "../components/EditUserProfile";
-import UserImage from "../components/UserImage";
+import EditUserProfile from "../components/profile/EditUserProfile";
+import UserImage from "../components/user/UserImage";
 
 type PayloadType = {
   email: string;

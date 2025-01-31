@@ -1,6 +1,6 @@
 "use server";
 
-import ShowbizNewsletterEmail from "@/app/components/EmailTemplateShowbiz";
+import ShowbizNewsletterEmail from "@/app/components/layout/EmailTemplateShowbiz";
 import { connectToDatabase } from "@/mongo/connectToDatabase";
 import { SubscribeInfo, type ISubscribe } from "@/mongo/models/Subscribe.model";
 import type { UserSubscribeDetailsType } from "@/types/subscribe";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LoaderCircleIcon, LockIcon } from "lucide-react";
+import { LoaderCircleIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { addComment } from "@/actions/comment.action";
 

@@ -4,11 +4,10 @@ import type { GenreType } from "@/types/genre";
 import { DotIcon, HeartIcon, PlayIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Tooltips from "./Tooltips";
 import type { ITVShow } from "@/types/tv";
 import noImage from "../../public/images/no-image.png";
-import WatchlistTooltip from "./WatchlistTooltips";
-import FavoritesTooltip from "./FavoritesTooltip";
+import WatchlistTooltip from "../watchlist/WatchlistTooltips";
+import FavoritesTooltip from "../tooltip/FavoritesTooltip";
 
 const TVHeaderDetails = ({ data }: { data: ITVShow }) => {
   return (

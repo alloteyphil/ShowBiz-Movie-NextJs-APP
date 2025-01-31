@@ -1,12 +1,12 @@
-import MovieContentDetails from "@/app/components/MovieContentDetails";
-import MovieHeaderDetails from "@/app/components/MovieHeaderDetails";
-import RelatedMovies from "@/app/components/RelatedMovies";
+import MovieContentDetails from "@/app/components/movie/MovieContentDetails";
+import MovieHeaderDetails from "@/app/components/movie/MovieHeaderDetails";
+import RelatedMovies from "@/app/components/movie/RelatedMovies";
 import { verifyToken } from "@/lib/helpers/generateSession";
 import type { FailedDetailsPageResponse } from "@/types/general";
 import type { IMovie } from "@/types/movie";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import CommentSection from "@/app/components/CommentSection";
+import CommentSection from "@/app/components/comment/CommentSection";
 
 type PayloadType = {
   email: string;

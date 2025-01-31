@@ -5,7 +5,7 @@ import EditUserProfileName from "./EditUserProfileName";
 import { useState } from "react";
 import EditUserProfileImage from "./EditUserProfileImage";
 import EditUserProfilePassword from "./EditUserProfilePassword";
-import UserContactInfo from "./UserContactInfo";
+import UserContactInfo from "../user/UserContactInfo";
 
 const EditUserProfile = ({
   userData,
