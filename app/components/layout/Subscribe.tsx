@@ -189,7 +189,7 @@ const Subscribe = () => {
                 value={userDetails.fName}
                 type="text"
                 id="fName"
-                className="w-[225px] max-md:w-full p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+                className="w-[225px] max-md:w-full rounded-none p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm max-md:text-base focus:outline-none"
                 placeholder="Your first name"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -202,7 +202,7 @@ const Subscribe = () => {
                 value={userDetails.lName}
                 type="text"
                 id="lName"
-                className="w-[225px] max-md:w-full p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+                className="w-[225px] max-md:w-full rounded-none p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm max-md:text-base focus:outline-none"
                 placeholder="Your last name"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -216,7 +216,7 @@ const Subscribe = () => {
               value={userDetails.email}
               type="email"
               id="email"
-              className="p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+              className="p-4 border-[0.5px] rounded-none border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm max-md:text-base focus:outline-none"
               placeholder="Your email address"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
