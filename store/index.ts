@@ -3,8 +3,10 @@ import { create } from "zustand";
 export interface DrawerStoreState {
   authDrawerOpen: boolean;
   searchDrawerOpen: boolean;
+  mobileMenuOpen: boolean;
   setAuthDrawerOpen: (state: DrawerStoreState) => void;
   setSearchDrawerOpen: (state: DrawerStoreState) => void;
+  setMobileMenuOpen: (state: DrawerStoreState) => void;
 }
 
 export interface UserProfileStoreState {
@@ -17,18 +19,31 @@ export interface UserProfileStoreState {
 export const useDrawerStore = create<DrawerStoreState>((set) => ({
   authDrawerOpen: false,
   searchDrawerOpen: false,
+  mobileMenuOpen: false,
   setAuthDrawerOpen: (state: DrawerStoreState) =>
     set({
       ...state,
       authDrawerOpen: !state.authDrawerOpen,
       searchDrawerOpen: false,
+      mobileMenuOpen: false,
     }),
   setSearchDrawerOpen: (state: DrawerStoreState) =>
     set({
       ...state,
       searchDrawerOpen: !state.searchDrawerOpen,
       authDrawerOpen: false,
+      mobileMenuOpen: false,
     }),
+
+  setMobileMenuOpen: (state: DrawerStoreState) => {
+    set({
+      ...state,
+
+      mobileMenuOpen: !state.mobileMenuOpen,
+      searchDrawerOpen: false,
+      authDrawerOpen: false,
+    });
+  },
 }));
 
 export const useUserProfileStore = create<UserProfileStoreState>((set) => ({

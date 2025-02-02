@@ -9,6 +9,8 @@ import NextTopLoader from "nextjs-toploader";
 import UserWrapper from "./components/user/UserWrapper";
 import AuthDrawer from "./components/auth/AuthDrawer";
 import SearchDrawer from "./components/search/SearchDrawer";
+import MobileSideBar from "./components/mobile/MobileSideBar";
+import MobileNavbar from "./components/mobile/MobileNavbar";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -33,8 +35,10 @@ export default async function RootLayout({
         <NavBar>
           <UserWrapper />
         </NavBar>
+        <MobileNavbar />
         <AuthDrawer />
         <SearchDrawer />
+        <MobileSideBar />
         {children}
         <Footer />
         <Toaster />

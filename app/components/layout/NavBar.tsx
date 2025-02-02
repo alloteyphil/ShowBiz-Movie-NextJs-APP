@@ -21,7 +21,7 @@ const NavBar = ({ children }: { children: Readonly<React.ReactNode> }) => {
 
   return (
     <div
-      className={`w-full top-0 z-50 py-6 ${
+      className={`w-full top-0 z-50 py-6 max-md:hidden ${
         !isDetailedPage
           ? isProfilePage
             ? "bg-white border-b-[0.5px] border-themeGray absolute"
