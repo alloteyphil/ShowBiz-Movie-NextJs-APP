@@ -167,12 +167,12 @@ const Subscribe = () => {
         !pathname.includes("details") ? "border-t-[0.5px] border-themeGray" : ""
       } w-full text-sm`}
     >
-      <div className="w-[1600px] mx-auto py-36 flex justify-between items-center">
+      <div className="w-[1600px] max-md:w-screen mx-auto py-36 max-md:py-12 flex max-md:flex-col max-md:gap-8 max-md:px-8 justify-between items-center">
         <div className="flex flex-col gap-4">
           <h3 className="text-3xl font-bold text-white">
             Subscribe to our Newsletter
           </h3>
-          <p className="text-themeGray max-w-[600px]">
+          <p className="text-themeGray max-w-[600px] max-md:hidden">
             Stay in the loop with ShowBiz, your ultimate movie app! Discover the
             latest blockbusters, timeless classics, and hidden gems tailored to
             your taste. Get insider news, exclusive updates, and personalized
@@ -181,15 +181,15 @@ const Subscribe = () => {
             🎥🍿
           </p>
         </div>
-        <div className="flex flex-col text-themeGray">
-          <div className="flex w-[450px] flex-col gap-4">
-            <div className="flex gap-2">
+        <div className="flex flex-col max-md:w-full text-themeGray">
+          <div className="flex w-[450px] max-md:w-full flex-col gap-4">
+            <div className="flex max-md:flex-col gap-2 max-md:gap-4">
               <input
                 onChange={handleChange}
                 value={userDetails.fName}
                 type="text"
                 id="fName"
-                className="w-[225px] p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+                className="w-[225px] max-md:w-full p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
                 placeholder="Your first name"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -202,7 +202,7 @@ const Subscribe = () => {
                 value={userDetails.lName}
                 type="text"
                 id="lName"
-                className="w-[225px] p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+                className="w-[225px] max-md:w-full p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
                 placeholder="Your last name"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {

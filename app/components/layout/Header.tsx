@@ -21,12 +21,12 @@ const Header = async () => {
   }
 
   return (
-    <div className="grid grid-cols-2 md:pt-[88.5px] md:h-[700px]">
+    <div className="grid grid-cols-2 max-md:grid-cols-1 pt-[88.5px] max-md:pt-0 h-[700px] max-md:h-[300px]">
       {data ? (
-        shuffleData?.map((movie: TrendingGenreType) => (
+        shuffleData?.map((movie: TrendingGenreType, i: number) => (
           <div
             key={movie.id}
-            className="relative w-full overflow-hidden group cursor-pointer"
+            className={`relative w-full overflow-hidden group cursor-pointer ${i === 1 ? "max-md:hidden" : ""}`}
           >
             <Image
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
@@ -41,8 +41,8 @@ const Header = async () => {
                 ""
               }
             />
-            <div className="absolute top-16 left-16 flex flex-col gap-3 z-20">
-              <h3 className="text-white text-3xl font-bold">
+            <div className="absolute md:top-16 max-md:bottom-8 md:left-16 max-md:left-8 flex flex-col gap-3 max-md:gap-1 z-20 max-md:max-w-[250px]">
+              <h3 className="text-white text-3xl max-md:text-2xl font-bold">
                 {movie.title || movie.original_title || "N/A"}
               </h3>
               <p className="text-base text-themeGray ">

@@ -15,11 +15,11 @@ const MovieCard = ({
   id: number;
 }) => {
   return (
-    <div className="flex flex-col gap-8 items-center group">
+    <div className="flex flex-col gap-8 max-md:gap-2 items-center group">
       <Link
         href={`/movie/details/${id}`}
         prefetch={true}
-        className="w-full h-[400px] overflow-hidden cursor-pointer"
+        className="w-full h-[400px] max-md:h-[200px] overflow-hidden cursor-pointer"
       >
         <Image
           width={270}
@@ -37,11 +37,11 @@ const MovieCard = ({
         <Link
           href={`/movie/details/${id}`}
           prefetch={true}
-          className="text-lg font-semibold cursor-pointer"
+          className="text-lg max-md:text-base font-semibold max-md:font-normal cursor-pointer"
         >
           {title}
         </Link>
-        <p className="text-sm text-themeGray">
+        <p className="text-sm text-themeGray max-md:hidden">
           {genres
             .map((genre) => movieGenreData.find((g) => g.id === genre)?.name)
             .join(", ")}

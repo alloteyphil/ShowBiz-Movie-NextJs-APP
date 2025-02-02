@@ -1,5 +1,4 @@
 import CommentSection from "@/app/components/comment/CommentSection";
-import Comment from "@/app/components/comment/PostComment";
 import RelatedTV from "@/app/components/tv/RelatedTV";
 import TVContentDetails from "@/app/components/tv/TVContentDetails";
 import TVHeaderDetails from "@/app/components/tv/TVHeaderDetails";
