@@ -35,7 +35,9 @@ export default async function RootLayout({
         <NavBar>
           <UserWrapper />
         </NavBar>
-        <MobileNavbar />
+        <MobileNavbar>
+          <UserWrapper />
+        </MobileNavbar>
         <AuthDrawer />
         <SearchDrawer />
         <MobileSideBar />

@@ -235,7 +235,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 w-full">
+    <div className="flex flex-col gap-8 max-md:gap-4 w-full fadeIn">
       <div className="flex flex-col gap-4">
         <label htmlFor="fName">First Name</label>
         <input
@@ -243,7 +243,7 @@ const Register = () => {
           value={userDetails.fName}
           type="text"
           id="fName"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          className="w-full max-md:py-3 p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -258,7 +258,7 @@ const Register = () => {
           value={userDetails.lName}
           type="text"
           id="lName"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          className="w-full max-md:py-3 p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -273,7 +273,7 @@ const Register = () => {
           value={userDetails.email}
           type="email"
           id="email"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          className="w-full max-md:py-3 p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -288,7 +288,7 @@ const Register = () => {
           value={userDetails.password}
           type={passwordVisible ? "text" : "password"}
           id="password"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          className="w-full max-md:py-3 p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -300,7 +300,7 @@ const Register = () => {
             onClick={() => {
               setPasswordVisible(!passwordVisible);
             }}
-            className="absolute right-4 top-[58px] cursor-pointer"
+            className="absolute max-md:w-4 right-4 top-[58px] max-md:top-[55px] cursor-pointer"
             size={20}
           />
         ) : (
@@ -308,7 +308,7 @@ const Register = () => {
             onClick={() => {
               setPasswordVisible(!passwordVisible);
             }}
-            className="absolute right-4 top-[58px] cursor-pointer"
+            className="absolute max-md:w-4 right-4 top-[58px] max-md:top-[55px] cursor-pointer"
             size={20}
           />
         )}
@@ -320,7 +320,7 @@ const Register = () => {
           value={reEnteredPassword}
           type={passwordVisible ? "text" : "password"}
           id="re-password"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          className="w-full max-md:py-3 p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -332,7 +332,7 @@ const Register = () => {
             onClick={() => {
               setPasswordVisible(!passwordVisible);
             }}
-            className="absolute right-4 top-[58px] cursor-pointer"
+            className="absolute max-md:w-4 right-4 top-[58px] max-md:top-[55px] cursor-pointer"
             size={20}
           />
         ) : (
@@ -340,7 +340,7 @@ const Register = () => {
             onClick={() => {
               setPasswordVisible(!passwordVisible);
             }}
-            className="absolute right-4 top-[58px] cursor-pointer"
+            className="absolute max-md:w-4 right-4 top-[58px] max-md:top-[55px] cursor-pointer"
             size={20}
           />
         )}
@@ -348,7 +348,7 @@ const Register = () => {
 
       <button
         onClick={handleSubmit}
-        className="w-full grid place-items-center bg-[#111111] h-16 text-white"
+        className="w-full grid place-items-center bg-[#111111] h-16 max-md:h-12 text-white"
       >
         {loading ? (
           <LoaderCircleIcon size={20} className="animate-spin" />
@@ -356,7 +356,7 @@ const Register = () => {
           "Register"
         )}
       </button>
-      <div className="flex justify-center gap-1 text-xs">
+      <div className="flex justify-center gap-1 text-xs max-md:hidden">
         <p>By signing up you agree to our </p>
         <Link href={"#"} className="underline">
           terms & conditions
@@ -367,6 +367,11 @@ const Register = () => {
           privacy policy
         </Link>
       </div>
+      <p className="text-xs md:hidden text-center">
+        By signing up you agree to our{" "}
+        <span className="underline">terms & conditions</span> and{" "}
+        <span className="underline">privacy policy</span>
+      </p>
     </div>
   );
 };

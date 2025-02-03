@@ -159,7 +159,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 w-full">
+    <div className="flex flex-col gap-8 max-md:gap-4 w-full fadeIn">
       <div className="flex flex-col gap-4">
         <label htmlFor="email">Email Address</label>
         <input
@@ -167,7 +167,7 @@ const Login = () => {
           value={userDetails.email}
           onChange={handleChange}
           id="email"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          className="w-full max-md:py-3 p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -182,7 +182,7 @@ const Login = () => {
           value={userDetails.password}
           onChange={handleChange}
           id="password"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
+          className="w-full max-md:py-3 p-4 border-[0.3px] border-[#111111]/40 focus:outline-none"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -194,7 +194,7 @@ const Login = () => {
             onClick={() => {
               setPasswordVisible(!passwordVisible);
             }}
-            className="absolute right-4 top-[58px] cursor-pointer"
+            className="absolute max-md:w-4 right-4 top-[58px] max-md:top-[55px] cursor-pointer"
             size={20}
           />
         ) : (
@@ -202,14 +202,14 @@ const Login = () => {
             onClick={() => {
               setPasswordVisible(!passwordVisible);
             }}
-            className="absolute right-4 top-[58px] cursor-pointer"
+            className="absolute max-md:w-4 right-4 top-[58px] max-md:top-[55px] cursor-pointer"
             size={20}
           />
         )}
       </div>
       <button
         onClick={handleSubmit}
-        className="w-full bg-[#111111] grid place-items-center h-16 text-white"
+        className="w-full bg-[#111111] grid place-items-center h-16 max-md:h-12 max-md:mt-2 text-white"
       >
         {loading ? (
           <LoaderCircleIcon size={20} className="animate-spin" />
@@ -217,7 +217,7 @@ const Login = () => {
           "Login"
         )}
       </button>
-      <div className="flex justify-center gap-1 text-xs">
+      <div className="flex justify-center gap-1 text-xs max-md:hidden">
         <p>By signing in you agree to our </p>
         <Link href={"#"} className="underline">
           terms & conditions
@@ -228,6 +228,11 @@ const Login = () => {
           privacy policy
         </Link>
       </div>
+      <p className="text-xs md:hidden text-center">
+        By signing in you agree to our{" "}
+        <span className="underline">terms & conditions</span> and{" "}
+        <span className="underline">privacy policy</span>
+      </p>
     </div>
   );
 };

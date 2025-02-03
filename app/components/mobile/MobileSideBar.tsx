@@ -1,9 +1,6 @@
 "use client";
 
 import { useDrawerStore } from "@/store";
-import menuIcon from "../../../public/images/bars.png";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { XIcon } from "lucide-react";
@@ -113,7 +110,7 @@ const MobileSideBar = () => {
             handleClick("/genre/tv/10759?page=1");
           }}
         >
-          TV Shows
+          TV Show
         </p>
       </div>
     </div>

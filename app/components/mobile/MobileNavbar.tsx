@@ -5,7 +5,7 @@ import UserButton from "../user/UserButton";
 import MobileSideBarTrigger from "./MobileSideBarTrigger";
 import SearchButton from "../search/SearchButton";
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   const isProfilePage = pathname?.includes("/profile");
@@ -17,7 +17,7 @@ const MobileNavbar = () => {
         <h1 className="text-white text-2xl font-bold">ShowBiz</h1>
       </div>
       <div className="flex gap-4 items-center">
-        <UserButton isProfilePage={isProfilePage} />
+        {children}
         <SearchButton isProfilePage={isProfilePage} />
       </div>
     </div>
