@@ -42,10 +42,10 @@ const SearchMovies = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-6 max-md:gap-4 fadeIn">
       <input
         type="text"
-        className="w-full border-b-[0.5px] border-themeGray py-10 focus:outline-none placeholder:text-themeGray placeholder:text-5xl placeholder:font-light text-5xl text-[#111111] text-center"
+        className="w-full border-b-[0.5px] border-themeGray py-10 max-md:py-2 focus:outline-none placeholder:text-themeGray placeholder:text-5xl placeholder:font-light text-5xl max-md:text-2xl text-[#111111] text-center max-md:placeholder:text-2xl"
         placeholder="Type here to search"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -54,7 +54,7 @@ const SearchMovies = () => {
         }}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <p className="text-darkAsh w-full text-center">
+      <p className="text-darkAsh w-full text-center max-md:text-xs">
         Press enter or return to begin your search
       </p>
     </div>
