@@ -68,14 +68,14 @@ const SearchDrawer = () => {
   return (
     <div
       ref={drawerRef}
-      className="w-full h-screen z-[100] fixed bg-white hidden"
+      className="w-full h-screen z-[100] fixed bg-white hidden max-md:top-0 max-md:left-0 max-md:w-screen"
     >
       <div
         ref={toggleRef}
         className="w-full h-full bg-transparent relative grid place-items-center"
       >
         <XIcon
-          className="absolute top-32 right-32 cursor-pointer"
+          className="absolute top-32 max-md:top-8 md:right-32 max-md:left-8 cursor-pointer max-md:w-5"
           size={36}
           color="#111111"
           onClick={() => {
