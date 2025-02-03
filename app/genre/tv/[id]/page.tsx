@@ -4,6 +4,7 @@ import type { FailedDetailsPageResponse } from "@/types/general";
 import type { TVGenreType } from "@/types/genre";
 import { redirect } from "next/navigation";
 import GenreTVPageBreadcrumbs from "@/app/components/genre/GenreTVPageBreadcrumbs";
+import { GenreTvSelect } from "@/app/components/genre/GenreSelect";
 
 const page = async ({
   params,
@@ -45,9 +46,10 @@ const page = async ({
   }
 
   return (
-    <div className="pt-24 pb-32 text-white flex flex-col gap-14 max-w-[1400px] mx-auto">
+    <div className="md:pt-24 pb-32 max-md:pb-12 text-white flex flex-col gap-14 max-md:gap-8 max-w-[1400px] mx-auto max-md:px-8">
       <GenreTVPageBreadcrumbs id={id} />
-      <div className="grid grid-cols-4 gap-y-14 gap-x-6">
+      <GenreTvSelect />
+      <div className="grid grid-cols-4 max-md:grid-cols-2 gap-y-14 gap-x-6 max-md:gap-y-10 max-md:gap-x-4">
         {results &&
           results.map((tv, i) => {
             if (

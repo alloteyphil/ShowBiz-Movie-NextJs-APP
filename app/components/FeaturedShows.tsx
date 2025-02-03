@@ -17,7 +17,7 @@ const FeaturedShows = async () => {
   return (
     <div className="max-md:flex max-md:flex-col max-md:gap-8 max-md:px-8 max-md:mt-12">
       <h1 className="text-3xl text-white font-bold md:hidden">Trending</h1>
-      <div className="mt-24 max-md:mt-0 mb-32 max-md:mb-12 text-white flex max-md:grid max-md:grid-cols-2 max-md:max-w-[100vw] flex-wrap justify-between gap-y-14 max-md:gap-y-10 max-md:gap-x-4 ">
+      <div className="mt-24 max-md:mt-0 mb-32 max-md:mb-12 text-white flex max-md:grid max-md:grid-cols-2 max-md:max-w-[100vw] flex-wrap justify-between gap-y-14 max-md:gap-y-10 max-md:gap-x-4">
         {data ? (
           data.results
             .filter(

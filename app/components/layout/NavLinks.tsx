@@ -19,7 +19,7 @@ export function NavLinks({
   isProfilePage: boolean | undefined;
 }) {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="relative">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link href="/" legacyBehavior passHref>

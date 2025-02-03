@@ -42,10 +42,16 @@ const Header = async () => {
               }
             />
             <div className="absolute md:top-16 max-md:bottom-8 md:left-16 max-md:left-8 flex flex-col gap-3 max-md:gap-1 z-20 max-md:max-w-[250px]">
-              <h3 className="text-white text-3xl max-md:text-2xl font-bold">
+              <h3 className="text-white text-3xl max-md:text-2xl font-bold max-md:hidden">
                 {movie.title || movie.original_title || "N/A"}
               </h3>
-              <p className="text-base text-themeGray ">
+              <Link
+                href={`/movie/details/${movie.id}`}
+                className="text-white text-3xl max-md:text-2xl font-bold md:hidden"
+              >
+                {movie.title || movie.original_title || "N/A"}
+              </Link>
+              <p className="text-base text-themeGray">
                 {movie.genre_ids
                   .map(
                     (genre) => movieGenreData.find((g) => g.id === genre)?.name,
@@ -55,7 +61,7 @@ const Header = async () => {
             </div>
             <Link
               href={`/movie/details/${movie.id}`}
-              className="text-sm text-white absolute -bottom-10 right-16 transition group-hover:-translate-y-[100px] duration-700 z-20 ease-in-out hover:underline"
+              className="text-sm text-white absolute -bottom-10 right-16 transition group-hover:-translate-y-[100px] duration-700 z-20 ease-in-out hover:underline max-md:hidden"
             >
               See More
             </Link>
