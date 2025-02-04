@@ -22,7 +22,7 @@ const FeaturedShows = async () => {
       mt-12 md:mt-16 lg:mt-24 
       mb-32 md:mb-20 lg:mb-32 
       text-white 
-      grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3
+      grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
       gap-y-14 gap-x-4
     "
       >

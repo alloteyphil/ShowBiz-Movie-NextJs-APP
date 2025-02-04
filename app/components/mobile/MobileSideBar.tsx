@@ -74,7 +74,7 @@ const MobileSideBar = () => {
   return (
     <div
       ref={drawerRef}
-      className="w-screen h-screen z-[100] top-0 left-0 fixed bg-white hidden xl:hidden"
+      className="w-screen h-screen z-[100] top-0 left-0 fixed bg-white hidden lg:hidden"
     >
       <div
         ref={toggleRef}

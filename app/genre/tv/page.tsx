@@ -39,10 +39,10 @@ const page = async ({ searchParams }: { searchParams: SearchParams }) => {
   }
 
   return (
-    <div className="sm:px-6 md:px-8 pt-0 pb-28 md:pb-20 lg:pb-32 text-white flex flex-col gap-14 max-md:gap-8 md:gap-10 lg:gap-14 max-w-[1400px] mx-auto max-md:px-8">
+    <div className="sm:px-6 md:px-8 lg:pt-28 pb-28 md:pb-20 lg:pb-32 text-white flex flex-col gap-14 max-md:gap-8 md:gap-10 lg:gap-14 max-w-[1400px] mx-auto max-md:px-8">
       <GenrePageBreadcrumbs type="tv" generalGenrePage={true} />
       <GeneralGenreTvSelect />
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-y-14 gap-x-6 max-md:gap-y-10 max-md:gap-x-4 md:gap-y-12 md:gap-x-5 lg:gap-y-14 lg:gap-x-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-y-14 gap-x-6 max-md:gap-y-10 max-md:gap-x-4 md:gap-y-12 md:gap-x-5 lg:gap-y-14 lg:gap-x-6">
         {data &&
           data.results.map((tv: TrendingTVShowType, i: number) => {
             if (!tv.poster_path) {

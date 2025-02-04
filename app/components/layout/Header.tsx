@@ -21,7 +21,7 @@ const Header = async () => {
   }
 
   return (
-    <div className="grid grid-cols-2 max-md:grid-cols-1 max-md:pt-0 h-[700px] max-md:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[700px]">
+    <div className="grid grid-cols-2 max-md:grid-cols-1 pt-[88.5px] max-md:pt-0 h-[700px] max-md:h-[300px]">
       {data ? (
         shuffleData?.map((movie: TrendingGenreType, i: number) => (
           <div
@@ -41,18 +41,17 @@ const Header = async () => {
                 ""
               }
             />
-            <div className="absolute max-md:bottom-8 md:top-[15%] lg:top-[18%] xl:top-[20%] max-md:left-8 md:left-12 lg:left-16 xl:left-20 flex flex-col gap-3 max-md:gap-1 z-20 max-w-[80%] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[400px] xl:max-w-none">
-              <h3 className="text-white text-3xl xl:text-4xl font-bold leading-tight hidden lg:block">
+            <div className="absolute lg:top-16 md:top-12 max-md:bottom-8 lg:left-16 md:left-12 max-md:left-8 flex flex-col gap-3 max-md:gap-1 z-20 max-md:max-w-[250px]">
+              <h3 className="text-white text-3xl max-md:text-2xl font-bold max-lg:hidden">
                 {movie.title || movie.original_title || "N/A"}
               </h3>
               <Link
+                className="text-white text-3xl max-md:text-2xl font-bold lg:hidden"
                 href={`/movie/details/${movie.id}`}
-                className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold block lg:hidden"
               >
                 {movie.title || movie.original_title || "N/A"}
               </Link>
-
-              <p className="text-base text-themeGray">
+              <p className="text-base text-themeGray max-md:text-sm max-md:leading-tight">
                 {movie.genre_ids
                   .map(
                     (genre) => movieGenreData.find((g) => g.id === genre)?.name,
@@ -60,9 +59,10 @@ const Header = async () => {
                   .join(", ")}
               </p>
             </div>
+
             <Link
               href={`/movie/details/${movie.id}`}
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-white absolute -bottom-10 md:right-8 lg:right-12 xl:right-16 transition group-hover:-translate-y-[100px] duration-700 z-20 ease-in-out hover:underline max-xl:hidden"
+              className="text-sm text-white absolute -bottom-10 right-16 transition group-hover:-translate-y-[100px] duration-700 z-20 ease-in-out hover:underline max-lg:hidden"
             >
               See More
             </Link>
@@ -72,9 +72,6 @@ const Header = async () => {
         ))
       ) : (
         <>
-          <div className="w-full grid place-items-center h-full">
-            <LoaderIcon size={36} className="text-white animate-spin" />
-          </div>
           <div className="w-full grid place-items-center h-full">
             <LoaderIcon size={36} className="text-white animate-spin" />
           </div>
