@@ -9,6 +9,7 @@
 
 input {
   border-radius: 0;
+  border: 0.5px solid;
 }
 
 .fadeIn {

@@ -14,7 +14,7 @@ const MobileNavbar = ({ children }: { children: React.ReactNode }) => {
     <div className="p-4 flex w-screen items-center justify-between md:hidden">
       <div className="flex gap-4 items-center">
         <MobileSideBarTrigger />
-        <Link className="text-white text-2xl font-bold" href={"/"}>
+        <Link className="text-white text-4xl font-bold" href={"/"}>
           ShowBiz
         </Link>
       </div>
