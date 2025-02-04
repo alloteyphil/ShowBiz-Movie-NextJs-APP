@@ -46,18 +46,13 @@ const page = async ({
   }
 
   return (
-    <div className="md:pt-24 pb-32 max-md:pb-12 text-white flex flex-col gap-14 max-md:gap-8 max-w-[1400px] mx-auto max-md:px-8">
+    <div className="px-4 sm:px-6 md:px-8 pb-32 max-md:pb-12 text-white flex flex-col gap-14 max-md:gap-8 max-w-[1400px] mx-auto">
       <GenrePageBreadcrumbs id={id} type="tv" generalGenrePage={false} />
       <GenreTvSelect />
-      <div className="grid grid-cols-4 max-md:grid-cols-2 gap-y-14 gap-x-6 max-md:gap-y-10 max-md:gap-x-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-y-14 gap-x-6 max-md:gap-y-10 max-md:gap-x-4">
         {results &&
           results.map((tv, i) => {
-            if (
-              tv.poster_path === null ||
-              tv.poster_path === "" ||
-              tv.backdrop_path === null ||
-              tv.backdrop_path === ""
-            ) {
+            if (!tv.poster_path || !tv.backdrop_path) {
               return;
             }
             return (

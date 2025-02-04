@@ -7,7 +7,6 @@ import { useDrawerStore } from "@/store";
 import type { UserLoginType } from "@/types/user";
 import { EyeClosedIcon, EyeIcon, LoaderCircleIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import isEmail from "validator/es/lib/isEmail";
 
@@ -28,8 +27,6 @@ const Login = () => {
   };
 
   const { toast } = useToast();
-
-  const router = useRouter();
 
   const handleSubmit = async () => {
     // Validate Email

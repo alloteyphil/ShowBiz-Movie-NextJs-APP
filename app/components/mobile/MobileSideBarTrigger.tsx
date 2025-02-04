@@ -14,7 +14,11 @@ const MobileSideBarTrigger = () => {
         setOpen(storeState);
       }}
     >
-      <Image src={menuIcon} alt="menu" className={"cursor-pointer w-5 h-5"} />
+      <Image
+        src={menuIcon}
+        alt="menu"
+        className="cursor-pointer w-5 h-5 md:w-6 md:h-6"
+      />
     </div>
   );
 };

@@ -11,14 +11,14 @@ const MobileNavbar = ({ children }: { children: React.ReactNode }) => {
   const isProfilePage = pathname?.includes("/profile");
 
   return (
-    <div className="p-4 flex w-screen items-center justify-between md:hidden">
-      <div className="flex gap-4 items-center">
+    <div className="p-4 md:p-6 flex w-screen items-center justify-between xl:hidden">
+      <div className="flex gap-4 md:gap-6 items-center">
         <MobileSideBarTrigger />
-        <Link className="text-white text-4xl font-bold" href={"/"}>
+        <Link className="text-white text-4xl md:text-5xl font-bold" href={"/"}>
           ShowBiz
         </Link>
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 md:gap-6 items-center">
         {children}
         <SearchButton isProfilePage={isProfilePage} />
       </div>

@@ -68,14 +68,14 @@ const AuthDrawer = () => {
   return (
     <div
       ref={drawerRef}
-      className="w-full h-screen z-[100] fixed bg-white hidden max-md:top-0 max-md:left-0 max-md:w-screen"
+      className="fixed top-0 left-0 w-screen h-screen z-[100] bg-white hidden"
     >
       <div
         ref={toggleRef}
         className="w-full h-full bg-transparent relative grid place-items-center"
       >
         <XIcon
-          className="absolute top-32 max-md:top-8 md:right-32 max-md:left-8 cursor-pointer max-md:w-5"
+          className="absolute top-8 left-8 cursor-pointer w-5 md:top-8 md:left-8 lg:top-10 lg:left-10 lg:w-6"
           size={36}
           color="#111111"
           onClick={() => {

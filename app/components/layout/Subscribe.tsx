@@ -167,12 +167,12 @@ const Subscribe = () => {
         !pathname.includes("details") ? "border-t-[0.5px] border-themeGray" : ""
       } w-full text-sm`}
     >
-      <div className="w-[1600px] max-md:w-screen mx-auto py-36 max-md:py-12 flex max-md:flex-col max-md:gap-8 max-md:px-8 justify-between items-center">
-        <div className="flex flex-col gap-4">
-          <h3 className="text-3xl font-bold text-white">
+      <div className="max-w-[1600px] w-full max-md:w-screen mx-auto py-36 max-md:py-12 md:py-24 lg:py-36 flex max-md:flex-col max-md:gap-8 md:gap-12 lg:gap-16 max-md:px-8 md:px-8 lg:px-12 xl:px-0 justify-between items-center">
+        <div className="flex flex-col gap-4 md:gap-6">
+          <h3 className="text-3xl md:text-4xl lg:text-3xl font-bold text-white">
             Subscribe to our Newsletter
           </h3>
-          <p className="text-themeGray max-w-[600px] max-md:hidden">
+          <p className="text-themeGray max-w-[600px] max-md:hidden md:text-base lg:text-sm">
             Stay in the loop with ShowBiz, your ultimate movie app! Discover the
             latest blockbusters, timeless classics, and hidden gems tailored to
             your taste. Get insider news, exclusive updates, and personalized
@@ -182,14 +182,14 @@ const Subscribe = () => {
           </p>
         </div>
         <div className="flex flex-col max-md:w-full text-themeGray">
-          <div className="flex w-[450px] max-md:w-full flex-col gap-4">
+          <div className="flex w-[450px] max-md:w-full md:w-[400px] lg:w-[450px] flex-col gap-4">
             <div className="flex max-md:flex-col gap-2 max-md:gap-4">
               <input
                 onChange={handleChange}
                 value={userDetails.fName}
                 type="text"
                 id="fName"
-                className="w-[225px] max-md:w-full rounded-none p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm max-md:text-base focus:outline-none"
+                className="w-[225px] max-md:w-full md:w-[195px] lg:w-[220px] rounded-none p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm md:text-base lg:text-sm focus:outline-none"
                 placeholder="Your first name"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -202,7 +202,7 @@ const Subscribe = () => {
                 value={userDetails.lName}
                 type="text"
                 id="lName"
-                className="w-[225px] max-md:w-full rounded-none p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm max-md:text-base focus:outline-none"
+                className="w-[225px] max-md:w-full md:w-[195px] lg:w-[220px] rounded-none p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm md:text-base lg:text-sm focus:outline-none"
                 placeholder="Your last name"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -216,7 +216,7 @@ const Subscribe = () => {
               value={userDetails.email}
               type="email"
               id="email"
-              className="p-4 border-[0.5px] rounded-none border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm max-md:text-base focus:outline-none"
+              className="p-4 border-[0.5px] rounded-none border-themeGray bg-[#111111] text-white placeholder:text-themeGray max-md:placeholder:text-sm md:text-base lg:text-sm focus:outline-none"
               placeholder="Your email address"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -226,7 +226,7 @@ const Subscribe = () => {
             />
             <button
               onClick={handleSubmit}
-              className="flex justify-center items-center border-[0.5px] h-14 text-white font-semibold uppercase p-4"
+              className="flex justify-center items-center border-[0.5px] h-14 text-white font-semibold uppercase p-4 md:text-base lg:text-sm"
             >
               {loading ? (
                 <LoaderCircleIcon size={20} className="animate-spin" />

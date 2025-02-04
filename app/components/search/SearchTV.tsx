@@ -42,10 +42,19 @@ const SearchTV = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6 max-md:gap-4 fadeIn">
+    <div className="w-full flex flex-col gap-4 md:gap-6 lg:gap-8 xl:gap-10 fadeIn">
       <input
         type="text"
-        className="w-full border-b-[0.5px] border-themeGray py-10 max-md:py-2 focus:outline-none placeholder:text-themeGray placeholder:text-5xl placeholder:font-light text-5xl max-md:text-2xl text-[#111111] text-center max-md:placeholder:text-2xl"
+        className="
+      w-full 
+      border-b border-themeGray 
+      py-2 md:py-3 lg:py-4 xl:py-5
+      focus:outline-none 
+      placeholder:text-themeGray placeholder:font-light 
+      placeholder:text-xl md:placeholder:text-2xl lg:placeholder:text-3xl xl:placeholder:text-4xl
+      text-xl md:text-2xl lg:text-3xl xl:text-4xl
+      text-[#111111] text-center
+    "
         placeholder="Type here to search"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -54,7 +63,7 @@ const SearchTV = () => {
         }}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <p className="text-darkAsh w-full text-center max-md:text-xs">
+      <p className="text-darkAsh w-full text-center text-xs md:text-sm lg:text-base xl:text-lg">
         Press enter or return to begin your search
       </p>
     </div>

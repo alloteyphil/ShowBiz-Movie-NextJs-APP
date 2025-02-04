@@ -15,43 +15,42 @@ const FeaturedShows = async () => {
   }
 
   return (
-    <div className="max-md:flex max-md:flex-col max-md:gap-8 max-md:px-8 max-md:mt-12">
+    <div className="px-4 md:px-8 lg:px-16 mt-12">
       <h1 className="text-3xl text-white font-bold md:hidden">Trending</h1>
-      <div className="mt-24 max-md:mt-0 mb-32 max-md:mb-12 text-white flex max-md:grid max-md:grid-cols-2 max-md:max-w-[100vw] flex-wrap justify-between gap-y-14 max-md:gap-y-10 max-md:gap-x-4">
+      <div
+        className="
+      mt-12 md:mt-16 lg:mt-24 
+      mb-32 md:mb-20 lg:mb-32 
+      text-white 
+      grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3
+      gap-y-14 gap-x-4
+    "
+      >
         {data ? (
-          data.results
-            .filter(
-              (result: TrendingGenreType) =>
-                result.poster_path !== null &&
-                result.genre_ids !== undefined &&
-                (result.original_title !== undefined ||
-                  result.name !== undefined ||
-                  result.original_name !== undefined),
-            )
-            .map((show: TrendingGenreType) => {
-              if (show.media_type === "tv") {
-                return (
-                  <div key={show.id} className="w-[270px] max-md:w-full">
-                    <TVShowCard
-                      image={show.poster_path}
-                      title={show.name || show.original_name || "N/A"}
-                      genres={show.genre_ids}
-                      id={show.id}
-                    />
-                  </div>
-                );
-              }
-              return (
-                <div key={show.id} className="w-[270px] max-md:w-full">
-                  <MovieCard
-                    image={show.poster_path}
-                    title={show.title || show.original_title || "N/A"}
-                    genres={show.genre_ids}
-                    id={show.id}
-                  />
-                </div>
-              );
-            })
+          data.results.map((show: TrendingGenreType) => {
+            if (!show.poster_path) {
+              return;
+            }
+            return show.media_type === "tv" ? (
+              <div key={show.id} className="w-full">
+                <TVShowCard
+                  image={show.poster_path}
+                  title={show.name || show.original_name || "N/A"}
+                  genres={show.genre_ids}
+                  id={show.id}
+                />
+              </div>
+            ) : (
+              <div key={show.id} className="w-full">
+                <MovieCard
+                  image={show.poster_path}
+                  title={show.title || show.original_title || "N/A"}
+                  genres={show.genre_ids}
+                  id={show.id}
+                />
+              </div>
+            );
+          })
         ) : (
           <LoaderIcon
             size={36}

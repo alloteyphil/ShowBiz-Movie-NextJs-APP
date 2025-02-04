@@ -74,14 +74,14 @@ const MobileSideBar = () => {
   return (
     <div
       ref={drawerRef}
-      className="w-screen h-screen z-[100] top-0 left-0 fixed bg-white hidden"
+      className="w-screen h-screen z-[100] top-0 left-0 fixed bg-white hidden xl:hidden"
     >
       <div
         ref={toggleRef}
-        className="w-full h-full bg-transparent relative flex flex-col gap-10 px-10 py-44"
+        className="w-full h-full bg-transparent relative flex flex-col gap-10 px-10 md:px-16 py-44"
       >
         <XIcon
-          className="absolute top-24 left-10 cursor-pointer"
+          className="absolute top-24 left-10 md:left-16 cursor-pointer md:scale-125"
           size={16}
           color="#111111"
           onClick={() => {
@@ -89,7 +89,7 @@ const MobileSideBar = () => {
           }}
         />
         <p
-          className="text-[#111111] text-3xl"
+          className="text-[#111111] text-3xl md:text-4xl"
           onClick={() => {
             handleClick("/");
           }}
@@ -97,7 +97,7 @@ const MobileSideBar = () => {
           Home
         </p>
         <p
-          className="text-[#111111] text-3xl"
+          className="text-[#111111] text-3xl md:text-4xl"
           onClick={() => {
             handleClick("/genre/movie?page=1");
           }}
@@ -105,7 +105,7 @@ const MobileSideBar = () => {
           Movie
         </p>
         <p
-          className="text-[#111111] text-3xl"
+          className="text-[#111111] text-3xl md:text-4xl"
           onClick={() => {
             handleClick("/genre/tv?page=1");
           }}
