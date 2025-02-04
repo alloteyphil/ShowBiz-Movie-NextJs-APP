@@ -99,7 +99,7 @@ const MobileSideBar = () => {
         <p
           className="text-[#111111] text-3xl"
           onClick={() => {
-            handleClick("/genre/movie/28?page=1");
+            handleClick("/genre/movie?page=1");
           }}
         >
           Movie
@@ -107,7 +107,7 @@ const MobileSideBar = () => {
         <p
           className="text-[#111111] text-3xl"
           onClick={() => {
-            handleClick("/genre/tv/10759?page=1");
+            handleClick("/genre/tv?page=1");
           }}
         >
           TV Show
