@@ -12,8 +12,8 @@ const Footer = () => {
   return (
     <div className="flex flex-col w-full bg-[#111111]">
       <Subscribe />
-      <div className="flex flex-col lg:justify-between max-md:gap-4 border-t-[0.5px] border-themeGray pb-8 px-6 md:px-20 lg:px-32 max-md:py-12 md:py-28 text-sm">
-        <div className="flex flex-col md:flex-row md:flex-wrap md:justify-between md:max-w-[1300px] lg:max-w-[1600px] w-full md:mx-auto gap-12 md:gap-14 lg:gap-16">
+      <div className="flex flex-col lg:justify-between max-md:gap-4 border-t-[0.5px] border-themeGray pb-8 max-md:px-4 max-xl:px-8 xl:px-32 max-md:py-12 md:py-28 text-sm">
+        <div className="flex flex-col md:flex-row md:flex-wrap md:justify-between md:max-w-[1300px] lg:max-w-[1600px] w-full md:mx-auto gap-12 max-md:gap-4 lg:gap-16">
           <div className="flex flex-col gap-10 max-md:gap-4 max-md:mb-4">
             <Link
               href={"/"}
@@ -64,9 +64,15 @@ const Footer = () => {
                 ))}
               </ul>
             ))}
+            <div className="hidden max-md:hidden max-xl:flex flex-col gap-4 max-md:mt-8">
+              <h4 className="text-white uppercase font-bold">ShowBiz Studio</h4>
+              <p className="text-themeGray">123 Maplewood Lane</p>
+              <p className="text-themeGray">Sunnyvale</p>
+              <p className="text-themeGray">CA 94086</p>
+            </div>
           </div>
 
-          <div className="flex flex-col gap-4 max-md:mt-8">
+          <div className="flex max-xl:hidden max-md:flex flex-col gap-4 max-md:mt-8">
             <h4 className="text-white uppercase font-bold">ShowBiz Studio</h4>
             <p className="text-themeGray">123 Maplewood Lane</p>
             <p className="text-themeGray">Sunnyvale</p>
@@ -74,7 +80,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between text-white w-full md:max-w-[1300px] lg:max-w-[1600px] mx-auto max-md:mt-8 text-center md:text-left">
+        <div className="flex flex-col mt-20 max-md:mt-12 md:flex-row justify-between text-white w-full md:max-w-[1300px] lg:max-w-[1600px] mx-auto  text-center md:text-left">
           <p>ShowBiz Studio © {new Date().getFullYear()}</p>
           <p>All rights reserved</p>
         </div>

@@ -26,8 +26,8 @@ const RelatedMovies = async ({ id }: { id: number }) => {
   }
 
   return (
-    <div className="flex flex-col gap-20 pb-32 max-w-[1400px] mx-auto text-[#111111]">
-      <h4 className="text-4xl font-bold">Related Titles</h4>
+    <div className="flex flex-col gap-20 max-xl:gap-6 max-md:px-4 max-xl:px-8 pb-32 max-md:pb-12 max-xl:pb-16 max-w-[1400px] mx-auto text-[#111111]">
+      <h4 className="text-4xl max-xl:text-3xl font-bold">Related Titles</h4>
       {data ? (
         <RelatedMovieCarousel data={data} />
       ) : (

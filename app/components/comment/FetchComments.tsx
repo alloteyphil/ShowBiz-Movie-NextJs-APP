@@ -46,14 +46,17 @@ const FetchComments = async ({ id, email }: { id: number; email: string }) => {
   }
 
   return (
-    <div className="flex flex-col gap-10 w-full">
+    <div className="flex flex-col gap-10 max-xl:gap-6 w-full">
       <p className="text-lg font-semibold text-darkAsh">
         {comments && comments.length} Comment{comments?.length === 1 ? "" : "s"}
       </p>
       {comments &&
         comments.map((comment) => (
-          <div key={comment.id} className="flex gap-4 w-full items-start">
-            <Avatar className="w-24 h-24">
+          <div
+            key={comment.id}
+            className="flex max-xl:flex-col gap-4 w-full items-start"
+          >
+            <Avatar className="w-24 max-md:w-12 max-xl:w-20 h-24 max-md:h-12 max-xl:h-20">
               <AvatarImage
                 className="object-center object-cover"
                 src={comment.commentAuthor.photo || ""}

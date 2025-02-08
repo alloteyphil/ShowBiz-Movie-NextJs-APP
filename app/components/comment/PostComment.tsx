@@ -110,7 +110,7 @@ const PostComment = ({
   };
 
   return (
-    <div className="flex flex-col gap-4 bg-white">
+    <div className="flex flex-col gap-4 max-xl:mt-4 bg-white">
       <textarea
         value={commentData}
         onChange={handleChange}

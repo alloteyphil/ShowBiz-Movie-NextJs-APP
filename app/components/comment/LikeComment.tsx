@@ -2,7 +2,7 @@
 
 import { likeComment } from "@/actions/comment.action";
 import { useToast } from "@/hooks/use-toast";
-import { HeartIcon } from "lucide-react";
+import { ThumbsUp } from "lucide-react";
 import { useState } from "react";
 
 const LikeComment = ({
@@ -44,7 +44,7 @@ const LikeComment = ({
   };
 
   return (
-    <HeartIcon
+    <ThumbsUp
       size={20}
       onClick={() => {
         handleLike(email, commentId);

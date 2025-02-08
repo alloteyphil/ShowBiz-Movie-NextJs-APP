@@ -36,7 +36,10 @@ const RelatedTVCarousel = ({ data }: { data: TVGenreType[] }) => {
             return;
           }
           return (
-            <CarouselItem key={i} className="lg:basis-1/4">
+            <CarouselItem
+              key={i}
+              className="basis-1/4 max-md:basis-1/2 max-xl:basis-1/3"
+            >
               <TVShowCard
                 id={tv.id}
                 image={tv.poster_path}

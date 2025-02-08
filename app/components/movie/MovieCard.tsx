@@ -19,7 +19,7 @@ const MovieCard = ({
       <Link
         href={`/movie/details/${id}`}
         prefetch={true}
-        className="w-full h-[400px] max-md:h-[200px] overflow-hidden cursor-pointer"
+        className="w-full h-[400px] max-md:h-[250px] overflow-hidden cursor-pointer"
       >
         <Image
           width={270}
