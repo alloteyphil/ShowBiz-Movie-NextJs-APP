@@ -10,11 +10,19 @@ const MobileNavbar = ({ children }: { children: React.ReactNode }) => {
 
   const isProfilePage = pathname?.includes("/profile");
 
+  const isDetailedPage =
+    pathname?.includes("/movie/details") || pathname?.includes("/tv/details");
+
   return (
-    <div className="p-4 md:p-6 flex w-screen items-center justify-between lg:hidden">
+    <div
+      className={`p-4 md:p-6 flex w-screen items-center justify-between xl:hidden ${isDetailedPage ? "bg-white" : ""}`}
+    >
       <div className="flex gap-4 md:gap-6 items-center">
         <MobileSideBarTrigger />
-        <Link className="text-white text-4xl md:text-5xl font-bold" href={"/"}>
+        <Link
+          className={`${isDetailedPage ? "text-[#111111]" : "text-white"} text-4xl md:text-5xl font-bold`}
+          href={"/"}
+        >
           ShowBiz
         </Link>
       </div>

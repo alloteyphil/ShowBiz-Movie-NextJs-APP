@@ -21,7 +21,7 @@ const Header = async () => {
   }
 
   return (
-    <div className="grid grid-cols-2 max-md:grid-cols-1 pt-[88.5px] max-md:pt-0 h-[700px] max-md:h-[300px]">
+    <div className="grid grid-cols-2 max-md:grid-cols-1 pt-[88.5px] max-lg:pt-0 md:h-[500px] lg:h-[700px] max-sm:h-[300px]">
       {data ? (
         shuffleData?.map((movie: TrendingGenreType, i: number) => (
           <div

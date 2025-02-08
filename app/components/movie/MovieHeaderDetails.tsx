@@ -13,7 +13,7 @@ import FavoritesTooltip from "../tooltip/FavoritesTooltip";
 const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
   return (
     <>
-      <div className="h-[70vh] w-full relative">
+      <div className="h-[70vh] max-xl:pb-12 w-full relative text-white">
         <div className="absolute inset-0 w-full h-full bg-black/60 z-[3]" />
         <Image
           src={
@@ -27,8 +27,8 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
           objectPosition="center"
           className="absolute inset-0 z-[2]"
         />
-        <div className="flex h-full max-w-[1400px] mx-auto">
-          <div className="w-1/3 z-20 relative">
+        <div className="flex h-full max-w-[1400px] mx-auto max-xl:px-8 max-md:px-4">
+          <div className="w-1/3 z-20 relative max-xl:hidden">
             <Image
               src={
                 data.poster_path === null
@@ -41,16 +41,18 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
               className="object-cover object-center absolute -bottom-36 h-[650px] w-[420px] left-0"
             />
           </div>
-          <div className="w-2/3 z-20 pl-12 pb-20 flex flex-col gap-8 justify-end">
+          <div className="xl:w-2/3 max-xl:w-full z-20 xl:pl-12 xl:pb-20 flex flex-col gap-8 max-xl:gap-4 justify-end">
             <h4 className="font-semibold text-xl">
               {data.release_date.split("-")[0]}
             </h4>
-            <h1 className="text-6xl font-bold text-white">
+            <h1 className="text-6xl max-xl:text-4xl font-bold text-white">
               {data.title || data.original_title || "N/A"}
             </h1>
-            <p className="max-w-[900px]">{data.overview}</p>
-            <div className="flex mt-8 text-sm">
-              <div className="flex items-center gap-4 border-r border-white pr-8">
+            <p className="max-w-[900px] max-xl:max-w-[500px] max-md:line-clamp-4">
+              {data.overview}
+            </p>
+            <div className="flex mt-8 max-xl:mt-4 max-xl:flex-col text-sm max-xl:gap-4">
+              <div className="flex items-center gap-4 xl:border-r border-white pr-8">
                 <Link
                   href={data.homepage || "/not-found"}
                   target="_blank"
@@ -63,7 +65,7 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
                 </Link>
                 <p className="uppercase">Watch the trailer</p>
               </div>
-              <div className="flex pl-12 text-white/80 items-center gap-2">
+              <div className="flex xl:pl-12 text-white/80 items-center md:gap-2 max-md:max-w-xs flex-wrap">
                 <p>{convertMinutes(data.runtime)}</p>
                 <DotIcon size={20} className="text-white/80" />
                 <p>
@@ -81,31 +83,31 @@ const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col mx-auto py-14 max-w-[1400px] text-[#111111]">
-        <div className="flex justify-end w-full">
-          <div className="flex">
-            <div className="flex items-end gap-1 py-4 px-12 border-r-[0.5px] border-themeGray">
+      <div className="flex flex-col max-md:px-4 max-xl:px-8 mx-auto py-14 max-xl:py-12 max-w-[1400px] text-[#111111]">
+        <div className="flex max-md:flex-col xl:justify-end w-full">
+          <div className="flex max-md:flex-col max-md:gap-6">
+            <div className="flex items-end gap-1 md:py-4 md:pr-6 xl:px-12 md:border-r-[0.5px] border-themeGray">
               <h6 className="text-4xl font-bold">
                 {data.vote_average.toFixed(1)}
               </h6>
               <p>IMDb</p>
             </div>
-            <div className="flex flex-col gap-1 py-4 px-12 border-r-[0.5px] border-themeGray">
+            <div className="flex flex-col gap-1 xl:py-4 md:px-6 xl:px-12 md:border-r-[0.5px] border-themeGray justify-center">
               <p className="text-darkAsh text-sm">Language</p>
               <p className="">{data.spoken_languages[0].english_name || ""}</p>
             </div>
-            <div className="flex flex-col gap-1 py-4 px-12">
+            <div className="flex flex-col gap-1 xl:py-4  md:pl-6 xl:px-12 justify-center">
               <p className="text-darkAsh text-sm">Status</p>
               <p className="capitalize">{data.status}</p>
             </div>
-            <div className="flex gap-4 ml-28">
+            <div className="flex gap-4 xl:ml-28 md:ml-12">
               <WatchlistTooltip
                 title={data.title || data.original_title || ""}
                 genres={data.genres}
                 photo={data.poster_path || ""}
                 type="movie"
               />
-              <FavoritesTooltip />
+              {/* <FavoritesTooltip /> */}
             </div>
           </div>
         </div>

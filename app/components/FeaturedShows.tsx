@@ -16,7 +16,7 @@ const FeaturedShows = async () => {
 
   return (
     <div className="px-4 md:px-8 lg:px-16 mt-12">
-      <h1 className="text-3xl text-white font-bold md:hidden">Trending</h1>
+      <h1 className="text-3xl text-white font-bold xl:hidden">Trending</h1>
       <div
         className="
       mt-12 md:mt-16 lg:mt-24 

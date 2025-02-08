@@ -38,6 +38,9 @@ const User = ({
 
   const isProfilePage = pathname?.includes("/profile");
 
+  const isDetailedPage =
+    pathname?.includes("/movie/details") || pathname?.includes("/tv/details");
+
   useEffect(() => {
     const user: UserResponseType | null = JSON.parse(
       localStorage.getItem("user") || "null",
@@ -59,7 +62,7 @@ const User = ({
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger
-                className={`flex gap-2 items-center ${isProfilePage ? "text-[#111111]" : "text-white"}`}
+                className={`flex gap-2 items-center ${isProfilePage ? "text-[#111111]" : "text-white"} ${isDetailedPage ? "max-xl:text-[#111111]" : "max-xl:text-white"}`}
               >
                 <Image
                   src={photo || userData.photo || userPhoto}
