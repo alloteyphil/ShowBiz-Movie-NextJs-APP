@@ -69,15 +69,15 @@ const User = ({
                   width={40}
                   height={40}
                   alt="Profile picture"
-                  className="rounded-full w-5 h-5 object-center object-cover mr-1"
+                  className="rounded-full w-5 max-xl:w-7 h-5 max-xl:h-7 object-center object-cover mr-1"
                 />
-                <p className="text-sm">
+                <p className="text-sm max-md:hidden">
                   Hi,{" "}
                   <span className="capitalize">{name || userData.fName}</span>
                 </p>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="flex flex-col gap-3 p-4 w-[200px]">
+                <ul className="flex flex-col gap-3 p-4 xl:w-[200px]">
                   <ListItem href={"/profile"} title={"My Profile"}></ListItem>
                   <ListItem
                     href={"/watchlist"}

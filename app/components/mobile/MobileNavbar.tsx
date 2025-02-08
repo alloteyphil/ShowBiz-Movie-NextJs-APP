@@ -26,7 +26,7 @@ const MobileNavbar = ({ children }: { children: React.ReactNode }) => {
           ShowBiz
         </Link>
       </div>
-      <div className="flex gap-4 md:gap-6 items-center">
+      <div className="flex gap-2 md:gap-6 items-center">
         {children}
         <SearchButton isProfilePage={isProfilePage} />
       </div>

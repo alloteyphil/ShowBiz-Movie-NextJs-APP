@@ -13,7 +13,7 @@ import FavoritesTooltip from "../tooltip/FavoritesTooltip";
 const MovieHeaderDetails = ({ data }: { data: IMovie }) => {
   return (
     <>
-      <div className="h-[70vh] max-xl:pb-12 w-full relative text-white">
+      <div className="h-[70vh] max-xl:pb-6 w-full relative text-white">
         <div className="absolute inset-0 w-full h-full bg-black/60 z-[3]" />
         <Image
           src={
