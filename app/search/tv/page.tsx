@@ -87,13 +87,13 @@ const page = async ({
   }
 
   return (
-    <div className="flex flex-col gap-24 text-white w-full pt-[160px] pb-32 max-w-[1400px] mx-auto">
+    <div className="sm:px-6 md:px-8 lg:pt-28 max-md:mb-8 max-xl:mb-12 mb-20 text-white flex flex-col gap-14 max-md:gap-8 md:gap-10 lg:gap-14 max-w-[1400px] mx-auto max-md:px-8">
       {query ? (
         <div className="flex flex-col">
-          <div className="flex w-full items-center justify-between">
+          <div className="flex max-md:flex-col gap-8 w-full xl:items-center justify-between">
             <div className="flex flex-col gap-1">
-              <h4 className="text-lg">Search results for: </h4>
-              <p className="text-themeGray">
+              <h4 className="text-lg max-md:text-sm">Search results for: </h4>
+              <p className="text-themeGray max-md:text-sm">
                 {`"${query.query}"`}{" "}
                 {`(${
                   data
@@ -109,27 +109,22 @@ const page = async ({
       ) : (
         <LoaderIcon size={20} className="text-white mx-auto animate-spin" />
       )}
-      <div className="flex flex-wrap gap-14 w-full justify-evenly">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-y-14 gap-x-6 max-md:gap-y-10 max-md:gap-x-4 md:gap-y-12 md:gap-x-5 lg:gap-y-14 lg:gap-x-6">
         {data ? (
-          data.results
-            .filter(
-              (result: ISearchTv) =>
-                result.poster_path !== null &&
-                result.genre_ids !== undefined &&
-                result.original_name !== undefined,
-            )
-            .map((tv) => {
-              return (
-                <div key={tv.id} className="w-[270px]">
-                  <TVShowCard
-                    id={tv.id}
-                    image={tv.poster_path || ""}
-                    title={tv.name || tv.original_name || "N/A"}
-                    genres={tv.genre_ids}
-                  />
-                </div>
-              );
-            })
+          data.results.map((movie: ISearchTv, i: number) => {
+            if (!movie.poster_path || !movie.backdrop_path) {
+              return null;
+            }
+            return (
+              <TVShowCard
+                key={i}
+                id={movie.id}
+                image={movie.poster_path}
+                title={movie.name || movie.original_name || "N/A"}
+                genres={movie.genre_ids}
+              />
+            );
+          })
         ) : (
           <LoaderIcon
             size={36}

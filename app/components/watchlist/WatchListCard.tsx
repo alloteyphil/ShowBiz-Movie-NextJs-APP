@@ -25,7 +25,7 @@ const WatchListCard = ({
       <Link
         href={`/${type}/details/${id}`}
         prefetch={true}
-        className="w-full h-[400px] overflow-hidden cursor-pointer"
+        className="w-full h-[400px] max-md:h-[250px] overflow-hidden cursor-pointer"
       >
         <Image
           width={270}
@@ -43,11 +43,11 @@ const WatchListCard = ({
         <Link
           href={`/${type}/details/${id}`}
           prefetch={true}
-          className="text-lg font-semibold cursor-pointer"
+          className="text-lg max-md:text-base font-semibold max-md:font-normal cursor-pointer"
         >
           {title}
         </Link>
-        <p className="text-sm text-themeGray">
+        <p className="text-sm text-themeGray max-md:hidden">
           {genres
             .map((genre) => watchListGenre.find((g) => g.id === genre.id)?.name)
             .join(", ")}

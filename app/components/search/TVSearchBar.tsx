@@ -39,17 +39,17 @@ const TVSearchBar = () => {
   };
 
   return (
-    <div className="">
+    <div className="flex">
       <input
         onChange={handleChange}
         value={tvSearchTerm}
         type="text"
-        className="w-[250px] p-4 border-[0.5px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
+        className="w-[250px] p-4 max-md:p-2 border-[0.5px] max-md:h-[40px] border-themeGray bg-[#111111] text-white placeholder:text-themeGray focus:outline-none"
         placeholder="Type here..."
       />
       <button
         onClick={handleSubmit}
-        className="border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] text-white  font-semibold uppercase p-4"
+        className="border-t-[0.5px] border-b-[0.5px] border-r-[0.5px] text-white font-semibold uppercase max-md:text-sm px-2"
       >
         Search
       </button>

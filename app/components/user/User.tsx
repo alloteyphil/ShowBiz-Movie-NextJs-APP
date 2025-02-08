@@ -77,7 +77,7 @@ const User = ({
                 </p>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="flex flex-col gap-3 p-4 xl:w-[200px]">
+                <ul className="flex flex-col gap-3 p-4 md:w-[200px]">
                   <ListItem href={"/profile"} title={"My Profile"}></ListItem>
                   <ListItem
                     href={"/watchlist"}

@@ -167,7 +167,7 @@ const Subscribe = () => {
         !pathname.includes("details") ? "border-t-[0.5px] border-themeGray" : ""
       } w-full text-sm`}
     >
-      <div className="max-w-[1600px] w-full max-md:w-screen mx-auto py-36 max-md:py-12 md:py-24 lg:py-36 flex max-md:flex-col max-md:gap-8 md:gap-12 lg:gap-16 max-md:px-8 md:px-8 lg:px-12 justify-between items-center">
+      <div className="max-w-[1600px] w-full max-md:w-screen mx-auto py-36 max-md:py-12 md:py-24 lg:py-36 flex max-md:flex-col max-md:gap-8 md:gap-12 lg:gap-16 max-md:px-4 md:px-8 lg:px-12 justify-between items-center">
         <div className="flex flex-col gap-4 md:gap-6">
           <h3 className="text-3xl md:text-4xl lg:text-3xl font-bold text-white">
             Subscribe to our Newsletter
