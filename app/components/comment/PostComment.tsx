@@ -122,7 +122,7 @@ const PostComment = ({
         placeholder={
           email || email !== ""
             ? "Share your thoughts..."
-            : "Please login to comment"
+            : "Please login to comment or like a comment"
         }
         className={`w-full p-4 min-h-[120px] bg-gray-50 border-[0.3px] border-[#111111]/20 focus:outline-none focus:border-[#111111]/40 resize-none transition-colors ${
           !email && "cursor-not-allowed opacity-50"
