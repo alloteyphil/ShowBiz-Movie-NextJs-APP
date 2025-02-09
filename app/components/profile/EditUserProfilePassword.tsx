@@ -190,7 +190,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           value={passwordData.currentPassword}
           id="currentPassword"
           placeholder="Current Password"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none placeholder:text-themeGray"
+          className="w-full p-4 max-md:py-3 border-[0.3px] border-[#111111]/40 focus:outline-none placeholder:text-themeGray"
         />
 
         {passwordVisible ? (
@@ -218,7 +218,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           value={passwordData.newPassword}
           id="newPassword"
           placeholder="New Password"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none placeholder:text-themeGray"
+          className="w-full p-4 max-md:py-3 border-[0.3px] border-[#111111]/40 focus:outline-none placeholder:text-themeGray"
         />
         {passwordVisible ? (
           <EyeIcon
@@ -245,7 +245,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
           value={passwordData.confirmNewPassword}
           id="confirmNewPassword"
           placeholder="Confirm New Password"
-          className="w-full p-4 border-[0.3px] border-[#111111]/40 focus:outline-none placeholder:text-themeGray"
+          className="w-full p-4 max-md:py-3 border-[0.3px] border-[#111111]/40 focus:outline-none placeholder:text-themeGray"
         />
         {passwordVisible ? (
           <EyeIcon
@@ -268,7 +268,7 @@ const EditUserProfilePassword = ({ email }: { email: string }) => {
 
       <button
         onClick={handleSubmit}
-        className="w-full bg-[#111111] grid place-items-center h-16 text-white"
+        className="w-full bg-[#111111] grid place-items-center h-16 max-md:h-12 text-white"
       >
         {loading ? (
           <LoaderCircleIcon size={20} className="animate-spin" />
