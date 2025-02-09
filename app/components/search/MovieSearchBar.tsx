@@ -36,6 +36,8 @@ const MovieSearchBar = () => {
     }
 
     router.push(`/search/movie?query=${movieSearchTerm}&page=1`);
+
+    setMovieSearchTerm("");
   };
 
   return (

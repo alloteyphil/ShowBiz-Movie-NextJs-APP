@@ -1,9 +1,10 @@
 "use client";
 
-import { sendEmail, storeEmail } from "@/actions/subscribe.action";
+import { storeEmail } from "@/actions/subscribe.action";
 import { useToast } from "@/hooks/use-toast";
 import { isPotentialSQLInjection } from "@/lib/helpers/possibleSqlInjections";
 import type { UserSubscribeDetailsType } from "@/types/subscribe";
+import { sendEmail } from "@/utils/sendEmail";
 import { LoaderCircleIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -27,30 +28,14 @@ const Subscribe = () => {
   };
 
   const handleSubmit = async () => {
-    if (userDetails.email.trim() === "") {
+    if (
+      !userDetails.email.trim() ||
+      !userDetails.fName.trim() ||
+      !userDetails.lName.trim()
+    ) {
       toast({
-        title: "Field is required",
-        description: "Please enter your email",
-        className:
-          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
-      });
-      return;
-    }
-
-    if (userDetails.fName.trim() === "") {
-      toast({
-        title: "Field is required",
-        description: "Please enter your name",
-        className:
-          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
-      });
-      return;
-    }
-
-    if (userDetails.lName.trim() === "") {
-      toast({
-        title: "Field is required",
-        description: "Please enter your name",
+        title: "All fields are required",
+        description: "Please enter your first name, last name, and email",
         className:
           "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
@@ -60,7 +45,7 @@ const Subscribe = () => {
     if (!isEmail(userDetails.email)) {
       toast({
         title: "Invalid Email",
-        description: "Please enter a valid email",
+        description: "Please enter a valid email address",
         className:
           "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
@@ -68,13 +53,13 @@ const Subscribe = () => {
     }
 
     if (
-      isPotentialSQLInjection(
-        userDetails.email || userDetails.fName || userDetails.lName,
-      )
+      isPotentialSQLInjection(userDetails.email) ||
+      isPotentialSQLInjection(userDetails.fName) ||
+      isPotentialSQLInjection(userDetails.lName)
     ) {
       toast({
-        title: "Invalid Field(s)",
-        description: "Please enter a valid input",
+        title: "Invalid Input",
+        description: "Detected potentially harmful input",
         className:
           "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
@@ -83,31 +68,25 @@ const Subscribe = () => {
 
     try {
       setLoading(true);
-      const response = await sendEmail(
+
+      const emailResponse = await sendEmail(
         userDetails.email,
         userDetails.fName,
         userDetails.lName,
       );
 
-      if (response.status === "error") {
+      if (emailResponse.status === "error") {
         toast({
           title: "Error",
-          description: "An error occurred while subscribing to our newsletter",
+          description: "Could not send the email. Please try again.",
           className:
             "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
         setLoading(false);
-
-        return response.message;
+        return;
       }
 
-      const savedSubscriber:
-        | {
-            statusCode: number;
-            message: string;
-            subscriber: UserSubscribeDetailsType | null;
-          }
-        | undefined = await storeEmail(
+      const savedSubscriber = await storeEmail(
         userDetails.email,
         userDetails.fName,
         userDetails.lName,
@@ -115,49 +94,37 @@ const Subscribe = () => {
 
       if (savedSubscriber?.statusCode === 409) {
         toast({
-          title: "Already subscribed",
-          description: "You have already subscribed to our newsletter",
+          title: "Already Subscribed",
+          description: "You are already subscribed to our newsletter.",
           className:
             "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
-        setLoading(false);
-
-        return;
-      }
-
-      if (savedSubscriber?.statusCode === 200) {
+      } else if (savedSubscriber?.statusCode === 200) {
         toast({
-          title: "Great!",
-          description: "You have successfully subscribed to our newsletter",
+          title: "Success!",
+          description: "You have successfully subscribed to our newsletter.",
           className:
             "bg-green-200 text-green-600 shadow-md shadow-green-400/30 rounded-xl py-6",
         });
-        setLoading(false);
 
-        setUserDetails({
-          email: "",
-          fName: "",
-          lName: "",
+        setUserDetails({ email: "", fName: "", lName: "" });
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          className:
+            "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
         });
-
-        return;
       }
-
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again",
-        className:
-          "bg-red-200 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
-      });
-
-      return;
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again",
+        description: "Something went wrong. Please try again.",
         className:
           "bg-red-100 text-red-600 shadow-md shadow-red-400/30 rounded-xl py-6",
       });
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -36,6 +36,8 @@ const TVSearchBar = () => {
     }
 
     router.push(`/search/tv?query=${tvSearchTerm}&page=1`);
+
+    setTvSearchTerm("");
   };
 
   return (
