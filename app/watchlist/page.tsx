@@ -41,12 +41,12 @@ const page = async () => {
 
     return (
       <div className="sm:px-6 md:px-8 lg:pt-28 pb-28 md:pb-20 lg:pb-32 text-white flex flex-col gap-14 max-md:gap-8 md:gap-10 lg:gap-14 max-w-[1400px] mx-auto max-md:px-8">
-        <div className="flex flex-col min-h-screen gap-4 w-full justify-center items-center">
+        <div className="flex flex-col min-h-screen gap-4 w-full xl:justify-center items-center">
           <WatchListBreadCrumbs />
           <Image
             src={noResults}
             alt="No results"
-            className="w-40 sm:w-48 md:w-52 lg:w-56"
+            className="w-40 sm:w-48 md:w-52 lg:w-56 max-md:mt-48 max-xl:mt-64"
           />
           <p className="text-themeGray text-center w-full max-w-md sm:max-w-lg md:max-w-xl">
             Please login to view your watchlist
@@ -68,11 +68,11 @@ const page = async () => {
         return (
           <div className="sm:px-6 md:px-8 lg:pt-28 pb-28 md:pb-20 lg:pb-32 text-white flex flex-col gap-14 max-md:gap-8 md:gap-10 lg:gap-14 max-w-[1400px] mx-auto max-md:px-8">
             <WatchListBreadCrumbs />
-            <div className="flex flex-col min-h-screen gap-4 w-full justify-center items-center">
+            <div className="flex flex-col min-h-screen gap-4 w-full xl:justify-center xl:items-center">
               <Image
                 src={noResults}
                 alt="No results"
-                className="w-40 sm:w-48 md:w-52 lg:w-56"
+                className="w-40 sm:w-48 md:w-52 lg:w-56 max-md:mt-48 max-xl:mt-64"
               />
               <p className="text-themeGray text-center w-full max-w-md sm:max-w-lg md:max-w-xl">
                 There was an issue finding your watchlist
@@ -90,11 +90,11 @@ const page = async () => {
         return (
           <div className="sm:px-6 md:px-8 lg:pt-28 pb-28 md:pb-20 lg:pb-32 text-white flex flex-col gap-14 max-md:gap-8 md:gap-10 lg:gap-14 max-w-[1400px] mx-auto max-md:px-8">
             <WatchListBreadCrumbs />
-            <div className="flex flex-col min-h-screen gap-4 w-full justify-center items-center">
+            <div className="flex flex-col min-h-screen gap-4 w-full xl:justify-center items-center">
               <Image
                 src={noResults}
                 alt="No results"
-                className="w-40 sm:w-48 md:w-52 lg:w-56"
+                className="w-40 sm:w-48 md:w-52 lg:w-56 max-md:mt-48 max-xl:mt-64"
               />
               <p className="text-themeGray text-center w-full max-w-md sm:max-w-lg md:max-w-xl">
                 No results. Start adding movies to your watchlist!

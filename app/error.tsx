@@ -9,11 +9,11 @@ const Error = () => {
 
   return (
     <div className="flex flex-col gap-12 max-md:gap-6 text-white w-full max-w-[1400px] mx-auto px-4">
-      <div className="flex flex-col min-h-screen gap-4 w-full justify-center items-center">
+      <div className="flex flex-col min-h-screen gap-4 w-full xl:justify-center items-center">
         <Image
           src={errorImage}
           alt="Something went wrong"
-          className="w-40 sm:w-48 md:w-52 lg:w-56 max-md:w-32 object-contain"
+          className="w-40 sm:w-48 md:w-52 lg:w-56 max-md:w-32 object-contain max-md:mt-48 max-xl:mt-64"
           priority
         />
         <p className="text-themeGray text-center w-full max-w-md text-lg sm:text-xl max-md:text-base max-md:px-4">

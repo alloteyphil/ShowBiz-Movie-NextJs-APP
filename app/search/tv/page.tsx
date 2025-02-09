@@ -30,11 +30,11 @@ const page = async ({
               <TVSearchBar />
             </div>
           </div>
-          <div className="flex flex-col gap-4 w-full justify-center items-center">
+          <div className="flex flex-col gap-4 w-full xl:justify-center items-center">
             <Image
               src={noResults}
               alt="No results"
-              className="w-40 sm:w-48 md:w-52 lg:w-56"
+              className="w-40 sm:w-48 md:w-52 lg:w-56 max-md:mt-48 max-xl:mt-64"
             />
             <p className="text-themeGray text-center w-full max-w-md text-lg sm:text-xl">
               No results
@@ -83,11 +83,11 @@ const page = async ({
               <TVSearchBar />
             </div>
           </div>
-          <div className="flex flex-col gap-4 w-full justify-center items-center">
+          <div className="flex flex-col gap-4 w-full xl:justify-center items-center">
             <Image
               src={noResults}
               alt="No results"
-              className="w-40 sm:w-48 md:w-52 lg:w-56 object-contain"
+              className="w-40 sm:w-48 md:w-52 lg:w-56 object-contain max-md:mt-48 max-xl:mt-64"
             />
             <p className="text-themeGray text-center w-full max-w-md text-lg sm:text-xl">
               No results
