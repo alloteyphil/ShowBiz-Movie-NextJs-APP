@@ -18,19 +18,25 @@ const page = async ({
   if (query.query === undefined || query.query === "") {
     return (
       <>
-        <div className="flex flex-col gap-24 text-white w-full pt-[160px] max-w-[1400px] mx-auto">
+        <div className="flex flex-col gap-24 text-white w-full pt-[160px] max-w-[1400px] mx-auto px-4">
           <div className="flex flex-col">
-            <div className="flex w-full items-center justify-between">
-              <div className="flex flex-col gap-1">
-                <h4 className="text-lg">Search results for: </h4>
-                <p className="text-themeGray">No search query</p>
+            <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4">
+              <div className="flex flex-col gap-1 text-center max-md:text-left">
+                <h4 className="text-lg sm:text-xl">Search results for:</h4>
+                <p className="text-themeGray text-base sm:text-lg">
+                  No search query
+                </p>
               </div>
               <MovieSearchBar />
             </div>
           </div>
           <div className="flex flex-col gap-4 w-full justify-center items-center">
-            <Image src={noResults} alt="No results" className="w-56" />
-            <p className="text-themeGray text-center w-full text-lg">
+            <Image
+              src={noResults}
+              alt="No results"
+              className="w-40 sm:w-48 md:w-52 lg:w-56"
+            />
+            <p className="text-themeGray text-center w-full max-w-md text-lg sm:text-xl">
               No results
             </p>
           </div>
@@ -65,19 +71,25 @@ const page = async ({
   if (data?.total_results === 0) {
     return (
       <>
-        <div className="flex flex-col gap-24 pb-32 text-white w-full pt-[160px] max-w-[1400px] mx-auto">
+        <div className="flex flex-col gap-24 pb-32 text-white w-full pt-[160px] max-w-[1400px] mx-auto px-4">
           <div className="flex flex-col">
-            <div className="flex w-full items-center justify-between">
-              <div className="flex flex-col gap-1">
-                <h4 className="text-lg">Search results for: </h4>
-                <p className="text-themeGray">No search query</p>
+            <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4">
+              <div className="flex flex-col gap-1 text-center max-md:text-left">
+                <h4 className="text-lg sm:text-xl">Search results for:</h4>
+                <p className="text-themeGray text-base sm:text-lg">
+                  No search query
+                </p>
               </div>
               <MovieSearchBar />
             </div>
           </div>
           <div className="flex flex-col gap-4 w-full justify-center items-center">
-            <Image src={noResults} alt="No results" className="w-56" />
-            <p className="text-themeGray text-center w-full text-lg">
+            <Image
+              src={noResults}
+              alt="No results"
+              className="w-40 sm:w-48 md:w-52 lg:w-56 object-contain"
+            />
+            <p className="text-themeGray text-center w-full max-w-md text-lg sm:text-xl">
               No results
             </p>
           </div>

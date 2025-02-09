@@ -13,7 +13,8 @@ const UserImage = ({ image }: { image: string }) => {
       <Avatar className="w-32 h-32 mb-4">
         <AvatarImage
           src={photo || image}
-          className="object-cover object-center"
+          className="w-full h-full object-cover object-center"
+          alt="User Profile"
         />
         <AvatarFallback>
           <Image
@@ -21,7 +22,7 @@ const UserImage = ({ image }: { image: string }) => {
             width={300}
             height={300}
             alt="Profile Picture"
-            className="object-cover object-center"
+            className="w-full h-full object-cover object-center"
           />
         </AvatarFallback>
       </Avatar>
