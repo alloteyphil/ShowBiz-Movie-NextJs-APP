@@ -15,21 +15,21 @@ const FeaturedShows = async () => {
   }
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 mt-12">
+    <div className="px-4 md:px-8 lg:px-16 mt-8">
       <h1 className="text-3xl text-white font-bold xl:hidden">Trending</h1>
       <div
         className="
-      mt-12 md:mt-16 lg:mt-24 
-      mb-32 md:mb-20 lg:mb-32 
+      mt-8 md:mt-12 lg:mt-16
+      mb-16 md:mb-20 lg:mb-24
       text-white 
       grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
-      gap-y-14 gap-x-4
+      gap-y-10 gap-x-4
     "
       >
         {data ? (
           data.results.map((show: TrendingGenreType) => {
             if (!show.poster_path) {
-              return;
+              return null;
             }
             return show.media_type === "tv" ? (
               <div key={show.id} className="w-full">
@@ -54,7 +54,7 @@ const FeaturedShows = async () => {
         ) : (
           <LoaderIcon
             size={36}
-            className="text-white mx-auto my-56 animate-spin"
+            className="text-white mx-auto my-24 animate-spin"
           />
         )}
       </div>
