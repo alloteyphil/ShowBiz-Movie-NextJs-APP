@@ -36,7 +36,7 @@ const WatchListCard = ({
               : noImage
           }
           alt={title}
-          className="object-contain object-center w-full h-full transition group-hover:scale-125 duration-700 ease-in-out"
+          className="object-cover object-center w-full h-full transition group-hover:scale-125 duration-700 ease-in-out"
         />
       </Link>
       <div className="flex flex-col gap-2 text-center max-w-[250px] text-wrap">
